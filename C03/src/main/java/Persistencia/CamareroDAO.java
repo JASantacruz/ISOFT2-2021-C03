@@ -4,6 +4,7 @@ import java.util.*;
 import java.sql.*;
 import Dominio.*;
 
+<<<<<<< HEAD
 @SuppressWarnings("static-access")
 public class CamareroDAO {
 	
@@ -17,6 +18,9 @@ public class CamareroDAO {
 			e.printStackTrace();
 		}
 	}
+=======
+public class CamareroDAO {
+>>>>>>> main
 
 	public static int Update(String consulta, Connection con) throws SQLException{
 		PreparedStatement stmt = con.prepareStatement(consulta);
@@ -26,6 +30,7 @@ public class CamareroDAO {
 	}
 
 
+<<<<<<< HEAD
 	public static int Delete(String consulta){
 		PreparedStatement stmt;
 		int res = 0;
@@ -36,10 +41,17 @@ public class CamareroDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+=======
+	public static int Delete(String consulta, Connection con) throws SQLException{
+		PreparedStatement stmt = con.prepareStatement(consulta);
+		int res = stmt.executeUpdate();
+		stmt.close();
+>>>>>>> main
 		return res;
 	}
 
 
+<<<<<<< HEAD
 	public static int Create(String consulta){
 		PreparedStatement stmt;
 		int res = 0;
@@ -54,6 +66,17 @@ public class CamareroDAO {
 	}
 
 	public static void Read(String consulta,LinkedList<Camarero> lista) {
+=======
+	public static int Insert(String consulta, Connection con) throws SQLException{
+		PreparedStatement stmt;
+		stmt = con.prepareStatement(consulta);
+		int res = stmt.executeUpdate();
+		stmt.close();
+		return res;
+	}
+
+	public static void Read(String consulta, Connection con, LinkedList<Camarero> lista) {
+>>>>>>> main
 		try {
 			PreparedStatement ps = con.prepareStatement(consulta);
 			ResultSet rs = ps.executeQuery();

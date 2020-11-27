@@ -1,4 +1,8 @@
 Dominio\DTOMesa.class
+<<<<<<< HEAD
+=======
+Presentacion\IU_Principal$3.class
+>>>>>>> main
 Presentacion\IU_ReservarMesa$4.class
 Dominio\Estado.class
 Presentacion\IU_Bienvenida_JefeSala$1.class
@@ -10,9 +14,15 @@ Presentacion\IU_ReservarMesa$2.class
 Presentacion\IU_CancelarReserva$2.class
 Presentacion\IU_ComprobarReserva.class
 Dominio\DTOCamarero.class
+<<<<<<< HEAD
 Presentacion\IU_ReservarMesa$5.class
 Dominio\Camarero.class
 Presentacion\IU_Principal$2.class
+=======
+Dominio\Camarero.class
+Presentacion\IU_Principal$2.class
+Presentacion\IU_ComprobarReserva$3.class
+>>>>>>> main
 Presentacion\IU_Bienvenida_JefeSala$2.class
 Presentacion\IU_ReservarMesa$3.class
 Persistencia\MesaDAO.class
