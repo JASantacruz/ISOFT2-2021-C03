@@ -1,5 +1,20 @@
 package Dominio;
 
+<<<<<<< HEAD
+import java.sql.*;
+import java.util.*;
+
+import Persistencia.CamareroDAO;
+
+@SuppressWarnings("static-access")
+public class DTOCamarero {
+
+	static CamareroDAO camDAO = new CamareroDAO();
+	
+	public static void leerCamareros(LinkedList<Camarero> lista) {
+		String consulta = "SELECT * FROM Camarero";
+		camDAO.Read(consulta, lista);
+=======
 import java.awt.Color;
 import java.sql.*;
 import java.util.*;
@@ -30,10 +45,15 @@ public class DTOCamarero {
 			IU_Principal.lblConexion.setVisible(true);
 		}
 		return con;
+>>>>>>> main
 	}
 
 	public static void leerCamarero(int id, Connection con, LinkedList<Camarero> lista) {
 		String consulta = "SELECT * FROM Camarero WHERE idCamarero= "+id+";";
+<<<<<<< HEAD
+		camDAO.Read(consulta, lista);
+=======
 		CamareroDAO.Read(consulta, con, lista);
+>>>>>>> main
 	}
 }

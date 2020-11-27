@@ -7,24 +7,82 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import Dominio.Reserva;
 
+<<<<<<< HEAD
+@SuppressWarnings("static-access")
+public class ReservaDAO {
+	
+	private static Connection con;
+	
+	public ReservaDAO() {
+		try {
+			this.con = Agente.conexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static int Update(String consulta){
+		PreparedStatement stmt;
+		int res = 0;
+		try {
+			stmt = con.prepareStatement(consulta);
+			res = stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+=======
 public class ReservaDAO {
 	
 	public static int Update(String consulta, Connection con) throws SQLException{
 		PreparedStatement stmt = con.prepareStatement(consulta);
 		int res = stmt.executeUpdate();
 		stmt.close();
+>>>>>>> main
 		return res;
 	}
 
 
+<<<<<<< HEAD
+	public static int Delete(String consulta){
+		PreparedStatement stmt;
+		int res = 0;
+		try {
+			stmt = con.prepareStatement(consulta);
+			res = stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+=======
 	public static int Delete(String consulta, Connection con) throws SQLException{
 		PreparedStatement stmt = con.prepareStatement(consulta);
 		int res = stmt.executeUpdate();
 		stmt.close();
+>>>>>>> main
 		return res;
 	}
 
 
+<<<<<<< HEAD
+	public static int Create(String consulta){
+		PreparedStatement stmt;
+		int res = 0;
+		try {
+			stmt = con.prepareStatement(consulta);
+			res = stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	public static void Read(String consulta, LinkedList<Reserva> lista) {
+=======
 	public static int Insert(String consulta, Connection con) throws SQLException{
 		PreparedStatement stmt;
 		stmt = con.prepareStatement(consulta);
@@ -34,11 +92,16 @@ public class ReservaDAO {
 	}
 
 	public static void Read(String consulta, Connection con, LinkedList<Reserva> lista) {
+>>>>>>> main
 		try {
 			PreparedStatement ps = con.prepareStatement(consulta);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
+<<<<<<< HEAD
+				Reserva reserva = new Reserva(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getTimestamp(4), rs.getInt(5), rs.getString(6), rs.getString(7));
+=======
 				Reserva reserva = new Reserva(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getTimestamp(4), rs.getInt(5), rs.getString(6));
+>>>>>>> main
 				lista.add(reserva);
 			}
 		}catch(Exception e) {

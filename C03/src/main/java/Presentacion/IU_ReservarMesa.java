@@ -29,8 +29,11 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+<<<<<<< HEAD
+=======
 import java.sql.*;
 
+>>>>>>> main
 import com.toedter.calendar.JDateChooser;
 
 @SuppressWarnings({"rawtypes", "unchecked", "serial"})
@@ -56,11 +59,20 @@ public class IU_ReservarMesa extends JFrame implements Fuente{
 	private DateTimeFormatter df = DateTimeFormatter.ofPattern("HH:mm").localizedBy(new Locale("es-ES"));
 	private JDateChooser dateChooser;
 	private JLabel lblFecha;
+<<<<<<< HEAD
+	private JTextField txtNombre;
+	private JLabel lblNombre;
+=======
+>>>>>>> main
 
 	/**
 	 * Create the frame.
 	 */
+<<<<<<< HEAD
+	public IU_ReservarMesa(final LinkedList<Mesa> lista) {
+=======
 	public IU_ReservarMesa(final Connection con, final LinkedList<Mesa> lista) {
+>>>>>>> main
 		setTitle("Fritura");
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -88,28 +100,57 @@ public class IU_ReservarMesa extends JFrame implements Fuente{
 		cmbBxMesas.setFont(FUENTE_LBL);
 		cmbBxMesas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+<<<<<<< HEAD
+				if(cmbBxMesas.getSelectedIndex()!=0) {
+					String id = cmbBxMesas.getSelectedItem().toString().substring(5);
+					DTOMesa.leerMesa(Integer.parseInt(id), lista);
+					txtMesa.setText(id);
+					buttonGroup.clearSelection();
+					txtEstado.setText("");
+					txtNombre.setText("");
+				}
+				else {
+					txtMesa.setText("");
+					buttonGroup.clearSelection();
+					txtEstado.setText("");
+					txtNombre.setText("");
+				}
+=======
 				String id = cmbBxMesas.getSelectedItem().toString().substring(5);
 				DTOMesa.leerMesa(con, lista, id);
 				txtMesa.setText(id);
 				txtEstado.setText(lista.get(Integer.parseInt(id)-1).getEstado());
+>>>>>>> main
 			}
 		});
 		pnlReservar.add(cmbBxMesas);
 
 		lblMesaComensales = new JLabel("Nº Comensales: ");
+<<<<<<< HEAD
+		lblMesaComensales.setBounds(334, 175, 136, 21);
+=======
 		lblMesaComensales.setBounds(335, 208, 136, 21);
+>>>>>>> main
 		lblMesaComensales.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMesaComensales.setFont(FUENTE_LBL);
 		pnlReservar.add(lblMesaComensales);
 
 		lblEstado = new JLabel("Estado: ");
+<<<<<<< HEAD
+		lblEstado.setBounds(393, 339, 73, 21);
+=======
 		lblEstado.setBounds(395, 317, 73, 21);
+>>>>>>> main
 		lblEstado.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEstado.setFont(FUENTE_LBL);
 		pnlReservar.add(lblEstado);
 
 		txtEstado = new JTextField();
+<<<<<<< HEAD
+		txtEstado.setBounds(462, 330, 177, 30);
+=======
 		txtEstado.setBounds(463, 308, 177, 30);
+>>>>>>> main
 		txtEstado.setEditable(false);
 		txtEstado.setColumns(10);
 		pnlReservar.add(txtEstado);
@@ -121,6 +162,16 @@ public class IU_ReservarMesa extends JFrame implements Fuente{
 				LocalTime hm = LocalTime.parse((String)cmbbxTurnos.getSelectedItem(), df);
 				LocalDate s = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 				LocalDateTime fecha = LocalDateTime.of(s, hm);
+<<<<<<< HEAD
+
+				LinkedList<Reserva> listaAux = new LinkedList<Reserva>();
+				DTOReserva.leerReservasAux(Integer.parseInt(txtMesa.getText()), fecha,   listaAux);
+
+				if(listaAux.size()==0) {
+					if(rdbtnComida.isSelected()) {
+						DTOReserva.anadirReserva(cmbbxComensales.getSelectedItem().toString(), "Reservada", fecha, txtMesa.getText(), "Comida",txtNombre.getText(), lista);
+						txtEstado.setText("Reservada");
+=======
 				
 				LinkedList<Reserva> listaAux = new LinkedList<Reserva>();
 				DTOReserva.leerReservasAux(Integer.parseInt(txtMesa.getText()), fecha, con, listaAux);
@@ -128,12 +179,17 @@ public class IU_ReservarMesa extends JFrame implements Fuente{
 				if(listaAux.size()==0) {
 					if(rdbtnComida.isSelected()) {
 						DTOReserva.anadirReserva(cmbbxComensales.getSelectedItem().toString(), "Reservado", fecha, txtMesa.getText(), "Comida", con, lista);
+>>>>>>> main
 						lblResultado.setText("Mesa reservada con éxito");
 						lblResultado.setForeground(Color.green);
 						lblResultado.setVisible(true);
 
 					}else if(rdbtnCena.isSelected()) {
+<<<<<<< HEAD
+						DTOReserva.anadirReserva(cmbbxComensales.getSelectedItem().toString(), "Reservada", fecha, txtMesa.getText(), "Cena", txtNombre.getText(), lista );
+=======
 						DTOReserva.anadirReserva(cmbbxComensales.getSelectedItem().toString(), "Reservado", fecha, txtMesa.getText(), "Cena", con, lista);
+>>>>>>> main
 						lblResultado.setText("Mesa reservada con éxito");
 						lblResultado.setForeground(Color.green);
 						lblResultado.setVisible(true);
@@ -153,13 +209,21 @@ public class IU_ReservarMesa extends JFrame implements Fuente{
 		lblID = new JLabel("Id. mesa:");
 		lblID.setHorizontalAlignment(SwingConstants.CENTER);
 		lblID.setFont(new Font("Verdana", Font.ITALIC, 15));
+<<<<<<< HEAD
+		lblID.setBounds(377, 132, 93, 21);
+=======
 		lblID.setBounds(378, 165, 93, 21);
+>>>>>>> main
 		pnlReservar.add(lblID);
 
 		txtMesa = new JTextField();
 		txtMesa.setEditable(false);
 		txtMesa.setColumns(10);
+<<<<<<< HEAD
+		txtMesa.setBounds(462, 130, 30, 30);
+=======
 		txtMesa.setBounds(463, 163, 30, 30);
+>>>>>>> main
 		pnlReservar.add(txtMesa);
 
 		lblResultado = new JLabel("New label");
@@ -170,7 +234,11 @@ public class IU_ReservarMesa extends JFrame implements Fuente{
 		lblTurno = new JLabel("Turno:");
 		lblTurno.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTurno.setFont(new Font("Verdana", Font.ITALIC, 15));
+<<<<<<< HEAD
+		lblTurno.setBounds(407, 250, 63, 21);
+=======
 		lblTurno.setBounds(395, 359, 73, 21);
+>>>>>>> main
 		pnlReservar.add(lblTurno);
 
 		rdbtnComida = new JRadioButton("Comida");
@@ -185,7 +253,11 @@ public class IU_ReservarMesa extends JFrame implements Fuente{
 		});
 
 		buttonGroup.add(rdbtnComida);
+<<<<<<< HEAD
+		rdbtnComida.setBounds(462, 250, 100, 19);
+=======
 		rdbtnComida.setBounds(464, 361, 100, 19);
+>>>>>>> main
 		rdbtnComida.setFont(FUENTE_RDBTN);
 		pnlReservar.add(rdbtnComida);
 
@@ -200,18 +272,72 @@ public class IU_ReservarMesa extends JFrame implements Fuente{
 			}
 		});
 		buttonGroup.add(rdbtnCena);
+<<<<<<< HEAD
+		rdbtnCena.setBounds(564, 250, 82, 19);
+=======
 		rdbtnCena.setBounds(568, 361, 128, 19);
+>>>>>>> main
 		rdbtnCena.setFont(FUENTE_RDBTN);
 		pnlReservar.add(rdbtnCena);
 
 		cmbbxTurnos = new JComboBox();
+<<<<<<< HEAD
+		cmbbxTurnos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(cmbbxTurnos.getItemCount()!=0) {
+					LocalTime hm = LocalTime.parse((String)cmbbxTurnos.getSelectedItem(), df);
+					LocalDate s = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					LocalDateTime fecha = LocalDateTime.of(s, hm);
+
+					LinkedList<Reserva> listaAux = new LinkedList<Reserva>();
+					DTOReserva.leerReservasAux(Integer.parseInt(txtMesa.getText()), fecha, listaAux);
+
+					if(listaAux.size()!=0) {
+						txtEstado.setText("Reservada");
+					}
+					else {
+						txtEstado.setText("Libre");
+					}
+				}
+			}
+		});
+		cmbbxTurnos.setVisible(false);
+		cmbbxTurnos.setBounds(486, 279, 109, 30);
+=======
 		cmbbxTurnos.setVisible(false);
 		cmbbxTurnos.setBounds(497, 403, 109, 30);
+>>>>>>> main
 		pnlReservar.add(cmbbxTurnos);
 
 		cmbbxComensales = new JComboBox();
 		cmbbxComensales.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6"}));
 		cmbbxComensales.setFont(FUENTE_RDBTN);
+<<<<<<< HEAD
+		cmbbxComensales.setBounds(461, 177, 43, 21);
+		pnlReservar.add(cmbbxComensales);
+
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(461, 208, 143, 30);
+		dateChooser.setFont(FUENTE_LBL);
+		pnlReservar.add(dateChooser);
+
+		lblFecha = new JLabel("Fecha:");
+		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFecha.setBounds(394, 219, 76, 19);
+		lblFecha.setFont(FUENTE_LBL);
+		pnlReservar.add(lblFecha);
+
+		txtNombre = new JTextField();
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(462, 370, 177, 30);
+		pnlReservar.add(txtNombre);
+
+		lblNombre = new JLabel("Nombre: ");
+		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombre.setFont(new Font("Verdana", Font.ITALIC, 15));
+		lblNombre.setBounds(394, 379, 73, 21);
+		pnlReservar.add(lblNombre);
+=======
 		cmbbxComensales.setBounds(462, 210, 43, 21);
 		pnlReservar.add(cmbbxComensales);
 		
@@ -224,5 +350,6 @@ public class IU_ReservarMesa extends JFrame implements Fuente{
 		lblFecha.setBounds(395, 271, 56, 19);
 		lblFecha.setFont(FUENTE_LBL);
 		pnlReservar.add(lblFecha);
+>>>>>>> main
 	}
 }
