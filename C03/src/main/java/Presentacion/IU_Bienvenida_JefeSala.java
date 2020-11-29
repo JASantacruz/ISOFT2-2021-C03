@@ -2,7 +2,6 @@ package Presentacion;
 
 import java.awt.Font;
 
-import java.sql.*;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
@@ -33,7 +32,7 @@ public class IU_Bienvenida_JefeSala extends JFrame implements Fuente{
 	/**
 	 * Create the frame.
 	 */
-	public IU_Bienvenida_JefeSala(final Connection con) {
+	public IU_Bienvenida_JefeSala() {
 		setTitle("Fritura");
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -63,8 +62,8 @@ public class IU_Bienvenida_JefeSala extends JFrame implements Fuente{
 		btnAccesoReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LinkedList<Mesa> lista = new LinkedList<Mesa>();
-				DTOMesa.leerMesas(con, lista);
-				IU_ReservarMesa iu_reserv = new IU_ReservarMesa(con, lista);
+				DTOMesa.leerMesas(lista);
+				IU_ReservarMesa iu_reserv = new IU_ReservarMesa(lista);
 				iu_reserv.setVisible(true);
 			}
 		});
@@ -78,8 +77,8 @@ public class IU_Bienvenida_JefeSala extends JFrame implements Fuente{
 		btnAccesoCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LinkedList<Reserva> lista = new LinkedList<Reserva>();
-				DTOReserva.leerReservas(con, lista);
-				IU_CancelarReserva iu_canc = new IU_CancelarReserva(con, lista);
+				DTOReserva.leerReservas(lista);
+				IU_CancelarReserva iu_canc = new IU_CancelarReserva(lista);
 				iu_canc.setVisible(true);
 				
 			}
@@ -93,9 +92,11 @@ public class IU_Bienvenida_JefeSala extends JFrame implements Fuente{
 		btnAccesoComprobar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAccesoComprobar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LinkedList<Mesa> lista = new LinkedList<Mesa>();
-				DTOMesa.leerMesas(con, lista);
-				IU_ComprobarReserva iu_compr = new IU_ComprobarReserva(con, lista);
+				LinkedList<Camarero> listaCamarero = new LinkedList<Camarero>();
+				DTOCamarero.leerCamareros(listaCamarero);
+				LinkedList<Reserva> listaReserva = new LinkedList<Reserva>();
+				DTOReserva.leerReservas(listaReserva);
+				IU_ComprobarReserva iu_compr = new IU_ComprobarReserva(listaReserva, listaCamarero);
 				iu_compr.setVisible(true);
 			}
 		});

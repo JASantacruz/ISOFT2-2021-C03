@@ -11,8 +11,6 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import Dominio.DTOCamarero;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,7 +22,6 @@ public class IU_Principal implements Fuente{
 	private JFrame frmFritura;
 	private JPanel pnlPrincipal;
 	private JLabel lblBienvenida;
-	private JButton btnConectar;
 	public static JLabel lblConexion;
 	static Connection con = null;
 	private JRadioButton rdbtnJefeDeSala;
@@ -77,16 +74,6 @@ public class IU_Principal implements Fuente{
 
 		pnlPrincipal.add(lblBienvenida);
 
-		btnConectar = new JButton("Conectar");
-		btnConectar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				con = DTOCamarero.getConexion();
-			}
-		});
-		btnConectar.setFont(FUENTE_BTN);
-		btnConectar.setBounds(50, 394, 112, 35);
-		pnlPrincipal.add(btnConectar);
-
 		lblConexion = new JLabel("Conexion");
 		lblConexion.setVisible(false);
 		lblConexion.setFont(FUENTE_LBL);
@@ -109,7 +96,7 @@ public class IU_Principal implements Fuente{
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rdbtnJefeDeSala.isSelected()) {
-					IU_Bienvenida_JefeSala bienjs = new IU_Bienvenida_JefeSala(con);
+					IU_Bienvenida_JefeSala bienjs = new IU_Bienvenida_JefeSala();
 					bienjs.setVisible(true);
 				}else if(rdbtnCamarero.isSelected()) {
 					//TODO 

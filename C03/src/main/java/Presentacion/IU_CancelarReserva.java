@@ -10,7 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
 
 import Dominio.DTOReserva;
 import Dominio.Reserva;
@@ -20,10 +19,10 @@ import java.awt.Rectangle;
 import java.awt.Color;
 
 import java.awt.event.ActionListener;
-import java.sql.*;
 import java.text.DateFormat;
 import java.util.LinkedList;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 @SuppressWarnings({"rawtypes", "unchecked", "serial"})
 public class IU_CancelarReserva extends JFrame implements Fuente {
@@ -38,15 +37,17 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 	private JTextField txtFecha;
 	private JLabel lblHora;
 	private JLabel lblComensales;
-	private JTextArea txtaComensales;
 	private JComboBox cmbBxReservas;
 	private JLabel lblResultado;
 
 	private DateFormat df = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT);
+	private JTextField txtComensales;
+	private JLabel lblNombre;
+	private JTextField txtNombre;
 	/**
 	 * Create the frame.
 	 */
-	public IU_CancelarReserva(final Connection con, final LinkedList<Reserva> lista) {
+	public IU_CancelarReserva(final LinkedList<Reserva> lista) {
 		setResizable(false);
 		setTitle("Fritura");
 		setBounds(new Rectangle(380, 170, 700, 500));
@@ -94,14 +95,8 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 
 		lblComensales = new JLabel("Comensales:");
 		lblComensales.setFont(FUENTE_LBL);
-		lblComensales.setBounds(210, 257, 98, 19);
+		lblComensales.setBounds(205, 243, 98, 19);
 		panel.add(lblComensales);
-
-		txtaComensales = new JTextArea();
-		txtaComensales.setEditable(false);
-		txtaComensales.setBounds(318, 256, 298, 56);
-		txtaComensales.setFont(FUENTE_LBL);
-		panel.add(txtaComensales);
 
 		cmbBxReservas = new JComboBox();
 		cmbBxReservas.addItem("-------------");
@@ -113,11 +108,12 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 				if(cmbBxReservas.getSelectedIndex()!=0) {
 					txtMesa.setText(Integer.toString(lista.get(cmbBxReservas.getSelectedIndex()-1).getMesa()));
 					txtFecha.setText(df.format(lista.get(cmbBxReservas.getSelectedIndex()-1).getFecha()));
-					txtaComensales.setText(Integer.toString(lista.get(cmbBxReservas.getSelectedIndex()-1).getNumComensales()));
+					txtComensales.setText(Integer.toString(lista.get(cmbBxReservas.getSelectedIndex()-1).getNumComensales()));
+					txtNombre.setText(lista.get(cmbBxReservas.getSelectedIndex()-1).getNombre());
 				}else {
 					txtMesa.setText("");
 					txtFecha.setText("");
-					txtaComensales.setText("");
+					txtComensales.setText("");
 				}
 			}
 		});
@@ -140,7 +136,7 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String id = cmbBxReservas.getSelectedItem().toString().substring(8);
-				DTOReserva.borrarReserva(id, con);
+				DTOReserva.borrarReserva(id);
 				cmbBxReservas.removeItemAt(cmbBxReservas.getSelectedIndex());
 				lblResultado.setText("Reserva cancelada con exito.");
 				lblResultado.setForeground(Color.green);
@@ -148,6 +144,23 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 			}
 		});
 		panel.add(btnCancelar);
+		
+		txtComensales = new JTextField();
+		txtComensales.setEditable(false);
+		txtComensales.setColumns(10);
+		txtComensales.setBounds(318, 244, 45, 21);
+		panel.add(txtComensales);
+		
+		lblNombre = new JLabel("Nombre:");
+		lblNombre.setFont(new Font("Verdana", Font.ITALIC, 15));
+		lblNombre.setBounds(236, 283, 72, 19);
+		panel.add(lblNombre);
+		
+		txtNombre = new JTextField();
+		txtNombre.setEditable(false);
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(318, 285, 298, 19);
+		panel.add(txtNombre);
 
 	}
 }

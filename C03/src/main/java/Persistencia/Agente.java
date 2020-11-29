@@ -15,6 +15,4 @@ public class Agente {
 		con=DriverManager.getConnection(url, user, password);
 		return con;
 	}
-
-
 }

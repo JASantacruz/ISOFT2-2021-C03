@@ -7,8 +7,8 @@ public class Camarero {
 	
 	public Camarero(int idCamarero, String nombre) {
 		super();
-		this.idCamarero = idCamarero;
-		this.nombre = nombre;
+		this.setIdCamarero(idCamarero);
+		this.setNombre(nombre);
 	}
 	
 	
