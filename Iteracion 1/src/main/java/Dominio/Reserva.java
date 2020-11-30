@@ -1,5 +1,7 @@
 package Dominio;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 
 public class Reserva implements Estado{
@@ -10,14 +12,9 @@ public class Reserva implements Estado{
 	private Date fecha;
 	private int mesa; 
 	private String turno;
-<<<<<<< HEAD
 	private String nombre;
 	
-	public Reserva(int id, int numComensales, String estado, Date fecha, int mesa, String turno, String nombre) {
-=======
-	
-	public Reserva(int id, int numComensales, String estado, Date fecha, int mesa, String turno) {
->>>>>>> main
+	public Reserva(final int id, int numComensales, String estado, Date fecha, int mesa, String turno, String nombre) {
 		super();
 		this.setId(id);
 		this.setNumComensales(numComensales);
@@ -25,8 +22,8 @@ public class Reserva implements Estado{
 		this.setFecha(fecha);
 		this.setMesa(mesa);
 		this.setTurno(turno);
-<<<<<<< HEAD
 		this.setNombre(nombre);
+
 	}
 	
 	public String getNombre() {
@@ -37,10 +34,6 @@ public class Reserva implements Estado{
 		this.nombre = nombre;
 	}
 
-=======
-	}
-	
->>>>>>> main
 	public String getTurno() {
 		return turno;
 	}
