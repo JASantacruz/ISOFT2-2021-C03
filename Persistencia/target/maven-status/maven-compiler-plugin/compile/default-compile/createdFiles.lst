@@ -1,0 +1,10 @@
+Persistencia\Agente.class
+Persistencia\CamareroDAO.class
+Persistencia\ComandaDAO.class
+Persistencia\PostreDAO.class
+Persistencia\SegundoPlatoDAO.class
+Persistencia\BebidaDAO.class
+Persistencia\MesaDAO.class
+Persistencia\PrimerPlatoDAO.class
+Persistencia\EntranteDAO.class
+Persistencia\ReservaDAO.class
