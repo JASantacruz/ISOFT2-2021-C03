@@ -2,6 +2,8 @@ package Dominio;
 
 import static org.junit.Assert.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -14,81 +16,133 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Persistencia.CamareroDAO;
-import Persistencia.MesaDAO;
-import Persistencia.ReservaDAO;
+import Persistencia.Agente;
 
 public class DTOReservaTest {
 	
 	static DTOReserva dtoReserva;
-	static MesaDAO mesaDAO;
-	static CamareroDAO camareroDAO;
-	static ReservaDAO reservaDAO;
+	static Agente agente;
+	static LocalDateTime fecha;
+	static LocalDateTime turno;
 
 	private static DateTimeFormatter df = DateTimeFormatter.ofPattern("HH:mm").localizedBy(new Locale("es-ES"));
 	
 	@BeforeClass
-	public static void Before() {
+	public static void SetUpBeforeClass() {
 		dtoReserva=new DTOReserva();
-		mesaDAO = new MesaDAO();
-		camareroDAO=new CamareroDAO();
-		camareroDAO.Create("INSERT INTO Camarero (idCamarero, nombre) VALUES (100,'Alex')");
-		mesaDAO.Create("INSERT INTO Mesa (idMesa, idCamarero) VALUES (100,100)");
+		agente= new Agente();
 		
 		LocalTime hm = LocalTime.parse("14:30", df);
 		LocalDate s = LocalDate.now();
-		LocalDateTime fecha = LocalDateTime.of(s, hm);
-		reservaDAO.Create("INSERT INTO Reserva (idReserva, num_comensales,estado,fecha,idMesa,turno, nombre)"
-				+ " VALUES (100,1,'ocupada','2020-12-12 14:30:00',3,'tarde','Julian')");
-		reservaDAO.Create("INSERT INTO Reserva (idReserva, num_comensales,estado,fecha,idMesa,turno, nombre)"
-				+ " VALUES (101,1,'ocupada','2020-12-12 14:30:00',3,'tarde','Julian')");
+		fecha = LocalDateTime.of(s, hm);
+		turno=dtoReserva.obtenerTurno();
+		try {
+//			agente.Insert("INSERT INTO Camarero (idCamarero, nombre) VALUES (100,'Alex')");
+			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (100,'libre')");
+			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (102,'reservada')");
+			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (101,'pidiendo')");
+			agente.Insert("INSERT INTO Camarero (idCamarero, nombre) VALUES (240,'pidiendo')");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
+					+ " VALUES (200,4,'2020-12-12 14:30:00','Julian')");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
+					+ " VALUES (201,2,'2020-12-12 13:00:00','Julian')");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
+					+ " VALUES (202,4,'2021-12-12 14:30:00','prueba')");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
+					+ " VALUES (204,4,'"+turno+"','prueba')");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
+					+ " VALUES (205,4,'2021-12-12 14:30:00','prueba')");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
+					+ " VALUES (206,4,'2021-12-12 14:30:00','prueba')");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
+					+ " VALUES (207,4,'2021-12-12 14:30:00','prueba')");
+			agente.Insert("INSERT INTO MesaCamareroReserva (idMesa, idCamarero,idReserva, turno)"
+					+ " VALUES (101,240,205,'"+turno+"')");
+			agente.Insert("INSERT INTO MesaCamareroReserva (idMesa, idCamarero,idReserva, turno)"
+					+ " VALUES (102,240,207,'"+turno+"')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	@Test
 	public void testLeerReservas() {
-		LinkedList<Reserva>listaAux=new LinkedList<Reserva>();
+		LinkedList<Integer>listaAux=new LinkedList<Integer>();
 		dtoReserva.leerReservas(listaAux);
 		int actual=listaAux.size();
 		int expected=0;
 		assertNotEquals(expected, actual);
 	}
-//	@Test
-//	public void testAnadirReserva() {
-//		LocalTime hm = LocalTime.parse("14:30", df);
-//		LocalDate s = LocalDate.now();
-//		LocalDateTime fecha = LocalDateTime.of(s, hm);
-//		System.out.println(fecha);
-//		int actual=dtoReserva.anadirReserva("2","ocupada",fecha,"100","tarde","Alex");
-//		int expected=1;
-//		assertEquals(expected, actual);
-//	}
+	
 	@Test
-	public void testBorrarReserva() {
-		int actual=dtoReserva.borrarReserva("100");
+	public void testLeerTodasReservas() {
+		LinkedList<Integer>listaAux=new LinkedList<Integer>();
+		dtoReserva.leerTodasReservas(listaAux);
+		int actual=listaAux.size();
+		int expected=0;
+		assertNotEquals(expected, actual);
+	}
+	@Test
+	public void testAnadirReserva() {
+		int actual=dtoReserva.anadirReserva("2",fecha,"prueba", "3");
 		int expected=1;
 		assertEquals(expected, actual);
 	}
+	
 	@Test
-	public void testCambiarEstado() {
-		int actual=dtoReserva.cambiarEstado(101,"libre");
-		int expected=1;
-		assertEquals(expected, actual);
+	public void testLeerReservasAux() {
+		LinkedList<Integer>listaAux=new LinkedList<Integer>();
+		dtoReserva.leerReservasAux(101, turno,listaAux);
+		int actual=listaAux.size();
+		int expected=0;
+		assertNotEquals(expected, actual);
 	}
+	@Test
+	public void testCambiarTiempoEstado() {
+		LinkedList<Integer>listaAux=new LinkedList<Integer>();
+		int actual=dtoReserva.cambiarTiempoEstado("101","pidiendo");
+		int expected=0;
+		assertNotEquals(expected, actual);
+	}
+
 	@Test
 	public void testLeerReserva() {
 		LinkedList<Reserva>listaAux=new LinkedList<Reserva>();
-		dtoReserva.leerReserva(101, listaAux);
+		dtoReserva.leerReserva(206, listaAux);
 		int actual=listaAux.size();
 		int expected=1;
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testObtenerFechaReserva() {
+		LinkedList<Reserva>listaAux=new LinkedList<Reserva>();
+		LocalDateTime actual=dtoReserva.obtenerFechaReserva("205");
+		assertNotNull(actual);
+	}
+	
+	@Test
+	public void testComprobarClienteTardio() {
+		dtoReserva.comprobarClienteTardio();
+	}
 
 	@AfterClass
-	public static void After() {
-		LinkedList<Reserva>listaAux=new LinkedList<Reserva>();
-		dtoReserva.leerReservas(listaAux);
-		camareroDAO.Delete("DELETE FROM Camarero WHERE idCamarero=100");
-		mesaDAO.Delete("DELETE FROM Mesa WHERE idMesa=100");
-		reservaDAO.Delete("DELETE FROM Reserva WHERE idMesa="+listaAux.get(listaAux.size()-1).getId());
-		reservaDAO.Delete("DELETE FROM Reserva WHERE idMesa=101");
+	public static void TearDownAfterClass() {
+		try {
+			ResultSet rs=agente.Read("SELECT idReserva FROM Reserva WHERE num_comensales=2 AND "
+					+ "tiempoReservada='"+fecha+"' AND nombre='prueba'");
+			if(rs.next()) agente.Delete("DELETE FROM Reserva WHERE idReserva="+rs.getInt(1));
+			agente.Delete("DELETE FROM Reserva WHERE idReserva=200");
+			agente.Delete("DELETE FROM Reserva WHERE idReserva=201");
+			agente.Delete("DELETE FROM Reserva WHERE idReserva=202");
+			agente.Delete("DELETE FROM Reserva WHERE idReserva=204");
+			agente.Delete("DELETE FROM Reserva WHERE idReserva=205");
+			agente.Delete("DELETE FROM Reserva WHERE idReserva=206");
+			agente.Delete("DELETE FROM Camarero WHERE idCamarero=240");
+			agente.Delete("DELETE FROM Mesa WHERE idMesa=100");
+			agente.Delete("DELETE FROM Mesa WHERE idMesa=101");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

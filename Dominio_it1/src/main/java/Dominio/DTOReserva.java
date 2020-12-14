@@ -144,92 +144,55 @@ public class DTOReserva implements Turnos{
 		int idReserva=0;
 		switch(estado) {
 		case "ocupada":
-			subConsulta="(SELECT idReserva FROM MesaCamareroReserva WHERE idMesa="+mesa+ " AND turno='"+turno+"')";
-			rs=agente.Read(subConsulta);
-			try {
-				if(rs.next())
-					idReserva=rs.getInt(1);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoOcupada = '"+tiempoActual+"' WHERE "
 					+ "idReserva="+idReserva;
 			break;
 		case "pidiendo":
-			subConsulta="(SELECT idReserva FROM MesaCamareroReserva WHERE idMesa="+mesa+ " AND turno='"+turno+"')";
-			rs=agente.Read(subConsulta);
-			try {
-				if(rs.next())
-					idReserva=rs.getInt(1);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoPidiendo = '"+tiempoActual+"' WHERE "
 					+ "idReserva="+idReserva;
 			break;
 		case "en espera de comida":
-			subConsulta="(SELECT idReserva FROM MesaCamareroReserva WHERE idMesa="+mesa+ " AND turno='"+turno+"')";
-			rs=agente.Read(subConsulta);
-			try {
-				if(rs.next())
-					idReserva=rs.getInt(1);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoEnEsperaComida = '"+tiempoActual+"' WHERE "
 					+ "idReserva="+idReserva;
 			break;
 		case "servidos":
-			subConsulta="(SELECT idReserva FROM MesaCamareroReserva WHERE idMesa="+mesa+ " AND turno='"+turno+"')";
-			rs=agente.Read(subConsulta);
-			try {
-				if(rs.next())
-					idReserva=rs.getInt(1);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoServido = '"+tiempoActual+"' WHERE "
 					+ "idReserva="+idReserva;
 			break;
 		case "esperando la cuenta":
-			subConsulta="(SELECT idReserva FROM MesaCamareroReserva WHERE idMesa="+mesa+ " AND turno='"+turno+"')";
-			rs=agente.Read(subConsulta);
-			try {
-				if(rs.next())
-					idReserva=rs.getInt(1);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoEsperandoCuenta = '"+tiempoActual+"' WHERE "
 					+ "idReserva="+idReserva;
 			break;
 		case "pagando":
-			subConsulta="(SELECT idReserva FROM MesaCamareroReserva WHERE idMesa="+mesa+ " AND turno='"+turno+"')";
-			rs=agente.Read(subConsulta);
-			try {
-				if(rs.next())
-					idReserva=rs.getInt(1);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoPagando = '"+tiempoActual+"' WHERE "
 					+ "idReserva="+idReserva;
 			break;
 		case "en preparacion":
-			subConsulta="(SELECT idReserva FROM MesaCamareroReserva WHERE idMesa="+mesa+" AND turno='"+turno+"')";
-			rs=agente.Read(subConsulta);
-			try {
-				if(rs.next())
-					idReserva=rs.getInt(1);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoEnPreparacion = '"+tiempoActual+"' WHERE "
 					+ "idReserva="+idReserva;
 			break;
 		}
 		System.out.println(consulta);
 		return agente.Update(consulta);
+	}
+	public static int obtenerIdResesrvaPorMesaTurno(String idMesa, LocalDateTime turno) {
+		int idReserva=-1;
+		String consulta="(SELECT idReserva FROM MesaCamareroReserva WHERE idMesa="+idMesa+ " AND turno='"+turno+"')";
+		try {
+			ResultSet rs=agente.Read(consulta);
+			if(rs.next())
+				idReserva=rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return idReserva;
 	}
 	public static LocalDateTime obtenerTurno() {
 		DateTimeFormatter df2 = DateTimeFormatter.ofPattern("HH:mm").localizedBy(new Locale("es-ES"));

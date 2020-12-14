@@ -12,11 +12,11 @@ public class CamareroTest {
 	Camarero camarero;
 	@Before	
 	public void before() {
-		camarero=new Camarero(1,"Arturo");
+		camarero=new Camarero(500,"Arturo");
 	}
 	@Test
 	public void testGetIdCamarero() {
-		int expected=1;
+		int expected=500;
 		assertEquals(expected,camarero.getIdCamarero());
 	}
 

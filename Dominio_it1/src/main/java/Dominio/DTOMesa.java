@@ -17,7 +17,7 @@ public class DTOMesa {
 		rs=agente.Read("SELECT * FROM Mesa");
 		try {
 			while(rs.next()){
-				Mesa mesa = new Mesa(rs.getInt(1), 0);
+				Mesa mesa = new Mesa(rs.getInt(1), rs.getString(2));
 				lista.add(mesa);
 			}
 		} catch (SQLException e) {
@@ -27,10 +27,10 @@ public class DTOMesa {
 	
 	public static void leerMesasOcupadas(LinkedList<Mesa> lista) {
 		ResultSet rs;
-		rs=agente.Read("SELECT idMesa FROM Mesa WHERE estado='ocupada'");
+		rs=agente.Read("SELECT * FROM Mesa WHERE estado='ocupada'");
 		try {
 			while(rs.next()){
-				Mesa mesa = new Mesa(rs.getInt(1), 0);
+				Mesa mesa = new Mesa(rs.getInt(1), rs.getString(2));
 				
 				lista.add(mesa);
 			}
@@ -47,7 +47,7 @@ public class DTOMesa {
 		rs=agente.Read("SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"' AND idCamarero="+subConsultaIdCamarero);
 		try {
 			while(rs.next()){
-				Mesa mesa = new Mesa(rs.getInt(1), 0);
+				Mesa mesa = new Mesa(rs.getInt(1), "");
 				lista.add(mesa);
 			}
 		} catch (SQLException e) {
@@ -56,8 +56,6 @@ public class DTOMesa {
 	}
 
 	public static int asignarCamarero(Camarero camarero, String idReserva) {
-		System.out.println("UPDATE MesaCamareroReserva SET idCamarero"
-				+ "="+camarero.getIdCamarero()+" WHERE idReserva="+idReserva);
 		return agente.Update("UPDATE MesaCamareroReserva SET idCamarero"
 				+ "="+camarero.getIdCamarero()+" WHERE idReserva="+idReserva);
 	}
@@ -80,7 +78,7 @@ public class DTOMesa {
 		rs=agente.Read("SELECT * FROM Mesa WHERE IdMesa= "+id+";");
 		try {
 			while(rs.next()){
-				Mesa mesa = new Mesa(rs.getInt(1), 0);
+				Mesa mesa = new Mesa(rs.getInt(1), rs.getString(2));
 				lista.add(mesa);
 			}
 		} catch (SQLException e) {

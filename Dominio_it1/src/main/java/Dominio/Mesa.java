@@ -3,12 +3,19 @@ package Dominio;
 public class Mesa {
 
 	private int id;
-	private int n_comensales;
-	private int contador;
+	private String estado;
 	
-	public Mesa(int id, int contador) {
+	public Mesa(int id, String estado) {
 		this.setId(id);
-		this.setContador(contador);
+		this.setEstado(estado);
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public int getId() {
@@ -18,13 +25,4 @@ public class Mesa {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getContador() {
-		return this.contador;
-	}
-	
-	public void setContador(int contador) {
-		this.contador = contador;
-	}
-
 }

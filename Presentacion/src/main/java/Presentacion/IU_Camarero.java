@@ -115,7 +115,6 @@ public class IU_Camarero extends JFrame{
 	private class BtnCambiarEstadoMesaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			IU_SecuenciarEstados iuSecuenciarEstado= new IU_SecuenciarEstados(cBoxCamareros.getSelectedItem().toString());
-			
 		}
 	}
 	private class BtnEnviarComandaActionListener implements ActionListener {

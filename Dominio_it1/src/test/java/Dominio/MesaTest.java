@@ -13,18 +13,18 @@ public class MesaTest {
 	
 	@Before
 	public void before() {
-		mesa=new Mesa(1,3);
+		mesa=new Mesa(500,"libre");
 	}
 	
 	@Test
 	public void testGetId() {
-		int expected=1;
+		int expected=500;
 		assertEquals(expected,mesa.getId());
 	}
 	
 	@Test
 	public void testGetContador() {
-		int expected=3;
-		assertEquals(expected,mesa.getContador());
+		String expected="libre";
+		assertEquals(expected,mesa.getEstado());
 	}
 }
