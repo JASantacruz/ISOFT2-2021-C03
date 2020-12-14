@@ -65,7 +65,7 @@ public class IU_ReservarMesa extends JFrame implements Fuente, Turnos{
 		setTitle("Fritura");
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setBounds(new Rectangle(380, 170, 960, 540));
+		setBounds(new Rectangle(380, 170, 700, 500));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -133,19 +133,13 @@ public class IU_ReservarMesa extends JFrame implements Fuente, Turnos{
 				LocalDate s = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 				LocalDateTime fecha = LocalDateTime.of(s, hm);
 
-				LinkedList<Reserva> listaAux = new LinkedList<Reserva>();
+				LinkedList<Integer> listaAux = new LinkedList<Integer>();
 				DTOReserva.leerReservasAux(Integer.parseInt(txtMesa.getText()), fecha,   listaAux);
 
 				if(listaAux.size()==0) {
-					if(rdbtnComida.isSelected()) {
-						DTOReserva.anadirReserva(cmbbxComensales.getSelectedItem().toString(), "Reservada", fecha, txtMesa.getText(), "Comida",txtNombre.getText());
+					if(rdbtnComida.isSelected() || rdbtnCena.isSelected()) {
+						DTOReserva.anadirReserva(cmbbxComensales.getSelectedItem().toString(), fecha,txtNombre.getText(),txtMesa.getText());
 						txtEstado.setText("Reservada");
-						lblResultado.setText("Mesa reservada con éxito");
-						lblResultado.setForeground(Color.green);
-						lblResultado.setVisible(true);
-
-					}else if(rdbtnCena.isSelected()) {
-						DTOReserva.anadirReserva(cmbbxComensales.getSelectedItem().toString(), "Reservada", fecha, txtMesa.getText(), "Cena", txtNombre.getText());
 						lblResultado.setText("Mesa reservada con éxito");
 						lblResultado.setForeground(Color.green);
 						lblResultado.setVisible(true);
@@ -224,7 +218,7 @@ public class IU_ReservarMesa extends JFrame implements Fuente, Turnos{
 					LocalDate s = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 					LocalDateTime fecha = LocalDateTime.of(s, hm);
 
-					LinkedList<Reserva> listaAux = new LinkedList<Reserva>();
+					LinkedList<Integer> listaAux = new LinkedList<Integer>();
 					DTOReserva.leerReservasAux(Integer.parseInt(txtMesa.getText()), fecha, listaAux);
 
 					if(listaAux.size()!=0) {

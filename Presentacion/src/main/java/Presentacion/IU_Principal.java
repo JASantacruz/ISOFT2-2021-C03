@@ -3,6 +3,9 @@ package Presentacion;
 import java.awt.EventQueue;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import java.awt.Rectangle;
@@ -10,6 +13,8 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import Dominio.DTOReserva;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -64,6 +69,17 @@ public class IU_Principal implements Fuente{
 
 		frmFritura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		TimerTask timerTask = new TimerTask()
+		{
+			public void run() 
+			{
+				DTOReserva.comprobarClienteTardio();
+			}
+		};
+
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(timerTask, 1, 60000);
+
 		pnlPrincipal = new JPanel();
 		pnlPrincipal.setLayout(null);
 		frmFritura.getContentPane().add(pnlPrincipal, BorderLayout.CENTER);
@@ -100,7 +116,8 @@ public class IU_Principal implements Fuente{
 					IU_Bienvenida_JefeSala bienjs = new IU_Bienvenida_JefeSala();
 					bienjs.setVisible(true);
 				}else if(rdbtnCamarero.isSelected()) {
-					//TODO 
+					IU_Camarero iuCamarero = new IU_Camarero();
+					iuCamarero.setVisible(true);
 				}
 			}
 		});

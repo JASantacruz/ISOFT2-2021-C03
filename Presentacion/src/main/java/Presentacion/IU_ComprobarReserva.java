@@ -27,21 +27,18 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 	private JLabel lblComprobar_Cab;
 	private JLabel lblSeleccionar;
 	private JComboBox cmbBxReservas;
-	private JLabel lblEstado;
-	private JTextField txtEstado;	
 	private JLabel lblCamarero;
 	private JComboBox cmbBxCamarero;
-	private JLabel lblCambEstado;
 	private JButton btnConfirmar;
 	private JLabel lblResultado;
 	private JTextField txtNombre;
 	private JLabel lblNombre;
-	private JComboBox cmbBxEstados;
 
 	/**
 	 * Create the frame.
 	 */
-	public IU_ComprobarReserva(final LinkedList<Reserva> listaReserva, final LinkedList<Camarero> listaCamarero) {
+	public IU_ComprobarReserva(final LinkedList<Integer> listaReserva, final LinkedList<Camarero> listaCamarero) {
+		DTOMesa.actualizarEstadoMesasPorTurno();
 		setResizable(false);
 		setTitle("Fritura");
 		setBounds(new Rectangle(380, 170, 700, 500));
@@ -54,9 +51,9 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		lblComprobar_Cab = new JLabel("Sistema de comprobar reservas");
+		lblComprobar_Cab = new JLabel("Sistema de asignación de camareros");
 		lblComprobar_Cab.setFont(FUENTE_CAB);
-		lblComprobar_Cab.setBounds(157, 43, 382, 33);
+		lblComprobar_Cab.setBounds(136, 43, 425, 33);
 		panel.add(lblComprobar_Cab);
 
 		lblSeleccionar = new JLabel("Selecciona la reserva que desea comprobar");
@@ -67,7 +64,7 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 		cmbBxReservas = new JComboBox();
 		cmbBxReservas.addItem("-------------");
 		for(int i = 0; i < listaReserva.size(); i++) {
-			cmbBxReservas.addItem("Reserva "+listaReserva.get(i).getId());
+			cmbBxReservas.addItem(listaReserva.get(i));
 		}
 		cmbBxReservas.setBounds(78, 170, 136, 21);
 		cmbBxReservas.setFont(FUENTE_LBL);
@@ -76,10 +73,9 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 		cmbBxReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(cmbBxReservas.getSelectedIndex()!=0) {
-					String id = cmbBxReservas.getSelectedItem().toString().substring(8);
+					String id = cmbBxReservas.getSelectedItem().toString();
 					LinkedList<Reserva> listaRes = new LinkedList<Reserva>();
 					DTOReserva.leerReserva(Integer.parseInt(id), listaRes);
-					txtEstado.setText(listaRes.getFirst().getEstado());
 					txtNombre.setText(listaRes.getFirst().getNombre());
 				}
 			}
@@ -87,25 +83,13 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 
 		panel.add(cmbBxReservas);
 
-		lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(64, 220, 63, 21);
-		lblEstado.setFont(FUENTE_LBL);
-		panel.add(lblEstado);
-
-		txtEstado = new JTextField();
-		txtEstado.setEditable(false);
-		txtEstado.setBounds(127, 218, 156, 22);
-		txtEstado.setFont(FUENTE_RDBTN);
-		panel.add(txtEstado);
-		txtEstado.setColumns(10);
-
 		lblCamarero = new JLabel("¿Qué camarero desea asignar?");
-		lblCamarero.setBounds(274, 268, 245, 33);
+		lblCamarero.setBounds(95, 262, 245, 33);
 		lblCamarero.setFont(FUENTE_LBL);
 		panel.add(lblCamarero);
 
 		cmbBxCamarero = new JComboBox();
-		cmbBxCamarero.setBounds(323, 306, 111, 21);
+		cmbBxCamarero.setBounds(371, 270, 111, 21);
 
 		cmbBxCamarero.addItem("-----");
 
@@ -114,35 +98,32 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 
 		panel.add(cmbBxCamarero);
 
-
-		lblCambEstado = new JLabel("Asigne estado:");
-		lblCambEstado.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCambEstado.setFont(FUENTE_LBL);
-		lblCambEstado.setBounds(64, 275, 120, 18);
-		panel.add(lblCambEstado);
-
 		btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String id = cmbBxReservas.getSelectedItem().toString().substring(8);
+				//String id = cmbBxReservas.getSelectedItem().toString().substring(8);
 				//DTOReserva.cambiarEstado(Integer.parseInt(id), cmbBxEstados.getSelectedItem().toString());
-
+				String idReserva=cmbBxReservas.getSelectedItem().toString();
+				//String nombreCamarero=
 				LinkedList<Reserva> listaReserva = new LinkedList<Reserva>();
-				DTOReserva.leerReserva(Integer.parseInt(id) ,listaReserva);
-				DTOMesa.asignarCamarero(listaCamarero.get(cmbBxCamarero.getSelectedIndex()-1), listaReserva.getFirst().getMesa());
-				txtEstado.setText(listaReserva.getFirst().getEstado());
+				DTOReserva.leerReserva(Integer.parseInt(idReserva) ,listaReserva);
+				DTOMesa.cambiarMesaOcupada(idReserva);
+				DTOMesa.asignarCamarero(listaCamarero.get(cmbBxCamarero.getSelectedIndex()-1), idReserva);
 				lblResultado.setText("Cambios realizados con éxito.");
 				lblResultado.setForeground(Color.green);
 				lblResultado.setVisible(true);
+				cmbBxReservas.setSelectedIndex(0);
+				cmbBxCamarero.setSelectedIndex(0);
+				txtNombre.setText("");
 			}
 		});
-		btnConfirmar.setBounds(274, 355, 99, 33);
+		btnConfirmar.setBounds(281, 330, 99, 33);
 		panel.add(btnConfirmar);
 
 		lblResultado = new JLabel("New label");
 		lblResultado.setVisible(false);
 		lblResultado.setHorizontalAlignment(SwingConstants.CENTER);
-		lblResultado.setBounds(197, 398, 257, 25);
+		lblResultado.setBounds(201, 380, 257, 25);
 		lblResultado.setFont(new Font("Verdana", Font.ITALIC, 13));
 		panel.add(lblResultado);
 
@@ -150,19 +131,12 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 		txtNombre.setFont(new Font("Verdana", Font.PLAIN, 16));
 		txtNombre.setEditable(false);
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(409, 216, 156, 22);
+		txtNombre.setBounds(371, 216, 156, 22);
 		panel.add(txtNombre);
 
-		lblNombre = new JLabel("Nombre:");
+		lblNombre = new JLabel("Reserva a nombre de:");
 		lblNombre.setFont(new Font("Verdana", Font.ITALIC, 15));
-		lblNombre.setBounds(338, 218, 68, 21);
+		lblNombre.setBounds(159, 218, 181, 21);
 		panel.add(lblNombre);
-
-		cmbBxEstados = new JComboBox();
-		cmbBxEstados.setModel(new DefaultComboBoxModel(new String[] {"-------------", "Libre", "Reservada", "Ocupada", "Pidiendo", "En espera", "Servidos", "Esperando", "Pagando", "En preparación"}));
-		cmbBxEstados.setFont(FUENTE_LBL);
-		cmbBxEstados.setBounds(64, 304, 129, 21);
-		panel.add(cmbBxEstados);
-
 	}
 }

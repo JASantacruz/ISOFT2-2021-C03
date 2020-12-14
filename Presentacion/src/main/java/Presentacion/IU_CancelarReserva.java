@@ -19,8 +19,14 @@ import java.awt.Rectangle;
 import java.awt.Color;
 
 import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -32,8 +38,6 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 	private JLabel lblCancelar_Cab;
 	private JLabel lblCancelar;
 	private JButton btnCancelar;
-	private JTextField txtMesa;
-	private JLabel lblMesa;
 	private JTextField txtFecha;
 	private JLabel lblHora;
 	private JLabel lblComensales;
@@ -41,13 +45,14 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 	private JLabel lblResultado;
 
 	private DateFormat df = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT);
+	private static DateTimeFormatter df2 = DateTimeFormatter.ofPattern("yyyy-MM-dd' 'HH:mm").localizedBy(new Locale("es-ES"));
 	private JTextField txtComensales;
 	private JLabel lblNombre;
 	private JTextField txtNombre;
 	/**
 	 * Create the frame.
 	 */
-	public IU_CancelarReserva(final LinkedList<Reserva> lista) {
+	public IU_CancelarReserva(final LinkedList<Integer> lista) {
 		setResizable(false);
 		setTitle("Fritura");
 		setBounds(new Rectangle(380, 170, 700, 500));
@@ -71,17 +76,6 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 		lblCancelar.setFont(FUENTE_LBL);
 		panel.add(lblCancelar);
 
-		txtMesa = new JTextField();
-		txtMesa.setEditable(false);
-		txtMesa.setBounds(318, 148, 298, 19);
-		panel.add(txtMesa);
-		txtMesa.setColumns(10);
-
-		lblMesa = new JLabel("Mesa:");
-		lblMesa.setBounds(255, 149, 53, 13);
-		lblMesa.setFont(FUENTE_LBL);
-		panel.add(lblMesa);
-
 		txtFecha = new JTextField();
 		txtFecha.setEditable(false);
 		txtFecha.setColumns(10);
@@ -95,25 +89,28 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 
 		lblComensales = new JLabel("Comensales:");
 		lblComensales.setFont(FUENTE_LBL);
-		lblComensales.setBounds(205, 243, 98, 19);
+		lblComensales.setBounds(204, 243, 99, 19);
 		panel.add(lblComensales);
 
 		cmbBxReservas = new JComboBox();
 		cmbBxReservas.addItem("-------------");
 		for(int i = 0; i < lista.size(); i++) 
-			cmbBxReservas.addItem("Reserva "+lista.get(i).getId());
+			cmbBxReservas.addItem(lista.get(i));
 
 		cmbBxReservas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(cmbBxReservas.getSelectedIndex()!=0) {
-					txtMesa.setText(Integer.toString(lista.get(cmbBxReservas.getSelectedIndex()-1).getMesa()));
-					txtFecha.setText(df.format(lista.get(cmbBxReservas.getSelectedIndex()-1).getFecha()));
-					txtComensales.setText(Integer.toString(lista.get(cmbBxReservas.getSelectedIndex()-1).getNumComensales()));
-					txtNombre.setText(lista.get(cmbBxReservas.getSelectedIndex()-1).getNombre());
+					LinkedList<Reserva> lista = new LinkedList<Reserva>();
+					DTOReserva.leerReserva(Integer.parseInt(cmbBxReservas.getSelectedItem().toString()), lista);
+					LocalDateTime turno=DTOReserva.obtenerFechaReserva(cmbBxReservas.getSelectedItem().toString());
+					//txtFecha.setText(df.format(turno));
+					txtFecha.setText(turno.format(df2));
+					txtComensales.setText(lista.get(0).getNumComensales()+"");
+					txtNombre.setText(lista.get(0).getNombre());
 				}else {
-					txtMesa.setText("");
 					txtFecha.setText("");
 					txtComensales.setText("");
+					txtNombre.setText("");
 				}
 			}
 		});
@@ -135,7 +132,7 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String id = cmbBxReservas.getSelectedItem().toString().substring(8);
+				String id = cmbBxReservas.getSelectedItem().toString();
 				DTOReserva.borrarReserva(id);
 				cmbBxReservas.removeItemAt(cmbBxReservas.getSelectedIndex());
 				lblResultado.setText("Reserva cancelada con exito.");

@@ -55,8 +55,24 @@ public class DTOMesa {
 		}
 	}
 
-	public static int asignarCamarero(Camarero camarero, int mesa) {
-		return agente.Update("UPDATE Mesa SET idCamarero = '"+camarero.getIdCamarero()+"' WHERE (`idMesa` = '"+mesa+"');");
+	public static int asignarCamarero(Camarero camarero, String idReserva) {
+		System.out.println("UPDATE MesaCamareroReserva SET idCamarero"
+				+ "="+camarero.getIdCamarero()+" WHERE idReserva="+idReserva);
+		return agente.Update("UPDATE MesaCamareroReserva SET idCamarero"
+				+ "="+camarero.getIdCamarero()+" WHERE idReserva="+idReserva);
+	}
+	public static int cambiarMesaOcupada(String idReserva) {
+		ResultSet resultIdMesa=agente.Read("SELECT idMesa FROM MesaCamareroReserva WHERE idReserva="+idReserva);
+		int idMesa, resultado=0;
+		try {
+			if(resultIdMesa.next()) {
+				idMesa=resultIdMesa.getInt(1);
+				resultado=cambiarEstado(idMesa+"", "ocupada");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultado;
 	}
 
 	public static void leerMesa(int id, LinkedList<Mesa> lista) {
@@ -149,6 +165,5 @@ public class DTOMesa {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }

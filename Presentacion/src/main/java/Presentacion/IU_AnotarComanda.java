@@ -8,16 +8,11 @@ import javax.swing.JSplitPane;
 
 import Dominio.Bebida;
 import Dominio.Mesa;
-import Dominio.Entrante;
 import Dominio.Camarero;
 import Dominio.DTOAlimento;
 import Dominio.DTOBebida;
 import Dominio.DTOComanda;
 import Dominio.DTOMesa;
-import Dominio.DTOEntrante;
-import Dominio.DTOPrimerPlato;
-import Dominio.DTOSegundoPlato;
-import Dominio.DTOPostre;
 import Dominio.DTOCamarero;
 
 import java.awt.BorderLayout;

@@ -10,20 +10,11 @@ public class Reserva implements Estado{
 
 	private int id;
 	private int numComensales;
-	private String estado;
-	private Date fecha;
-	private int mesa; 
-	private String turno;
 	private String nombre;
 	
-	public Reserva(final int id, int numComensales, String estado, Date fecha, int mesa, String turno, String nombre) {
-		super();
+	public Reserva(final int id, int numComensales,String nombre ) {
 		this.setId(id);
 		this.setNumComensales(numComensales);
-		this.setEstado(estado);
-		this.setFecha(fecha);
-		this.setMesa(mesa);
-		this.setTurno(turno);
 		this.setNombre(nombre);
 
 	}
@@ -36,14 +27,6 @@ public class Reserva implements Estado{
 		this.nombre = nombre;
 	}
 
-	public String getTurno() {
-		return turno;
-	}
-
-	public void setTurno(String turno) {
-		this.turno = turno;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -52,21 +35,6 @@ public class Reserva implements Estado{
 		this.id = id;
 	}
 
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-	public int getMesa() {
-		return mesa;
-	}
-	
-	public void setMesa(int mesa) {
-		this.mesa = mesa;
-	}
 	
 	public int getNumComensales() {
 		return numComensales;
@@ -75,14 +43,4 @@ public class Reserva implements Estado{
 	public void setNumComensales(int numComensales) {
 		this.numComensales = numComensales;
 	}
-	
-	public String getEstado() {
-		return estado;
-	}
-	
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	
-
 }

@@ -76,8 +76,8 @@ public class IU_Bienvenida_JefeSala extends JFrame implements Fuente{
 		btnAccesoCancelar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAccesoCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LinkedList<Reserva> lista = new LinkedList<Reserva>();
-				DTOReserva.leerReservas(lista);
+				LinkedList<Integer> lista = new LinkedList<Integer>();
+				DTOReserva.leerTodasReservas(lista);
 				IU_CancelarReserva iu_canc = new IU_CancelarReserva(lista);
 				iu_canc.setVisible(true);
 				
@@ -88,13 +88,13 @@ public class IU_Bienvenida_JefeSala extends JFrame implements Fuente{
 		btnAccesoCancelar.setFont(FUENTE_BTN);
 		pnlBienvenida.add(btnAccesoCancelar);
 		
-		btnAccesoComprobar = new JButton("Comprobar estados");
+		btnAccesoComprobar = new JButton("  Asignar camarero");
 		btnAccesoComprobar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAccesoComprobar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LinkedList<Camarero> listaCamarero = new LinkedList<Camarero>();
 				DTOCamarero.leerCamareros(listaCamarero);
-				LinkedList<Reserva> listaReserva = new LinkedList<Reserva>();
+				LinkedList<Integer> listaReserva = new LinkedList<Integer>();
 				DTOReserva.leerReservas(listaReserva);
 				IU_ComprobarReserva iu_compr = new IU_ComprobarReserva(listaReserva, listaCamarero);
 				iu_compr.setVisible(true);
