@@ -3,11 +3,11 @@ package Dominio;
 public class Alimento {
 	private int codigo;
 	private String nombre;
-	private int stock;
-	public Alimento(int codigo, String nombre, int stock) {
+	private String tipo;
+	public Alimento(int codigo, String nombre, String tipo) {
 		this.setCodigo(codigo);
 		this.setNombre(nombre);
-		this.setStock(stock);
+		this.setTipo(tipo);
 	}
 	public int getCodigo() {
 		return codigo;
@@ -21,10 +21,10 @@ public class Alimento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getStock() {
-		return stock;
+	public String getTipo() {
+		return tipo;
 	}
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setTipo(String tipo) {
+		this.tipo= tipo;
 	}
 }

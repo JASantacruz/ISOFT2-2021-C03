@@ -47,7 +47,7 @@ public class IU_Camarero extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public IU_Camarero() {
+	public IU_Camarero() {		
 		initialize();
 	}
 
@@ -59,6 +59,7 @@ public class IU_Camarero extends JFrame{
 		frame.setBounds(380, 170, 700, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		btnCambiarEstadoMesa = new JButton("Secuenciar Estado Mesa");
 		btnCambiarEstadoMesa.addActionListener(new BtnCambiarEstadoMesaActionListener());

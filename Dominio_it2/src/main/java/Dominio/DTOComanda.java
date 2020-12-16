@@ -101,7 +101,8 @@ public class DTOComanda {
 		}
 		return indice;
 	}
-	public static void guardarComanda(String idMesa, LinkedList<String> comanda) {
+	public static int guardarComanda(int idMesa, LinkedList<String> comanda) {
+		int res = 0;
 		ResultSet resultIdElemento;
 		ResultSet resultComanda;
 		int idElemento;
@@ -132,9 +133,10 @@ public class DTOComanda {
 
 				}
 			}
+			res = 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		return res;
 	}
 }

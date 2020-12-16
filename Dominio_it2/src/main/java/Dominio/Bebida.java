@@ -4,9 +4,9 @@ public class Bebida {
 	private int codigo;
 	private String nombre;
 	private int stock;
-	public Bebida(int codigo, String nombre, int stock) {
-		this.setCodigo(codigo);
+	public Bebida( String nombre, int codigo, int stock) {
 		this.setNombre(nombre);
+		this.setCodigo(codigo);
 		this.setStock(stock);
 	}
 	public int getCodigo() {

@@ -34,7 +34,6 @@ public class DTOReserva implements Turnos{
 		LocalDateTime turnoActual= obtenerTurno();
 
 		String consultaMesasTurnoActual="(SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"')";
-		System.out.println(consultaMesasTurnoActual);
 		String consultaMesasReservadasActuales="(SELECT idMesa FROM Mesa WHERE estado='reservada' AND idMesa IN "+consultaMesasTurnoActual+")";
 		String consultaReservasMesaReservada="SELECT idReserva FROM MesaCamareroReserva WHERE turno='"+turnoActual+"' AND idMesa IN "+consultaMesasReservadasActuales;
 		try {
@@ -110,7 +109,6 @@ public class DTOReserva implements Turnos{
 			if(rsTurno.next()) {
 				turno=rsTurno.getTimestamp(1).toLocalDateTime();
 				if(turno.equals(turnoActual)) {
-					System.out.println("entra");
 					String consultaMesaCancelar="(SELECT idMesa FROM MesaCamareroReserva WHERE idReserva="+id+")";
 					String con="UPDATE Mesa SET (estado) VALUES ('libre') WHERE idMesa="+consultaMesaCancelar;
 					agente.Update(con);
@@ -146,37 +144,37 @@ public class DTOReserva implements Turnos{
 		case "ocupada":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoOcupada = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva;
+					+ "idReserva="+idReserva+";";
 			break;
 		case "pidiendo":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoPidiendo = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva;
+					+ "idReserva="+idReserva+";";
 			break;
 		case "en espera de comida":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoEnEsperaComida = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva;
+					+ "idReserva="+idReserva+";";
 			break;
 		case "servidos":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoServido = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva;
+					+ "idReserva="+idReserva+";";
 			break;
 		case "esperando la cuenta":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoEsperandoCuenta = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva;
+					+ "idReserva="+idReserva+";";
 			break;
 		case "pagando":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoPagando = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva;
+					+ "idReserva="+idReserva+";";
 			break;
 		case "en preparacion":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoEnPreparacion = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva;
+					+ "idReserva="+idReserva+";";
 			break;
 		}
 		System.out.println(consulta);
@@ -299,7 +297,6 @@ public class DTOReserva implements Turnos{
 		LocalDateTime turnoActual=DTOReserva.obtenerTurno();
 		LocalDateTime tiempoActual = LocalDateTime.of(fechaActual, LocalTime.parse(horaActual.format(df2)));
 		if(tiempoActual.isAfter(turnoActual.plusMinutes(20))) {
-			System.out.println("he entrado");
 			ResultSet resultIdMesa;
 			String consultaMesasTurnoActual="(SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"')";
 			String consulta="SELECT idMesa FROM Mesa WHERE estado='reservada' AND idMesa IN"+consultaMesasTurnoActual;

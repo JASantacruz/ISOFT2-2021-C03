@@ -25,7 +25,7 @@ public class Agente {
 			stmt.close();
 
 		}catch(SQLException ex) {
-			System.out.println();
+			System.out.println(ex.getMessage());
 		}
 		return res;
 	}
@@ -38,7 +38,7 @@ public class Agente {
 			res = stmt.executeUpdate();
 			stmt.close();
 		}catch(SQLException ex) {
-			System.out.println();
+			System.out.println(ex.getMessage());
 		}
 		return res;
 	}
@@ -52,7 +52,7 @@ public class Agente {
 			res = stmt.executeUpdate();
 			stmt.close();
 		}catch(SQLException ex) {
-			System.out.println();
+			System.out.println(ex.getMessage());
 		}
 		return res;
 	}

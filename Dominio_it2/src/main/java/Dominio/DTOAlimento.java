@@ -11,11 +11,11 @@ public class DTOAlimento {
 
 	public static void leerAlimentosPorTipo(LinkedList<Alimento> listaAlimentos, String tipo) {
 		ResultSet rs;
-		String consulta = "SELECT * FROM Alimento WHERE tipo='"+tipo+"'";
+		String consulta = "SELECT * FROM Carta WHERE tipo='"+tipo+"'";
 		try {
 			rs=agente.Read(consulta);
 			while(rs.next()){
-				Alimento alimento = new Alimento(rs.getInt(1), rs.getString(2), rs.getInt(3));
+				Alimento alimento = new Alimento(rs.getInt(1), rs.getString(2), rs.getString(3));
 				listaAlimentos.add(alimento);
 			}
 		} catch (SQLException e) {
@@ -36,16 +36,4 @@ public class DTOAlimento {
 		}
 	}
 
-	public static int leerStockAlimento(Alimento alimento) {
-		ResultSet rs;
-		int stock=0;
-		String consulta = "SELECT stock FROM Alimento WHERE nombre="+alimento.getNombre();
-		try {
-			rs=agente.Read(consulta);
-			stock=rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return stock;
-	}
 }
