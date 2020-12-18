@@ -78,6 +78,19 @@ public class DTOComandaTest {
 		assertEquals(1, dtoCom.guardarComanda(ig.get(0).getId(), comanda));
 	}
 	
+	@Test
+	public void testActualizarStock() throws SQLException {
+		LinkedList<String> lista = new LinkedList<>();
+		lista.add("Fanta");
+		assertEquals(1, DTOComanda.actualizarStock(lista));
+	}
+	
+	@Test
+	public void testLeerAlimentosComanda() throws SQLException {
+		LinkedList<String> lista = new LinkedList<>();
+		lista.add("Fanta");
+		assertEquals(1, DTOComanda.leerAlimentosDeComandas(lista));
+	}
 	
 	@AfterClass
 	public static void afterClass() throws SQLException{

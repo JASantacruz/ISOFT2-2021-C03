@@ -38,7 +38,7 @@ public class DTOBebidaTest {
 	public void testLeerStock() {
 		Bebida bebida = new Bebida("Nestea", 7, 6);
 		int stock = dtoBeb.leerStockBebida(bebida);
-		assertEquals(stock, 6);
+		assertEquals(stock, bebida.getStock());
 	}
 	
 	@AfterClass

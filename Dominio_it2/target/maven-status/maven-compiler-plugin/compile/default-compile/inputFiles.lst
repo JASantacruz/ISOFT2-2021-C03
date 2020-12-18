@@ -1,14 +1,12 @@
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Gestor_Bebida.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Gestor_CamareroBarra.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Gestor_Cocinero.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Gestor_Entrante.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\SegundoPlato.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Gestor_Camarero.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\PrimerPlato.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Gestor_SegundoPlato.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Gestor_PrimerPlato.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Bebida.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Gestor_Postre.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Entrante.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Postre.java
-C:\Users\hp\eclipse-workspace\Fritura\Dominio_it2\src\main\java\Dominio\Comanda.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\Comanda.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\DTOBebida.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\DTOCocinero.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\DTOComanda.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\Gestor_Camarero.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\DTOCamareroBarra.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\DTOReceta.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\Ingrediente.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\Alimento.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\Bebida.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\DTOAlimento.java
+C:\Users\joses\OneDrive\Escritorio\Universidad\3º de Carrera\Primer Cuatrimestre\Prácticas\Ingeniería del Software II\Workspace\Iteracion 3 Implementacion\Dominio_it2\src\main\java\Dominio\Receta.java

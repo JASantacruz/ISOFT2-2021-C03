@@ -16,8 +16,8 @@ public class DTOAlimentoTest {
 	@BeforeClass
 	public static void beforeTest() throws SQLException {
 		dtoAl = new DTOAlimento();
-		ag.Insert("INSERT INTO Carta (codigo, nombre, tipo) VALUES (100, 'Croqueta', 'Entrante');");
-		ag.Insert("INSERT INTO Carta (codigo, nombre, tipo) VALUES (101, 'Jamon', 'Entrante');");
+		ag.Insert("INSERT INTO Carta (codigo, nombre, tipo, precio) VALUES (100, 'Croqueta', 'Entrante', 5);");
+		ag.Insert("INSERT INTO Carta (codigo, nombre, tipo, precio) VALUES (101, 'Jamon', 'Entrante', 5);");
 	}
 	
 	@Test

@@ -35,7 +35,7 @@ import java.awt.event.ActionEvent;
 
 public class IU_AnotarComanda extends JFrame{
 
-	private JFrame frame;
+	private JFrame frmFritura;
 	private JLabel lblNumeroMesa;
 	private JComboBox comboBox;
 	private JButton btnConfirmarNMesa;
@@ -64,7 +64,7 @@ public class IU_AnotarComanda extends JFrame{
 			public void run() {
 				try {
 					IU_AnotarComanda window = new IU_AnotarComanda(null);
-					window.frame.setVisible(true);
+					window.frmFritura.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -84,19 +84,19 @@ public class IU_AnotarComanda extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(String camarero) {
-		frame = new JFrame();
-		frame.setBounds(380, 170, 700, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.getContentPane().setLayout(null);
+		frmFritura = new JFrame();
+		frmFritura.setTitle("Fritura");
+		frmFritura.setBounds(380, 170, 700, 500);
+		frmFritura.setVisible(true);
+		frmFritura.getContentPane().setLayout(null);
 
 		lblNumeroMesa = new JLabel("Selecciona el número de mesa");
 		lblNumeroMesa.setBounds(10, 11, 202, 14);
-		frame.getContentPane().add(lblNumeroMesa);
+		frmFritura.getContentPane().add(lblNumeroMesa);
 
 		comboBox = new JComboBox();
 		comboBox.setBounds(222, 7, 63, 29);
-		frame.getContentPane().add(comboBox);
+		frmFritura.getContentPane().add(comboBox);
 		LinkedList<Mesa> listaMesas=new LinkedList<Mesa>();
 		DTOMesa.leerMesasPorCamarero(listaMesas, camarero);
 		comboBox.addItem("   ----");
@@ -108,7 +108,7 @@ public class IU_AnotarComanda extends JFrame{
 		btnConfirmarNMesa = new JButton("Confirmar número de mesa");
 		btnConfirmarNMesa.addActionListener(new BtnConfirmarNMesaActionListener());
 		btnConfirmarNMesa.setBounds(295, 7, 224, 29);
-		frame.getContentPane().add(btnConfirmarNMesa);
+		frmFritura.getContentPane().add(btnConfirmarNMesa);
 
 
 
@@ -116,36 +116,36 @@ public class IU_AnotarComanda extends JFrame{
 		btnConfirmarComanda.setEnabled(false);
 		btnConfirmarComanda.addActionListener(new BtnConfirmarComandaActionListener());
 		btnConfirmarComanda.setBounds(493, 401, 169, 23);
-		frame.getContentPane().add(btnConfirmarComanda);
+		frmFritura.getContentPane().add(btnConfirmarComanda);
 
 		lblComandaActual = new JLabel("Comanda Actual");
 		lblComandaActual.setBounds(536, 48, 111, 14);
-		frame.getContentPane().add(lblComandaActual);
+		frmFritura.getContentPane().add(lblComandaActual);
 
 		lblBebidas = new JLabel("Bebida");
 		lblBebidas.setBounds(97, 61, 76, 14);
-		frame.getContentPane().add(lblBebidas);
+		frmFritura.getContentPane().add(lblBebidas);
 
 		lblEntrantes = new JLabel("Entrante");
 		lblEntrantes.setBounds(300, 61, 66, 14);
-		frame.getContentPane().add(lblEntrantes);
+		frmFritura.getContentPane().add(lblEntrantes);
 
 		lblPrimerPlato = new JLabel("Primer Plato");
 		lblPrimerPlato.setBounds(93, 191, 104, 14);
-		frame.getContentPane().add(lblPrimerPlato);
+		frmFritura.getContentPane().add(lblPrimerPlato);
 
 		lblSegundoPlato = new JLabel("Segundo Plato");
 		lblSegundoPlato.setBounds(291, 187, 96, 14);
-		frame.getContentPane().add(lblSegundoPlato);
+		frmFritura.getContentPane().add(lblSegundoPlato);
 
 		lblPostres = new JLabel("Postre");
 		lblPostres.setBounds(207, 306, 66, 14);
-		frame.getContentPane().add(lblPostres);
+		frmFritura.getContentPane().add(lblPostres);
 
 		lstBebidas = new JList();
 		lstBebidas.addMouseListener(new LstBebidasMouseListener());
 		lstBebidas.setBounds(41, 87, 156, 93);
-		frame.getContentPane().add(lstBebidas);
+		frmFritura.getContentPane().add(lstBebidas);
 		LinkedList<String> listaBebidas=new LinkedList<String>();
 		DTOAlimento.leerNombreAlimentosPorTipo(listaBebidas, lblBebidas.getText());
 		modeloBebidas = new DefaultListModel();
@@ -156,14 +156,14 @@ public class IU_AnotarComanda extends JFrame{
 
 		lstComandaActual = new JList(new DefaultListModel<String>());
 		lstComandaActual.setBounds(477, 73, 199, 304);
-		frame.getContentPane().add(lstComandaActual);
+		frmFritura.getContentPane().add(lstComandaActual);
 		modeloComandaActual = new DefaultListModel();
 		lstComandaActual.setModel(modeloComandaActual);
 
 		lstEntrantes = new JList();
 		lstEntrantes.addMouseListener(new LstEntrantesMouseListener());
 		lstEntrantes.setBounds(253, 87, 156, 93);
-		frame.getContentPane().add(lstEntrantes);
+		frmFritura.getContentPane().add(lstEntrantes);
 		LinkedList<String> listaEntrantes=new LinkedList<String>();
 		DTOAlimento.leerNombreAlimentosPorTipo(listaEntrantes, lblEntrantes.getText());
 		DefaultListModel modeloEntrantes = new DefaultListModel();
@@ -175,7 +175,7 @@ public class IU_AnotarComanda extends JFrame{
 		lstPrimerPlato = new JList();
 		lstPrimerPlato.addMouseListener(new LstPrimerPlatoMouseListener());
 		lstPrimerPlato.setBounds(41, 212, 156, 93);
-		frame.getContentPane().add(lstPrimerPlato);
+		frmFritura.getContentPane().add(lstPrimerPlato);
 		LinkedList<String> listaPrimerosPlatos=new LinkedList<String>();
 		DTOAlimento.leerNombreAlimentosPorTipo(listaPrimerosPlatos, lblPrimerPlato.getText());
 		DefaultListModel modeloPrimerosPlatos = new DefaultListModel();
@@ -187,7 +187,7 @@ public class IU_AnotarComanda extends JFrame{
 		lstSegundoPlato = new JList();
 		lstSegundoPlato.addMouseListener(new LstSegundoPlatoMouseListener());
 		lstSegundoPlato.setBounds(253, 212, 156, 93);
-		frame.getContentPane().add(lstSegundoPlato);
+		frmFritura.getContentPane().add(lstSegundoPlato);
 		LinkedList<String> listaSegundosPlatos=new LinkedList<String>();
 		DTOAlimento.leerNombreAlimentosPorTipo(listaSegundosPlatos, lblSegundoPlato.getText());
 		DefaultListModel modeloSegundosPlatos = new DefaultListModel();
@@ -199,7 +199,7 @@ public class IU_AnotarComanda extends JFrame{
 		lstPostre = new JList();
 		lstPostre.addMouseListener(new LstPostreMouseListener());
 		lstPostre.setBounds(148, 331, 156, 93);
-		frame.getContentPane().add(lstPostre);
+		frmFritura.getContentPane().add(lstPostre);
 		LinkedList<String> listaPostres=new LinkedList<String>();
 		DTOAlimento.leerNombreAlimentosPorTipo(listaPostres, lblPostres.getText());
 		DefaultListModel modeloPostres = new DefaultListModel();

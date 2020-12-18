@@ -9,7 +9,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<groupId>es.esi.uclm.isoft2</groupId>
 	<artifactId>Dominio_it1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 

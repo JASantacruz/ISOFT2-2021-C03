@@ -23,7 +23,7 @@ import javax.swing.JButton;
 
 public class IU_SecuenciarEstados {
 
-	private JFrame frame;
+	private JFrame frmFritura;
 	private JLabel lblSeleccionMesa;
 	private JComboBox cBoxMesas;
 	private JLabel lblEstadoActual;
@@ -40,7 +40,7 @@ public class IU_SecuenciarEstados {
 			public void run() {
 				try {
 					IU_SecuenciarEstados window = new IU_SecuenciarEstados(null);
-					window.frame.setVisible(true);
+					window.frmFritura.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,11 +59,11 @@ public class IU_SecuenciarEstados {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(String camarero) {
-		frame = new JFrame();
-		frame.setBounds(380, 170, 700, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
+		frmFritura = new JFrame();
+		frmFritura.setTitle("Fritura");
+		frmFritura.setBounds(380, 170, 700, 500);
+		frmFritura.getContentPane().setLayout(null);
+		frmFritura.setVisible(true);
 		cBoxMesas = new JComboBox();
 //		LinkedList<Camarero> listaCamareros=new LinkedList<Camarero>();
 //		DTOCamarero.leerCamareros(listaCamareros);
@@ -74,13 +74,13 @@ public class IU_SecuenciarEstados {
 		lblSeleccionMesa = new JLabel("Seleccione la mesa:");
 		lblSeleccionMesa.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSeleccionMesa.setBounds(175, 150, 155, 43);
-		frame.getContentPane().add(lblSeleccionMesa);
+		frmFritura.getContentPane().add(lblSeleccionMesa);
 
 		cBoxMesas.addActionListener(new CBoxMesasActionListener());
 		cBoxMesas.setEnabled(false);
 		cBoxMesas.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		cBoxMesas.setBounds(385, 160, 122, 22);
-		frame.getContentPane().add(cBoxMesas);
+		frmFritura.getContentPane().add(cBoxMesas);
 		cBoxMesas.addItem("   ----");
 		cBoxMesas.setEnabled(true);
 //		int tamanio=cBoxMesas.getModel().getSize();
@@ -99,28 +99,28 @@ public class IU_SecuenciarEstados {
 		lblEstadoActual = new JLabel("Estado actual de la mesa:");
 		lblEstadoActual.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblEstadoActual.setBounds(126, 231, 203, 43);
-		frame.getContentPane().add(lblEstadoActual);
+		frmFritura.getContentPane().add(lblEstadoActual);
 
 		lblEstado = new JLabel();
 		lblEstado.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblEstado.setBounds(385, 231, 271, 43);
-		frame.getContentPane().add(lblEstado);
+		frmFritura.getContentPane().add(lblEstado);
 
 		lblTitulo = new JLabel("Secuenciador de estados");
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblTitulo.setBounds(200, 31, 263, 57);
-		frame.getContentPane().add(lblTitulo);
+		frmFritura.getContentPane().add(lblTitulo);
 
 		btnSecuenciarEstado = new JButton("Secuenciar estado");
 		btnSecuenciarEstado.addActionListener(new BtnSecuenciarEstadoActionListener());
 		btnSecuenciarEstado.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSecuenciarEstado.setBounds(242, 317, 203, 36);
-		frame.getContentPane().add(btnSecuenciarEstado);
+		frmFritura.getContentPane().add(btnSecuenciarEstado);
 		lblInfoNuevoEstado = new JLabel();
 		lblInfoNuevoEstado.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblInfoNuevoEstado.setVisible(false);
 		lblInfoNuevoEstado.setBounds(176, 395, 480, 22);
-		frame.getContentPane().add(lblInfoNuevoEstado);
+		frmFritura.getContentPane().add(lblInfoNuevoEstado);
 	}
 
 	private class CBoxMesasActionListener implements ActionListener {

@@ -1,6 +1,7 @@
 Dominio\DTOMesa.class
 Dominio\Reserva.class
 Dominio\DTOReserva.class
+Dominio\Turnos.class
 Dominio\Estado.class
 Dominio\DTOCamarero.class
 Dominio\Camarero.class

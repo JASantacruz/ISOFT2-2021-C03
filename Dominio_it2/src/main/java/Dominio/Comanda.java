@@ -12,7 +12,7 @@ public class Comanda {
 //	private String _postre;
 //	private String _bebida;
 
-	public Comanda(int idComanda, Mesa mesa,LinkedList<String> ingredientesComanda) {
+	public Comanda(int idComanda, Mesa mesa, LinkedList<String> ingredientesComanda) {
 		this.setIdComanda(idComanda);
 		this.setMesa(mesa);
 		this.setIngredientesComanda(ingredientesComanda);
@@ -24,10 +24,6 @@ public class Comanda {
 
 	public void setIngredientesComanda(LinkedList<String> ingredientesComanda) {
 		this.ingredientesComanda = ingredientesComanda;
-	}
-
-	public Comanda() {
-		throw new UnsupportedOperationException();
 	}
 
 	public int getIdComanda() {

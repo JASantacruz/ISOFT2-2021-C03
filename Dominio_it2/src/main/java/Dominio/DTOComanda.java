@@ -2,20 +2,27 @@ package Dominio;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.LinkedList;
+
 
 import Persistencia.Agente;
 
+
+@SuppressWarnings("static-access")
 public class DTOComanda {
 	public static Agente agente = new Agente();
+
 
 	public static LinkedList<String> comprobarStock(LinkedList<String> elementosComanda) {
 		LinkedList<String> cartaSinStock=new LinkedList<String>();
 		LinkedList<String> elementosComprobados=new LinkedList<String>();
 		LinkedList<Ingrediente> ingredientesNecesarios=new LinkedList<Ingrediente>();
 		ResultSet resultStock;
-		ResultSet resultNecesita;
+		ResultSet resultReceta;
 		ResultSet resultTipo;
 		String consultaStock="";
 		String consultaIngredienteNecesario="";
@@ -49,11 +56,11 @@ public class DTOComanda {
 							}
 						}else {
 							consultaIngredienteNecesario="SELECT nombreIngrediente, cantidad "
-									+ "FROM Necesita WHERE codigoCarta=(SELECT codigo FROM Carta WHERE nombre='"+elementoComanda+"')";
-							resultNecesita=agente.Read(consultaIngredienteNecesario);
-							while(resultNecesita.next()) {//todos los ingredientes de cada plato
-								nombreIngrediente=resultNecesita.getString(1);
-								cantidadNecesaria=resultNecesita.getInt(2);
+									+ "FROM Receta WHERE codigoCarta=(SELECT codigo FROM Carta WHERE nombre='"+elementoComanda+"')";
+							resultReceta=agente.Read(consultaIngredienteNecesario);
+							while(resultReceta.next()) {//todos los ingredientes de cada plato
+								nombreIngrediente=resultReceta.getString(1);
+								cantidadNecesaria=resultReceta.getInt(2);
 								if(!ingredienteComprobado(nombreIngrediente, ingredientesNecesarios)) {
 									consultaStock="SELECT stock FROM Ingrediente WHERE nombre='"+nombreIngrediente+"'";
 									resultStock=agente.Read(consultaStock);
@@ -109,9 +116,9 @@ public class DTOComanda {
 		int idComanda;
 		int contadorElemento;
 		LocalDateTime turnoActual=DTOReserva.obtenerTurno();
-		String consultaCreacionComanda="INSERT INTO Comanda(idComanda,idMesa,turno) VALUES (null,"+idMesa+",'"+turnoActual+"')";
+		String consultaCreacionComanda="INSERT INTO Comanda(idComanda,idMesa,turno) VALUES (null,"+idMesa+",'"+turnoActual+"');";
 		agente.Update(consultaCreacionComanda);
-		String consultaObtenerComanda="SELECT idComanda FROM Comanda WHERE idMesa="+idMesa+" AND turno='"+turnoActual+"'";
+		String consultaObtenerComanda="SELECT idComanda FROM Comanda WHERE idMesa="+idMesa+" AND turno='"+turnoActual+"';";
 		resultComanda=agente.Read(consultaObtenerComanda);
 		try {
 			if(resultComanda.next()) {
@@ -123,11 +130,11 @@ public class DTOComanda {
 							contadorElemento++;
 						}
 					}
-					String consultaIdElemento="SELECT codigo FROM Carta WHERE nombre='"+elementoComanda+"'";
+					String consultaIdElemento="SELECT codigo FROM Carta WHERE nombre='"+elementoComanda+"';";
 					resultIdElemento=agente.Read(consultaIdElemento);
-					if(resultIdElemento.next()) {
+					while(resultIdElemento.next()) {
 						idElemento=resultIdElemento.getInt(1);
-						String consultaInsertarElementoComanda="INSERT INTO Pedido (comanda, codigo, cantidad) VALUES ("+idComanda+","+idElemento+","+contadorElemento+")";
+						String consultaInsertarElementoComanda="INSERT INTO Pedido (comanda, codigo, cantidad) VALUES ("+idComanda+","+idElemento+","+contadorElemento+");";
 						agente.Update(consultaInsertarElementoComanda);
 					}
 
@@ -138,5 +145,66 @@ public class DTOComanda {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	public static int actualizarStock(LinkedList<String> lista) {
+		Agente ag = new Agente();
+		ResultSet res;
+		int resultado = 0;
+		Receta rec;
+		LinkedList<Receta> listReceta = new LinkedList<>();
+		LinkedList<Integer> listStock = new LinkedList<>();
+		int codigo = 0;
+		int stock = 0;
+		for(int i = 0; i < lista.size(); i++) {
+			String consulta = "SELECT codigo FROM Carta WHERE nombre='"+lista.get(i)+"';";
+			res = ag.Read(consulta);
+			try {
+				while(res.next())
+					codigo = res.getInt(1); 
+				consulta = "SELECT nombreIngrediente, cantidad FROM Receta WHERE codigoCarta="+codigo+";";
+				res = ag.Read(consulta);
+				while(res.next()) {
+					rec = new Receta(res.getString(1), res.getInt(2)); 
+					listReceta.add(rec);
+				}
+				for(int j = 0; j < listReceta.size(); j++) {
+					consulta = "SELECT stock FROM Ingrediente WHERE nombre"+listReceta.get(j).getNombreIngrediente()+";"; 
+					res = ag.Read(consulta);
+					while(res.next())
+						stock = res.getInt(1);
+					consulta = "UPDATE Ingrediente SET stock="+(stock-1)+" WHERE nombre='"+listReceta.get(j).getNombreIngrediente()+"';";
+					ag.Update(consulta);
+				}//Fin for j
+				resultado = 1;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return resultado;
+	}
+
+	public static int leerAlimentosDeComandas(LinkedList<String> pedidos) {
+		Agente ag = new Agente();
+		ResultSet res;
+		LinkedList<Integer> Comandas = new LinkedList<>();
+		int resultado = 1;
+		String consulta = "SELECT idComanda FROM Comanda WHERE (SELECT DATEDIFF(NOW(), turno)) < 3;"; 
+		res = ag.Read(consulta);
+		try {
+			while(res.next()) 
+				Comandas.add(res.getInt(1));
+
+			for(int i = 0; i < Comandas.size(); i++) {
+				consulta = "SELECT nombre FROM Carta WHERE codigo IN (SELECT codigo FROM Pedido WHERE comanda="+Comandas.get(i)+");";
+				res = ag.Read(consulta);
+				while(res.next())
+					pedidos.add(res.getString(1));
+			}
+			resultado = 1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return resultado;
 	}
 }
