@@ -12,7 +12,7 @@ public class IU_CancelarReservaTest {
 
 	@Test
 	public void test() {
-		LinkedList<Integer> lista=new LinkedList<>();
+		LinkedList<Reserva> lista=new LinkedList<Reserva>();
 		IU_CancelarReserva iuCR=new IU_CancelarReserva(lista);
 	}
 

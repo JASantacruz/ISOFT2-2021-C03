@@ -9,11 +9,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
+	<groupId>es.esi.uclm.isoft2</groupId>
 	<artifactId>Presentacion</artifactId>
-	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-
-
 
 	<name>Presentacion</name>
 	<!-- FIXME change it to the project's website -->
@@ -43,14 +41,14 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>es.esi.uclm.isoft2</groupId>
-			<artifactId>Dominio_it3</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>com.toedter</groupId>
 			<artifactId>jcalendar</artifactId>
 			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>es.esi.uclm.isoft2</groupId>
+			<artifactId>Dominio_it3</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

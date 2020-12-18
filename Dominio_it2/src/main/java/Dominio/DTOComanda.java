@@ -8,14 +8,10 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.LinkedList;
 
-
 import Persistencia.Agente;
 
-
-@SuppressWarnings("static-access")
 public class DTOComanda {
 	public static Agente agente = new Agente();
-
 
 	public static LinkedList<String> comprobarStock(LinkedList<String> elementosComanda) {
 		LinkedList<String> cartaSinStock=new LinkedList<String>();
@@ -117,10 +113,10 @@ public class DTOComanda {
 		int contadorElemento;
 		LocalDateTime turnoActual=DTOReserva.obtenerTurno();
 		String consultaCreacionComanda="INSERT INTO Comanda(idComanda,idMesa,turno) VALUES (null,"+idMesa+",'"+turnoActual+"');";
-		agente.Update(consultaCreacionComanda);
 		String consultaObtenerComanda="SELECT idComanda FROM Comanda WHERE idMesa="+idMesa+" AND turno='"+turnoActual+"';";
-		resultComanda=agente.Read(consultaObtenerComanda);
 		try {
+			agente.Update(consultaCreacionComanda);
+			resultComanda=agente.Read(consultaObtenerComanda);
 			if(resultComanda.next()) {
 				idComanda=resultComanda.getInt(1);
 				for(String elementoComanda: comanda) {
@@ -158,8 +154,8 @@ public class DTOComanda {
 		int stock = 0;
 		for(int i = 0; i < lista.size(); i++) {
 			String consulta = "SELECT codigo FROM Carta WHERE nombre='"+lista.get(i)+"';";
-			res = ag.Read(consulta);
 			try {
+				res = ag.Read(consulta);
 				while(res.next())
 					codigo = res.getInt(1); 
 				consulta = "SELECT nombreIngrediente, cantidad FROM Receta WHERE codigoCarta="+codigo+";";
@@ -190,8 +186,8 @@ public class DTOComanda {
 		LinkedList<Integer> Comandas = new LinkedList<>();
 		int resultado = 1;
 		String consulta = "SELECT idComanda FROM Comanda WHERE (SELECT DATEDIFF(NOW(), turno)) < 3;"; 
-		res = ag.Read(consulta);
 		try {
+			res = ag.Read(consulta);
 			while(res.next()) 
 				Comandas.add(res.getInt(1));
 

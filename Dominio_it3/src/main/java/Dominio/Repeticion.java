@@ -6,8 +6,8 @@ public class Repeticion {
 	private int numRepeticiones;
 	public Repeticion(String nombre, int numRepeticiones) {
 		super();
-		this.nombre = nombre;
-		this.numRepeticiones = numRepeticiones;
+		this.setNombre(nombre);
+		this.setRepeticiones(numRepeticiones);
 	}
 	public String getNombre() {
 		return nombre;
@@ -21,5 +21,4 @@ public class Repeticion {
 	public void setRepeticiones(int repeticiones) {
 		this.numRepeticiones = repeticiones;
 	}
-
 }

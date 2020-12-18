@@ -4,10 +4,18 @@ public class Alimento {
 	private int codigo;
 	private String nombre;
 	private String tipo;
-	public Alimento(int codigo, String nombre, String tipo) {
+	private int precio;
+	public Alimento(int codigo, String nombre, String tipo, int precio) {
 		this.setCodigo(codigo);
 		this.setNombre(nombre);
+		this.setPrecio(precio);
 		this.setTipo(tipo);
+	}
+	public int getPrecio() {
+		return precio;
+	}
+	public void setPrecio(int precio) {
+		this.precio = precio;
 	}
 	public int getCodigo() {
 		return codigo;
@@ -25,6 +33,6 @@ public class Alimento {
 		return tipo;
 	}
 	public void setTipo(String tipo) {
-		this.tipo= tipo;
+		this.tipo = tipo;
 	}
 }

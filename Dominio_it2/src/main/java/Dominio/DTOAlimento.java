@@ -15,7 +15,7 @@ public class DTOAlimento {
 		try {
 			rs=agente.Read(consulta);
 			while(rs.next()){
-				Alimento alimento = new Alimento(rs.getInt(1), rs.getString(2), rs.getString(3));
+				Alimento alimento = new Alimento(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
 				listaAlimentos.add(alimento);
 			}
 		} catch (SQLException e) {
@@ -35,5 +35,4 @@ public class DTOAlimento {
 			e.printStackTrace();
 		}
 	}
-
 }

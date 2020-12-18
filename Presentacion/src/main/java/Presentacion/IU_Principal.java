@@ -32,8 +32,8 @@ public class IU_Principal implements Fuente{
 	private JRadioButton rdbtnJefeDeSala;
 	private JRadioButton rdbtnCamarero;
 	private JButton btnEntrar;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton rdbtnCocinero;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 	//private IU_AnotarComanda iu=new IU_AnotarComanda();
 	/**
 	 * Launch the application.
@@ -94,14 +94,14 @@ public class IU_Principal implements Fuente{
 
 		rdbtnJefeDeSala = new JRadioButton("Jefe de Sala");
 		buttonGroup.add(rdbtnJefeDeSala);
-		rdbtnJefeDeSala.setBounds(268, 122, 132, 35);
+		rdbtnJefeDeSala.setBounds(234, 128, 132, 35);
 		rdbtnJefeDeSala.setFont(FUENTE_RDBTN);
 		pnlPrincipal.add(rdbtnJefeDeSala);
 
 		rdbtnCamarero = new JRadioButton("Camarero");
 		buttonGroup.add(rdbtnCamarero);
 		rdbtnCamarero.setFont(FUENTE_RDBTN);
-		rdbtnCamarero.setBounds(268, 168, 112, 50);
+		rdbtnCamarero.setBounds(235, 169, 112, 50);
 		pnlPrincipal.add(rdbtnCamarero);
 
 		btnEntrar = new JButton("Entrar");
@@ -112,20 +112,19 @@ public class IU_Principal implements Fuente{
 					bienjs.setVisible(true);
 				}else if(rdbtnCamarero.isSelected()) {
 					IU_Camarero iuCamarero = new IU_Camarero();
-					iuCamarero.setVisible(true);
 				}else if(rdbtnCocinero.isSelected()) {
 					IU_Cocinero iuCocinero = new IU_Cocinero();
 					iuCocinero.setVisible(true);
 				}
 			}
 		});
-		btnEntrar.setBounds(281, 297, 112, 35);
+		btnEntrar.setBounds(254, 291, 112, 35);
 		pnlPrincipal.add(btnEntrar);
 		
 		rdbtnCocinero = new JRadioButton("Cocinero");
 		buttonGroup.add(rdbtnCocinero);
 		rdbtnCocinero.setFont(new Font("Verdana", Font.PLAIN, 16));
-		rdbtnCocinero.setBounds(268, 220, 112, 50);
+		rdbtnCocinero.setBounds(236, 222, 112, 50);
 		pnlPrincipal.add(rdbtnCocinero);
 	}
 }

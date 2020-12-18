@@ -144,37 +144,37 @@ public class DTOReserva implements Turnos{
 		case "ocupada":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoOcupada = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva+";";
+					+ "idReserva="+idReserva;
 			break;
 		case "pidiendo":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoPidiendo = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva+";";
+					+ "idReserva="+idReserva;
 			break;
 		case "en espera de comida":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoEnEsperaComida = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva+";";
+					+ "idReserva="+idReserva;
 			break;
 		case "servidos":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoServido = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva+";";
+					+ "idReserva="+idReserva;
 			break;
 		case "esperando la cuenta":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoEsperandoCuenta = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva+";";
+					+ "idReserva="+idReserva;
 			break;
 		case "pagando":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoPagando = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva+";";
+					+ "idReserva="+idReserva;
 			break;
 		case "en preparacion":
 			idReserva=obtenerIdResesrvaPorMesaTurno(mesa, turno);
 			consulta="UPDATE Reserva SET tiempoEnPreparacion = '"+tiempoActual+"' WHERE "
-					+ "idReserva="+idReserva+";";
+					+ "idReserva="+idReserva;
 			break;
 		}
 		System.out.println(consulta);
@@ -226,41 +226,6 @@ public class DTOReserva implements Turnos{
 		}
 		return turno;
 	}
-	//	public static LocalDateTime obtenerTurnoFecha(LocalDate fecha, LocalTime hora) {
-	//		DateTimeFormatter df2 = DateTimeFormatter.ofPattern("HH:mm").localizedBy(new Locale("es-ES"));
-	//		LocalDateTime turno=null;
-	//		LocalDate fechaActual =LocalDate.now(ZoneId.systemDefault());
-	//		String horaActual=LocalTime.now().format(df2);
-	//		LocalDateTime turno1Comida = LocalDateTime.of(fecha, Turno1Comida);
-	//		LocalDateTime turno2Comida = LocalDateTime.of(fecha, Turno2Comida);
-	//		LocalDateTime turno3Comida = LocalDateTime.of(fecha, Turno3Comida);
-	//		LocalDateTime turno1Cena = LocalDateTime.of(fecha, Turno1Cena);
-	//		LocalDateTime turno2Cena = LocalDateTime.of(fecha, Turno2Cena);
-	//		LocalDateTime turno3Cena = LocalDateTime.of(fecha, Turno3Cena);
-	//		LocalDateTime turnoLimite = LocalDateTime.of(fecha, limiteTurno);
-	//		//LocalDateTime tiempoActual = LocalDateTime.now();
-	//		LocalDateTime tiempoActual = LocalDateTime.of(fecha, LocalTime.parse(hora.format(df2)));
-	//		System.out.println(tiempoActual);
-	//
-	//		if(tiempoActual.isAfter(turno1Comida) && tiempoActual.isBefore(turno2Comida)) {
-	//			turno=turno1Comida;
-	//		}else if(tiempoActual.isAfter(turno2Comida) && tiempoActual.isBefore(turno3Comida)){
-	//			turno=turno2Comida;
-	//		}else if(tiempoActual.isAfter(turno3Comida) && tiempoActual.isBefore(turno1Cena)) {
-	//			turno=turno3Comida;
-	//		}else if(tiempoActual.isAfter(turno1Cena) && tiempoActual.isBefore(turno2Cena)) {
-	//			turno=turno1Cena;
-	//		}else if(tiempoActual.isAfter(turno2Cena) && tiempoActual.isBefore(turno3Cena)) {
-	//			turno=turno2Cena;
-	//		}else if(tiempoActual.isAfter(turno3Cena) && tiempoActual.isBefore(turnoLimite)) {
-	//			turno=turno3Cena;
-	//		}else if(tiempoActual.isBefore(turno1Comida)) {
-	//			turno=null;
-	//		}else if(tiempoActual.isAfter(turnoLimite)) {
-	//			turno=null;
-	//		}
-	//		return turno;
-	//	}
 
 	public static void leerReserva(int id, LinkedList<Reserva> listaAux) {
 		ResultSet rs=agente.Read("SELECT * FROM Reserva WHERE idReserva = "+id+";");
@@ -297,6 +262,7 @@ public class DTOReserva implements Turnos{
 		LocalDateTime turnoActual=DTOReserva.obtenerTurno();
 		LocalDateTime tiempoActual = LocalDateTime.of(fechaActual, LocalTime.parse(horaActual.format(df2)));
 		if(tiempoActual.isAfter(turnoActual.plusMinutes(20))) {
+			System.out.println("he entrado");
 			ResultSet resultIdMesa;
 			String consultaMesasTurnoActual="(SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"')";
 			String consulta="SELECT idMesa FROM Mesa WHERE estado='reservada' AND idMesa IN"+consultaMesasTurnoActual;

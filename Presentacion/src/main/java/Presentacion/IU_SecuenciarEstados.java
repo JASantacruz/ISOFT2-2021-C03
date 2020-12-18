@@ -62,6 +62,7 @@ public class IU_SecuenciarEstados {
 		frmFritura = new JFrame();
 		frmFritura.setTitle("Fritura");
 		frmFritura.setBounds(380, 170, 700, 500);
+		frmFritura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmFritura.getContentPane().setLayout(null);
 		frmFritura.setVisible(true);
 		cBoxMesas = new JComboBox();

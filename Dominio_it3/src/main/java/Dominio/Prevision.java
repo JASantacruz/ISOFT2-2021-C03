@@ -10,9 +10,9 @@ public class Prevision {
 	
 	public Prevision(String ingrediente, int cantidad, LocalDateTime fecha) {
 		super();
-		this.ingrediente = ingrediente;
-		this.cantidad = cantidad;
-		this.fecha = fecha;
+		this.setIngrediente(ingrediente);
+		this.setCantidad(cantidad);
+		this.setFecha(fecha);
 	}
 	
 	public String getIngrediente() {

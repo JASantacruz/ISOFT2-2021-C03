@@ -42,16 +42,9 @@ public class DTOMesa {
 	public static void leerMesasPorCamarero(LinkedList<Mesa> lista, String camarero) {
 		ResultSet rs;
 		LocalDateTime turnoActual= DTOReserva.obtenerTurno();
-		int id = 0;
-		//String subConsultaIdCamarero="(SELECT idCamarero FROM Camarero WHERE nombre='"+camarero+"')";
-		rs = agente.Read("SELECT idCamarero FROM Camarero WHERE nombre='"+camarero+"';");
-		try {
-			while(rs.next())
-				id = rs.getInt(1);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-		rs=agente.Read("SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"' AND idCamarero="+id+";");
+		String subConsultaIdCamarero="(SELECT idCamarero FROM Camarero WHERE nombre='"+camarero+"')";
+		
+		rs=agente.Read("SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"' AND idCamarero="+subConsultaIdCamarero);
 		try {
 			while(rs.next()){
 				Mesa mesa = new Mesa(rs.getInt(1), "");
@@ -141,7 +134,7 @@ public class DTOMesa {
 		}
 		return estado;
 	}
-	public static boolean estadoCorrecto(int idMesa) {
+	public static boolean estadoCorrecto(String idMesa) {
 		boolean correcto=false;
 		ResultSet rs=agente.Read("SELECT estado FROM Mesa WHERE idMesa="+idMesa);
 		try {

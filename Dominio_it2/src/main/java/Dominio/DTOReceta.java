@@ -13,8 +13,8 @@ public class DTOReceta {
 		int codigo = 0;
 		Receta rec;
 		int resultado = 0;
-		rs = agente.Read(consulta);
 		try {
+			rs = agente.Read(consulta);
 			while(rs.next())
 				codigo = rs.getInt(1);
 			consulta = "SELECT nombreIngrediente, cantidad FROM C03dbservice.Receta WHERE codigoCarta="+codigo+";";

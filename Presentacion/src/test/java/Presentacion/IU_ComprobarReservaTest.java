@@ -13,7 +13,7 @@ public class IU_ComprobarReservaTest {
 
 	@Test
 	public void test() {
-		LinkedList<Integer> listaReserva=new LinkedList<> ();
+		LinkedList<Reserva> listaReserva=new LinkedList<Reserva> ();
 		LinkedList<Camarero> listaCamarero=new LinkedList<Camarero> ();
 		IU_ComprobarReserva iuCR=new IU_ComprobarReserva(listaReserva,listaCamarero);
 	}

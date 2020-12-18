@@ -102,7 +102,7 @@ public class DTOMesaTest {
 	}
 	@Test
 	public void testEstadoCorrecto() {
-		boolean actual=dtoMesa.estadoCorrecto(103);
+		boolean actual=dtoMesa.estadoCorrecto("103");
 		boolean expected=true;
 		assertEquals(expected, actual);
 	}

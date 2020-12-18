@@ -42,29 +42,33 @@ public class DTOPrevision {
 		return res;
 	}
 
-	public static void actualizarStock(String nombre, int cantidad) {
+	public static int actualizarStock(String nombre, int cantidad) {
 		String consulta = "SELECT stock FROM Ingrediente WHERE nombre='"+nombre+"';";
 		int stock = 0;
 		ResultSet rs;
 		rs = agente.Read(consulta);
+		int res=-1;
 		try {
 			while(rs.next())
 				stock = rs.getInt(1);
 			stock = stock + cantidad;
 			consulta = "UPDATE Ingrediente SET stock="+stock+" WHERE nombre='"+nombre+"';";
-			agente.Update(consulta);
+			res=agente.Update(consulta);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return res;
 	}
 
-	public static void hacerPrevision(String ingrediente, int cantidad, LocalDateTime fecha) {
+	public static int hacerPrevision(String ingrediente, int cantidad, LocalDateTime fecha) {
+		int res=-1;
 		String consulta = "INSERT INTO Prevision (ingrediente, cantidad, fecha) VALUES ('"+ingrediente+"', "+cantidad+", '"+fecha+"');";
 		try {
-			agente.Insert(consulta);
+			res=agente.Insert(consulta);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return res;
 	}
 
 	public static void comprobarFecha(LinkedList<Prevision> historial) {

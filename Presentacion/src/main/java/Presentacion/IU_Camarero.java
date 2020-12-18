@@ -19,7 +19,7 @@ import Dominio.Camarero;
 import java.awt.Font;
 import javax.swing.JComboBox;
 
-public class IU_Camarero extends JFrame{
+public class IU_Camarero {
 
 	private JFrame frame;
 	private JButton btnCambiarEstadoMesa;
@@ -27,6 +27,7 @@ public class IU_Camarero extends JFrame{
 	private JButton btnEnviarComanda;
 	private JLabel lblSeleccionCamarero;
 	private JComboBox cBoxCamareros;
+	private JButton btnPagarCuenta;
 
 	/**
 	 * Launch the application.
@@ -47,7 +48,7 @@ public class IU_Camarero extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public IU_Camarero() {		
+	public IU_Camarero() {
 		initialize();
 	}
 
@@ -58,8 +59,8 @@ public class IU_Camarero extends JFrame{
 		frame = new JFrame();
 		frame.setBounds(380, 170, 700, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		frame.getContentPane().setLayout(null);
 		
 		btnCambiarEstadoMesa = new JButton("Secuenciar Estado Mesa");
 		btnCambiarEstadoMesa.addActionListener(new BtnCambiarEstadoMesaActionListener());
@@ -82,6 +83,13 @@ public class IU_Camarero extends JFrame{
 		btnEnviarComanda.setBounds(473, 239, 172, 31);
 		frame.getContentPane().add(btnEnviarComanda);
 		
+		btnPagarCuenta = new JButton("Imprimir cuenta");
+		btnPagarCuenta.setEnabled(false);
+		btnPagarCuenta.addActionListener(new BtnPagarCuentaActionListener());
+		btnPagarCuenta.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnPagarCuenta.setBounds(222, 291, 229, 31);
+		frame.getContentPane().add(btnPagarCuenta);
+		
 		lblSeleccionCamarero = new JLabel("Identificación del camarero:");
 		lblSeleccionCamarero.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSeleccionCamarero.setBounds(116, 143, 229, 31);
@@ -95,6 +103,8 @@ public class IU_Camarero extends JFrame{
 		LinkedList<Camarero> listaCamareros=new LinkedList<Camarero>();
 		DTOCamarero.leerCamareros(listaCamareros);
 		cBoxCamareros.addItem("   ----");
+		
+		
 		for(Camarero camarero: listaCamareros) {
 			cBoxCamareros.addItem(camarero.getNombre());
 		}
@@ -110,6 +120,12 @@ public class IU_Camarero extends JFrame{
 				btnEnviarComanda.setEnabled(true);
 				btnAnotarComanda.setEnabled(true);
 				btnCambiarEstadoMesa.setEnabled(true);
+				btnPagarCuenta.setEnabled(true);
+			}else {
+				btnEnviarComanda.setEnabled(false);
+				btnAnotarComanda.setEnabled(false);
+				btnCambiarEstadoMesa.setEnabled(false);
+				btnPagarCuenta.setEnabled(false);
 			}
 		}
 	}
@@ -120,6 +136,11 @@ public class IU_Camarero extends JFrame{
 	}
 	private class BtnEnviarComandaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
+		}
+	}
+	private class BtnPagarCuentaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			IU_MostrarCuenta iuCuenta=new IU_MostrarCuenta(cBoxCamareros.getSelectedItem().toString());
 		}
 	}
 }

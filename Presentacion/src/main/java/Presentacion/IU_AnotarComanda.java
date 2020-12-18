@@ -87,6 +87,7 @@ public class IU_AnotarComanda extends JFrame{
 		frmFritura = new JFrame();
 		frmFritura.setTitle("Fritura");
 		frmFritura.setBounds(380, 170, 700, 500);
+		frmFritura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmFritura.setVisible(true);
 		frmFritura.getContentPane().setLayout(null);
 
@@ -254,7 +255,7 @@ public class IU_AnotarComanda extends JFrame{
 			}
 			ingredientesSinStock=DTOComanda.comprobarStock(ingredientes);
 			if(ingredientesSinStock.size()==0) {
-				DTOComanda.guardarComanda(Integer.parseInt(comboBox.getSelectedItem().toString()), ingredientes);
+				DTOComanda.guardarComanda(comboBox.getSelectedItem().toString(), ingredientes);
 				JOptionPane.showMessageDialog(null, "Comanda enviada a cocina", "Comanda realizada",JOptionPane.INFORMATION_MESSAGE);
 			}else {
 
@@ -278,7 +279,7 @@ public class IU_AnotarComanda extends JFrame{
 	}
 	private class BtnConfirmarNMesaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			int idMesa=Integer.parseInt(comboBox.getSelectedItem().toString());
+			String idMesa=comboBox.getSelectedItem().toString();
 			if(DTOMesa.estadoCorrecto(idMesa)) {
 				btnConfirmarComanda.setEnabled(true);
 			}else {
