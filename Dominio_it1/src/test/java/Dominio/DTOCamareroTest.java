@@ -22,6 +22,8 @@ public class DTOCamareroTest {
 		agente = new Agente();
 		try {
 			agente.Insert("INSERT INTO Camarero (idCamarero, nombre) VALUES (100,'prueba')");
+			agente.Insert("INSERT INTO Aviso (idAviso, descripcion, idCamarero, turno) "
+					+ "VALUES (900, 'test',100, '"+DTOReserva.obtenerTurno()+"')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -42,10 +44,21 @@ public class DTOCamareroTest {
 		int expected=0;
 		assertNotEquals(expected, actual);
 	}
+	
+	@Test
+	public void testLeerAvisos() {
+		LinkedList<String>listaAux=new LinkedList<String>();
+		dtoCamarero.leerAvisos("prueba",listaAux);
+		int actual=listaAux.size();
+		int expected=0;
+		assertNotEquals(expected, actual);
+	}
+	
 	@AfterClass
 	public static void TearDown() {
 		try {
 			agente.Delete("DELETE FROM Camarero WHERE idCamarero=100");
+			agente.Delete("DELETE FROM Aviso WHERE idAviso=900");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

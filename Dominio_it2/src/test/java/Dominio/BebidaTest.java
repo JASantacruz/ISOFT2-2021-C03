@@ -11,7 +11,7 @@ public class BebidaTest {
 	
 	@Before
 	public void beforeTest() {
-		be = new Bebida("Nestea", 1504, 15);
+		be = new Bebida(1504,"Nestea", 15);
 	}
 	
 	@Test

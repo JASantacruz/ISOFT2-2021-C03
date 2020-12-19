@@ -2,6 +2,7 @@ package Dominio;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
@@ -44,7 +45,8 @@ public class DTOMesa {
 		LocalDateTime turnoActual= DTOReserva.obtenerTurno();
 		String subConsultaIdCamarero="(SELECT idCamarero FROM Camarero WHERE nombre='"+camarero+"')";
 		
-		rs=agente.Read("SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"' AND idCamarero="+subConsultaIdCamarero);
+		rs=agente.Read("SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"' "
+				+ "AND idCamarero="+subConsultaIdCamarero);
 		try {
 			while(rs.next()){
 				Mesa mesa = new Mesa(rs.getInt(1), "");
@@ -150,15 +152,12 @@ public class DTOMesa {
 	}
 	public static void actualizarEstadoMesasPorTurno() {
 		LocalDateTime turnoActual=DTOReserva.obtenerTurno();
-		System.out.println(turnoActual);
 		String subConsulta="SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"'";
 		ResultSet rs=agente.Read(subConsulta);
 		try {
 			while(rs.next()) {
 				String consulta="UPDATE Mesa SET estado='reservada' WHERE estado='libre' "
 						+ "AND idMesa="+rs.getInt(1);
-				System.out.println(agente.Update(consulta));
-				System.out.println(consulta);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

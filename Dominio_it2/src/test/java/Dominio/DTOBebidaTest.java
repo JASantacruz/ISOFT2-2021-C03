@@ -14,10 +14,14 @@ public class DTOBebidaTest {
 	
 	
 	@BeforeClass
-	public static void beforeClass() throws SQLException {
+	public static void beforeClass(){
 		dtoBeb = new DTOBebida();
-		ag.Insert("INSERT INTO Bebida (nombre, codigo, stock) VALUES ('Nestea', 7, 6);");
-		ag.Insert("INSERT INTO Bebida (nombre, codigo, stock) VALUES ('Lipton', 8, 8);");
+		try {
+			ag.Insert("INSERT INTO Bebida (nombre, codigo, stock) VALUES ('test1', 7, 6);");
+			ag.Insert("INSERT INTO Bebida (nombre, codigo, stock) VALUES ('test2', 8, 8);");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
@@ -36,7 +40,7 @@ public class DTOBebidaTest {
 	
 	@Test
 	public void testLeerStock() {
-		Bebida bebida = new Bebida("Nestea", 7, 6);
+		Bebida bebida = new Bebida(7,"test1", 6);
 		int stock = dtoBeb.leerStockBebida(bebida);
 		assertEquals(stock, bebida.getStock());
 	}
@@ -44,8 +48,8 @@ public class DTOBebidaTest {
 	@AfterClass
 	public static void afterClass() throws SQLException {
 		dtoBeb = new DTOBebida();
-		ag.Delete("DELETE FROM Bebida WHERE nombre='Nestea';");
-		ag.Delete("DELETE FROM Bebida WHERE nombre='Lipton';");
+		ag.Delete("DELETE FROM Bebida WHERE nombre='test1';");
+		ag.Delete("DELETE FROM Bebida WHERE nombre='test2';");
 	}
 
 }

@@ -101,7 +101,7 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 			public void actionPerformed(ActionEvent arg0) {
 				if(cmbBxReservas.getSelectedIndex()!=0) {
 					LinkedList<Reserva> lista = new LinkedList<Reserva>();
-					DTOReserva.leerReserva(Integer.parseInt(cmbBxReservas.getSelectedItem().toString()), lista);
+					DTOReserva.leerReserva(cmbBxReservas.getSelectedItem().toString(), lista);
 					LocalDateTime turno=DTOReserva.obtenerFechaReserva(cmbBxReservas.getSelectedItem().toString());
 					//txtFecha.setText(df.format(turno));
 					txtFecha.setText(turno.format(df2));

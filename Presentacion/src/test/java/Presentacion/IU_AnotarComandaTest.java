@@ -8,7 +8,7 @@ public class IU_AnotarComandaTest {
 
 	@Test
 	public void test() {
-		IU_AnotarComanda an_comanda = new IU_AnotarComanda("Antonio");
+		IU_AnotarComanda iuAcom= new IU_AnotarComanda("");
 	}
 
 }

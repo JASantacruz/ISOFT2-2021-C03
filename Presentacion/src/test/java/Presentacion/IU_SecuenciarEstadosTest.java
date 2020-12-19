@@ -8,7 +8,7 @@ public class IU_SecuenciarEstadosTest {
 
 	@Test
 	public void test() {
-		IU_SecuenciarEstados sec_est = new IU_SecuenciarEstados("Antonio");
+		IU_SecuenciarEstados iuSecEst= new IU_SecuenciarEstados("");
 	}
 
 }

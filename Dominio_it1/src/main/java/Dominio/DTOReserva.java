@@ -35,7 +35,8 @@ public class DTOReserva implements Turnos{
 
 		String consultaMesasTurnoActual="(SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"')";
 		String consultaMesasReservadasActuales="(SELECT idMesa FROM Mesa WHERE estado='reservada' AND idMesa IN "+consultaMesasTurnoActual+")";
-		String consultaReservasMesaReservada="SELECT idReserva FROM MesaCamareroReserva WHERE turno='"+turnoActual+"' AND idMesa IN "+consultaMesasReservadasActuales;
+		String consultaReservasMesaReservada="SELECT idReserva FROM MesaCamareroReserva "
+				+ "WHERE turno='"+turnoActual+"' AND idMesa IN "+consultaMesasReservadasActuales;
 		try {
 			ResultSet rs=agente.Read(consultaReservasMesaReservada);
 			while(rs.next()){
@@ -50,12 +51,9 @@ public class DTOReserva implements Turnos{
 		LocalDateTime turnoActual= obtenerTurno();
 		//reservas distintas del turno actual
 		String consulta="(SELECT idReserva FROM MesaCamareroReserva WHERE turno<>'"+turnoActual+"')";
-		System.out.println(consulta);
-		//String consultaReservasNoActuales="SELECT * FROM Reserva WHERE idReserva="+consulta;
 		try {
 			ResultSet resultReservas=agente.Read(consulta);
 			while(resultReservas.next()) {
-				//Reserva reservaAux= new Reserva(resultReservas.getInt(1), resultReservas.getInt(2), resultReservas.getString(3));
 				lista.add(resultReservas.getInt(1));
 			}
 		} catch (SQLException e) {
@@ -65,12 +63,10 @@ public class DTOReserva implements Turnos{
 		String consultaMesasTurnoActual="(SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"')";
 		String consultaMesasReservadasActuales="(SELECT idMesa FROM Mesa WHERE estado='reservada' AND idMesa IN "+consultaMesasTurnoActual+")";
 		String consultaReservasMesaReservada="(SELECT idReserva FROM MesaCamareroReserva WHERE turno='"+turnoActual+"' AND idMesa IN "+consultaMesasReservadasActuales+")";
-		//String consultaReservasActuales="SELECT idReserva FROM Reserva WHERE idReserva="+consultaReservasMesaReservada;
 		try {
 			ResultSet rs=agente.Read(consultaReservasMesaReservada);
 
 			while(rs.next()){
-				//Reserva reservaAux= new Reserva(rs.getInt(1), rs.getInt(2), rs.getString(3));
 				lista.add(rs.getInt(1));
 			}
 		} catch (SQLException e) {
@@ -82,20 +78,21 @@ public class DTOReserva implements Turnos{
 		ResultSet resultIdReserva;
 		int idReserva;
 		try {
-			res=agente.Insert("INSERT INTO Reserva (idReserva,num_comensales, nombre, tiempoReservada)"
-					+ " VALUES (null,"+comensales+",'"+nombre+"', '"+fecha+"')");
-			resultIdReserva=agente.Read("SELECT idReserva FROM Reserva WHERE num_comensales="+comensales+" AND "
-					+ "nombre='"+nombre+"' AND tiempoReservada='"+fecha+"'");
+			res=agente.Insert("INSERT INTO Reserva (idReserva,num_comensales, nombre, "
+					+ "tiempoReservada, restaurante) VALUES "
+					+ "(null,"+comensales+",'"+nombre+"', '"+fecha+"', 1)");
+			resultIdReserva=agente.Read("SELECT idReserva FROM Reserva "
+					+ "WHERE num_comensales="+comensales+" AND nombre='"+nombre+"' "
+							+ "AND tiempoReservada='"+fecha+"'");
 			if(resultIdReserva.next()){
 				idReserva=resultIdReserva.getInt(1);
-				int res2=agente.Insert("INSERT INTO MesaCamareroReserva (idReserva, idMesa, turno, idCamarero) VALUES "
-						+ "("+idReserva+", "+idMesa+", '"+fecha+"', null)");
+				int res2=agente.Insert("INSERT INTO MesaCamareroReserva (idReserva, idMesa, "
+						+ "turno, idCamarero) VALUES ("+idReserva+", "+idMesa+", '"+fecha+"', null)");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return res;
-
 	}
 
 	public static int borrarReserva(String id) {
@@ -177,7 +174,6 @@ public class DTOReserva implements Turnos{
 					+ "idReserva="+idReserva;
 			break;
 		}
-		System.out.println(consulta);
 		return agente.Update(consulta);
 	}
 	public static int obtenerIdResesrvaPorMesaTurno(String idMesa, LocalDateTime turno) {
@@ -227,7 +223,7 @@ public class DTOReserva implements Turnos{
 		return turno;
 	}
 
-	public static void leerReserva(int id, LinkedList<Reserva> listaAux) {
+	public static void leerReserva(String id, LinkedList<Reserva> listaAux) {
 		ResultSet rs=agente.Read("SELECT * FROM Reserva WHERE idReserva = "+id+";");
 		try {
 			while(rs.next()){
@@ -244,10 +240,7 @@ public class DTOReserva implements Turnos{
 		try {
 			ResultSet resultTurno=agente.Read(consulta);
 			if(resultTurno.next()) {
-				System.out.println(idReserva);
 				turno=resultTurno.getTimestamp(1).toInstant().atZone(z).toLocalDateTime();
-				//turno=new DateTime(resultTurno.getTimestamp(1).getTime(), DateTimeZone.UTC);
-				System.out.println(turno);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -262,7 +255,6 @@ public class DTOReserva implements Turnos{
 		LocalDateTime turnoActual=DTOReserva.obtenerTurno();
 		LocalDateTime tiempoActual = LocalDateTime.of(fechaActual, LocalTime.parse(horaActual.format(df2)));
 		if(tiempoActual.isAfter(turnoActual.plusMinutes(20))) {
-			System.out.println("he entrado");
 			ResultSet resultIdMesa;
 			String consultaMesasTurnoActual="(SELECT idMesa FROM MesaCamareroReserva WHERE turno='"+turnoActual+"')";
 			String consulta="SELECT idMesa FROM Mesa WHERE estado='reservada' AND idMesa IN"+consultaMesasTurnoActual;

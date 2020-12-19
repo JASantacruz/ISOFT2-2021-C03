@@ -50,6 +50,16 @@
 			<artifactId>Dominio_it3</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>es.esi.uclm.isoft2</groupId>
+			<artifactId>Dominio_it4</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>es.esi.uclm.isoft2</groupId>
+			<artifactId>Dominio_it5</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

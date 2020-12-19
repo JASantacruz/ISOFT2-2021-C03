@@ -16,6 +16,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+//import Dominio.DTOReserva;
+//import Dominio_it1.Reserva;
 import Persistencia.Agente;
 
 public class DTOReservaTest {
@@ -42,20 +44,13 @@ public class DTOReservaTest {
 			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (102,'reservada')");
 			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (101,'pidiendo')");
 			agente.Insert("INSERT INTO Camarero (idCamarero, nombre) VALUES (240,'pidiendo')");
-			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
-					+ " VALUES (200,4,'2020-12-12 14:30:00','Julian')");
-			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
-					+ " VALUES (201,2,'2020-12-12 13:00:00','Julian')");
-			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
-					+ " VALUES (202,4,'2021-12-12 14:30:00','prueba')");
-			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
-					+ " VALUES (204,4,'"+turno+"','prueba')");
-			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
-					+ " VALUES (205,4,'2021-12-12 14:30:00','prueba')");
-			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
-					+ " VALUES (206,4,'2021-12-12 14:30:00','prueba')");
-			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
-					+ " VALUES (207,4,'2021-12-12 14:30:00','prueba')");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre, restaurante) VALUES (200,4,'2020-12-12 14:30:00','Julian', 1)");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre, restaurante) VALUES (201,2,'2020-12-12 13:00:00','Julian', 1)");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre, restaurante) VALUES (202,4,'2021-12-12 14:30:00','prueba', 1)");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre, restaurante) VALUES (204,4,'"+turno+"','prueba', 1)");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre, restaurante) VALUES (205,4,'2021-12-12 14:30:00','prueba', 1)");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre, restaurante) VALUES (206,4,'2021-12-12 14:30:00','prueba', 1)");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre, restaurante) VALUES (207,4,'2021-12-12 14:30:00','prueba', 1)");
 			agente.Insert("INSERT INTO MesaCamareroReserva (idMesa, idCamarero,idReserva, turno)"
 					+ " VALUES (101,240,205,'"+turno+"')");
 			agente.Insert("INSERT INTO MesaCamareroReserva (idMesa, idCamarero,idReserva, turno)"
@@ -72,7 +67,6 @@ public class DTOReservaTest {
 		int expected=0;
 		assertNotEquals(expected, actual);
 	}
-	
 	@Test
 	public void testLeerTodasReservas() {
 		LinkedList<Integer>listaAux=new LinkedList<Integer>();
@@ -107,7 +101,7 @@ public class DTOReservaTest {
 	@Test
 	public void testLeerReserva() {
 		LinkedList<Reserva>listaAux=new LinkedList<Reserva>();
-		dtoReserva.leerReserva(206, listaAux);
+		dtoReserva.leerReserva("206", listaAux);
 		int actual=listaAux.size();
 		int expected=1;
 		assertEquals(expected, actual);
@@ -128,8 +122,7 @@ public class DTOReservaTest {
 	@AfterClass
 	public static void TearDownAfterClass() {
 		try {
-			ResultSet rs=agente.Read("SELECT idReserva FROM Reserva WHERE num_comensales=2 AND "
-					+ "tiempoReservada='"+fecha+"' AND nombre='prueba'");
+			ResultSet rs=agente.Read("SELECT idReserva FROM Reserva WHERE num_comensales=2 AND "+ "tiempoReservada='"+fecha+"' AND nombre='prueba'");
 			if(rs.next()) agente.Delete("DELETE FROM Reserva WHERE idReserva="+rs.getInt(1));
 			agente.Delete("DELETE FROM Reserva WHERE idReserva=200");
 			agente.Delete("DELETE FROM Reserva WHERE idReserva=201");
@@ -137,9 +130,11 @@ public class DTOReservaTest {
 			agente.Delete("DELETE FROM Reserva WHERE idReserva=204");
 			agente.Delete("DELETE FROM Reserva WHERE idReserva=205");
 			agente.Delete("DELETE FROM Reserva WHERE idReserva=206");
+			agente.Delete("DELETE FROM Reserva WHERE idReserva=207");
 			agente.Delete("DELETE FROM Camarero WHERE idCamarero=240");
 			agente.Delete("DELETE FROM Mesa WHERE idMesa=100");
 			agente.Delete("DELETE FROM Mesa WHERE idMesa=101");
+			agente.Delete("DELETE FROM Mesa WHERE idMesa=102");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

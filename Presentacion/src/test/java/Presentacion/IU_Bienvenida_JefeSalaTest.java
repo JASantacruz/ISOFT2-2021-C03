@@ -1,7 +1,5 @@
 package Presentacion;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class IU_Bienvenida_JefeSalaTest {
@@ -10,5 +8,4 @@ public class IU_Bienvenida_JefeSalaTest {
 	public void test() {
 		IU_Bienvenida_JefeSala bienjs = new IU_Bienvenida_JefeSala();
 	}
-
 }

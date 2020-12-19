@@ -10,7 +10,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Persistencia.Agente;
+import Persistencia.Agente; 
 
 public class DTOMesaTest {
 	static Agente agente;
@@ -26,8 +26,7 @@ public class DTOMesaTest {
 		try {
 			LocalDateTime turno=DTOReserva.obtenerTurno();
 			agente.Insert("INSERT INTO Camarero (idCamarero, nombre) VALUES (100,'prueba')");
-			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre)"
-					+ " VALUES (200,4,'2020-12-12 14:30:00','pruebaNombre')");
+			agente.Insert("INSERT INTO Reserva (idReserva, num_comensales,tiempoReservada, nombre, restaurante) VALUES (200,4,'2020-12-12 14:30:00','pruebaNombre', 1)");
 			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (100,'libre')");
 			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (101,'ocupada')");
 			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (102,'ocupada')");

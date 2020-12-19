@@ -104,7 +104,7 @@ public class DTOComanda {
 		}
 		return indice;
 	}
-	public static int guardarComanda(int idMesa, LinkedList<String> comanda) {
+	public static int guardarComanda(String idMesa, LinkedList<String> comanda) {
 		int res = 0;
 		ResultSet resultIdElemento;
 		ResultSet resultComanda;
@@ -202,5 +202,35 @@ public class DTOComanda {
 			e.printStackTrace();
 		} 
 		return resultado;
+	}
+	public static int subirAvisoCocina(String idMesa, String camarero) {
+		LocalDateTime turno=DTOReserva.obtenerTurno();
+		String consultaIdCamarero="SELECT idCamarero FROM Camarero WHERE nombre='"+camarero+"'";
+		ResultSet idCamarero;
+		int res=-1;
+		try {
+			idCamarero=agente.Read(consultaIdCamarero);
+			if(idCamarero.next())
+			res=agente.Insert("INSERT INTO Aviso (idAviso, descripcion, idCamarero, turno) VALUES "
+					+ "(null, 'Comida de la mesa "+idMesa+" preparada',"+idCamarero.getInt(1)+",'"+turno+"')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	public static int subirAvisoCamareroBarra(String idMesa, String camarero) {
+		LocalDateTime turno=DTOReserva.obtenerTurno();
+		String consultaIdCamarero="SELECT idCamarero FROM Camarero WHERE nombre='"+camarero+"'";
+		ResultSet idCamarero;
+		int res=-1;
+		try {
+			idCamarero=agente.Read(consultaIdCamarero);
+			if(idCamarero.next())
+			res=agente.Insert("INSERT INTO Aviso (idAviso, descripcion, idCamarero, turno) VALUES "
+					+ "(null, 'Bebidas de la mesa "+idMesa+" preparadas',"+idCamarero.getInt(1)+",'"+turno+"')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 }

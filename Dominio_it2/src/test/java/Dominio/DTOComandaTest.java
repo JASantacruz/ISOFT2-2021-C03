@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 import org.junit.*;
@@ -18,6 +19,8 @@ public class DTOComandaTest {
 	
 	@BeforeClass
 	public static void beforeClass() throws SQLException {
+		ag.Insert("INSERT INTO Camarero (idCamarero, nombre) VALUES (100,'prueba')");
+		ag.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (900,'prueba')");
 		ag.Insert("INSERT INTO Comanda (idComanda, idMesa, turno) VALUES (100, 4, '2020-12-16 22:00:00');");
 	}
 	
@@ -75,7 +78,7 @@ public class DTOComandaTest {
 			me = new Mesa(rs.getInt(1), "Libre");
 			ig.add(me);
 		}
-		assertEquals(1, dtoCom.guardarComanda(ig.get(0).getId(), comanda));
+		assertEquals(1, dtoCom.guardarComanda(ig.get(0).getId()+"", comanda));
 	}
 	
 	@Test
@@ -92,8 +95,33 @@ public class DTOComandaTest {
 		assertEquals(1, DTOComanda.leerAlimentosDeComandas(lista));
 	}
 	
+	@Test
+	public void testSubirAvisoCocina() {
+		int actual=DTOComanda.subirAvisoCocina("900", "prueba");
+		int expected=1;
+		assertEquals(expected, actual);
+	}
+	@Test
+	public void testSubirAvisoCamareroBarra() {
+		int actual=DTOComanda.subirAvisoCamareroBarra("900", "prueba");
+		int expected=1;
+		assertEquals(expected, actual);
+	}
+	
 	@AfterClass
 	public static void afterClass() throws SQLException{
+		LocalDateTime turno= DTOReserva.obtenerTurno();
+		Mesa me;
+		LinkedList<Mesa> ig = new LinkedList<>();
+		ResultSet rs = ag.Read("SELECT * FROM Mesa");
+		while(rs.next()) {
+			me = new Mesa(rs.getInt(1), "Libre");
+			ig.add(me);
+		}
+		ag.Delete("DELETE FROM Comanda WHERE idMesa="+ig.get(0).getId()+" AND turno='"+turno+"'");
 		ag.Delete("DELETE FROM Comanda WHERE idComanda=100;");
+		ag.Delete("DELETE FROM Pedido WHERE comanda=100;");
+		ag.Delete("DELETE FROM Mesa WHERE idMesa=900");
+		ag.Delete("DELETE FROM Camarero WHERE idCamarero=100");
 	}
 }

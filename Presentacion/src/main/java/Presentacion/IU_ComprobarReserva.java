@@ -75,7 +75,7 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 				if(cmbBxReservas.getSelectedIndex()!=0) {
 					String id = cmbBxReservas.getSelectedItem().toString();
 					LinkedList<Reserva> listaRes = new LinkedList<Reserva>();
-					DTOReserva.leerReserva(Integer.parseInt(id), listaRes);
+					DTOReserva.leerReserva(id, listaRes);
 					txtNombre.setText(listaRes.getFirst().getNombre());
 				}
 			}
@@ -106,7 +106,7 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 				String idReserva=cmbBxReservas.getSelectedItem().toString();
 				//String nombreCamarero=
 				LinkedList<Reserva> listaReserva = new LinkedList<Reserva>();
-				DTOReserva.leerReserva(Integer.parseInt(idReserva) ,listaReserva);
+				DTOReserva.leerReserva(idReserva,listaReserva);
 				DTOMesa.cambiarMesaOcupada(idReserva);
 				DTOMesa.asignarCamarero(listaCamarero.get(cmbBxCamarero.getSelectedIndex()-1), idReserva);
 				lblResultado.setText("Cambios realizados con éxito.");

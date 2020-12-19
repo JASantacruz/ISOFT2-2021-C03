@@ -9,7 +9,7 @@ public class AlimentoTest {
 	Alimento al;
 	@Before
 	public void beforeTest() {
-		al = new Alimento(1507, "Patatas bravas", "Entrante");
+		al = new Alimento(1507, "Patatas bravas", "Entrante",0);
 	}
 	
 	@Test

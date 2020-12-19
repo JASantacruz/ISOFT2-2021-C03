@@ -28,13 +28,12 @@ public class IU_Principal implements Fuente{
 	private JFrame frmFritura;
 	private JPanel pnlPrincipal;
 	private JLabel lblBienvenida;
-	static Connection con = null;
 	private JRadioButton rdbtnJefeDeSala;
 	private JRadioButton rdbtnCamarero;
 	private JButton btnEntrar;
 	private JRadioButton rdbtnCocinero;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	//private IU_AnotarComanda iu=new IU_AnotarComanda();
+	private JRadioButton rdBtnCamareroBarra;
 	/**
 	 * Launch the application.
 	 */
@@ -105,6 +104,7 @@ public class IU_Principal implements Fuente{
 		pnlPrincipal.add(rdbtnCamarero);
 
 		btnEntrar = new JButton("Entrar");
+		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rdbtnJefeDeSala.isSelected()) {
@@ -115,10 +115,12 @@ public class IU_Principal implements Fuente{
 				}else if(rdbtnCocinero.isSelected()) {
 					IU_Cocinero iuCocinero = new IU_Cocinero();
 					iuCocinero.setVisible(true);
+				}else if(rdBtnCamareroBarra.isSelected()) {
+					IU_AvisarCamarero iuAvisar= new IU_AvisarCamarero("Camarero barra");
 				}
 			}
 		});
-		btnEntrar.setBounds(254, 291, 112, 35);
+		btnEntrar.setBounds(255, 342, 112, 35);
 		pnlPrincipal.add(btnEntrar);
 		
 		rdbtnCocinero = new JRadioButton("Cocinero");
@@ -126,5 +128,10 @@ public class IU_Principal implements Fuente{
 		rdbtnCocinero.setFont(new Font("Verdana", Font.PLAIN, 16));
 		rdbtnCocinero.setBounds(236, 222, 112, 50);
 		pnlPrincipal.add(rdbtnCocinero);
+		
+		rdBtnCamareroBarra = new JRadioButton("Camarero de barra");
+		rdBtnCamareroBarra.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdBtnCamareroBarra.setBounds(234, 283, 177, 23);
+		pnlPrincipal.add(rdBtnCamareroBarra);
 	}
 }

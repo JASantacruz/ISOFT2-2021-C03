@@ -15,7 +15,7 @@ public class DTOBebida {
 		try {
 			rs=agente.Read(consulta);
 			while(rs.next()){
-				Bebida bebida = new Bebida(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+				Bebida bebida = new Bebida(rs.getInt(2), rs.getString(1), rs.getInt(3));
 				listaBebidas.add(bebida);
 			}
 		} catch (SQLException e) {
@@ -39,7 +39,7 @@ public class DTOBebida {
 	public static int leerStockBebida(Bebida bebida) {
 		ResultSet rs;
 		int stock=0;
-		String consulta = "SELECT stock FROM Bebidas WHERE nombre="+bebida.getNombre();
+		String consulta = "SELECT stock FROM Bebida WHERE nombre='"+bebida.getNombre()+"'";
 		try {
 			rs=agente.Read(consulta);
 			if(rs.next()) stock=rs.getInt(1);

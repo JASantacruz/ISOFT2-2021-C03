@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import Dominio.DTOCamarero;
 import Dominio.Camarero;
@@ -28,6 +29,7 @@ public class IU_Camarero {
 	private JLabel lblSeleccionCamarero;
 	private JComboBox cBoxCamareros;
 	private JButton btnPagarCuenta;
+	private String avisos;
 
 	/**
 	 * Launch the application.
@@ -103,8 +105,6 @@ public class IU_Camarero {
 		LinkedList<Camarero> listaCamareros=new LinkedList<Camarero>();
 		DTOCamarero.leerCamareros(listaCamareros);
 		cBoxCamareros.addItem("   ----");
-		
-		
 		for(Camarero camarero: listaCamareros) {
 			cBoxCamareros.addItem(camarero.getNombre());
 		}
@@ -117,10 +117,19 @@ public class IU_Camarero {
 	private class CBoxCamarerosActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			if(!cBoxCamareros.getSelectedItem().toString().equals("   ----")) {
+				avisos="";
 				btnEnviarComanda.setEnabled(true);
 				btnAnotarComanda.setEnabled(true);
 				btnCambiarEstadoMesa.setEnabled(true);
 				btnPagarCuenta.setEnabled(true);
+				LinkedList<String> lista = new LinkedList<String>();
+				DTOCamarero.leerAvisos(cBoxCamareros.getSelectedItem().toString(), lista);
+				if(lista.size()!=0) {
+					for(String aviso: lista) {
+						avisos=avisos.concat(aviso+"\n");
+					}
+					JOptionPane.showMessageDialog(null, avisos, "Avisos",JOptionPane.WARNING_MESSAGE);
+				}
 			}else {
 				btnEnviarComanda.setEnabled(false);
 				btnAnotarComanda.setEnabled(false);

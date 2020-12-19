@@ -71,8 +71,14 @@ public class IU_Cocinero extends JFrame {
 		contentPane.add(lblBienvenida);
 		
 		JButton btnAvisar = new JButton("Avisar camarero");
+		btnAvisar.addActionListener(new BtnAvisarActionListener());
 		btnAvisar.setFont(new Font("Verdana", Font.PLAIN, 10));
 		btnAvisar.setBounds(377, 185, 137, 30);
 		contentPane.add(btnAvisar);
+	}
+	private class BtnAvisarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			IU_AvisarCamarero iuAvisar= new IU_AvisarCamarero("Cocinero");
+		}
 	}
 }
