@@ -22,7 +22,7 @@ import javax.swing.JComboBox;
 
 public class IU_Camarero {
 
-	private JFrame frame;
+	private JFrame frmFritura;
 	private JButton btnCambiarEstadoMesa;
 	private JButton btnAnotarComanda;
 	private JButton btnEnviarComanda;
@@ -39,7 +39,7 @@ public class IU_Camarero {
 			public void run() {
 				try {
 					IU_Camarero window = new IU_Camarero();
-					window.frame.setVisible(true);
+					window.frmFritura.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,50 +58,51 @@ public class IU_Camarero {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(380, 170, 700, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.getContentPane().setLayout(null);
+		frmFritura = new JFrame();
+		frmFritura.setTitle("Fritura");
+		frmFritura.setResizable(false);
+		frmFritura.setBounds(380, 170, 700, 500);
+		frmFritura.setVisible(true);
+		frmFritura.getContentPane().setLayout(null);
 		
 		btnCambiarEstadoMesa = new JButton("Secuenciar Estado Mesa");
 		btnCambiarEstadoMesa.addActionListener(new BtnCambiarEstadoMesaActionListener());
 		btnCambiarEstadoMesa.setEnabled(false);
 		btnCambiarEstadoMesa.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCambiarEstadoMesa.setBounds(222, 239, 229, 31);
-		frame.getContentPane().add(btnCambiarEstadoMesa);
+		frmFritura.getContentPane().add(btnCambiarEstadoMesa);
 		
 		btnAnotarComanda = new JButton("Anotar Comanda");
 		btnAnotarComanda.setEnabled(false);
 		btnAnotarComanda.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAnotarComanda.addActionListener(new BtnAnotarComandaActionListener());
 		btnAnotarComanda.setBounds(33, 239, 172, 31);
-		frame.getContentPane().add(btnAnotarComanda);
+		frmFritura.getContentPane().add(btnAnotarComanda);
 		
 		btnEnviarComanda = new JButton("Enviar Comanda");
 		btnEnviarComanda.addActionListener(new BtnEnviarComandaActionListener());
 		btnEnviarComanda.setEnabled(false);
 		btnEnviarComanda.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnEnviarComanda.setBounds(473, 239, 172, 31);
-		frame.getContentPane().add(btnEnviarComanda);
+		frmFritura.getContentPane().add(btnEnviarComanda);
 		
 		btnPagarCuenta = new JButton("Imprimir cuenta");
 		btnPagarCuenta.setEnabled(false);
 		btnPagarCuenta.addActionListener(new BtnPagarCuentaActionListener());
 		btnPagarCuenta.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnPagarCuenta.setBounds(222, 291, 229, 31);
-		frame.getContentPane().add(btnPagarCuenta);
+		frmFritura.getContentPane().add(btnPagarCuenta);
 		
 		lblSeleccionCamarero = new JLabel("Identificación del camarero:");
 		lblSeleccionCamarero.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSeleccionCamarero.setBounds(116, 143, 229, 31);
-		frame.getContentPane().add(lblSeleccionCamarero);
+		frmFritura.getContentPane().add(lblSeleccionCamarero);
 		
 		cBoxCamareros = new JComboBox();
 		cBoxCamareros.addActionListener(new CBoxCamarerosActionListener());
 		cBoxCamareros.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		cBoxCamareros.setBounds(369, 147, 143, 22);
-		frame.getContentPane().add(cBoxCamareros);
+		frmFritura.getContentPane().add(cBoxCamareros);
 		LinkedList<Camarero> listaCamareros=new LinkedList<Camarero>();
 		DTOCamarero.leerCamareros(listaCamareros);
 		cBoxCamareros.addItem("   ----");

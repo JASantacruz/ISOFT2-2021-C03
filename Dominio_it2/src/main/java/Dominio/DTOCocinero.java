@@ -1,3 +1,4 @@
+package Dominio;
 //package Dominio;
 //
 //public class DTOCocinero {

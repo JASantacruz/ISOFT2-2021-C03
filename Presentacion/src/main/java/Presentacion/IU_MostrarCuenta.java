@@ -87,9 +87,9 @@ public class IU_MostrarCuenta {
 	 */
 	private void initialize(String camarero) {
 		frmFritura = new JFrame();
+		frmFritura.setResizable(false);
 		frmFritura.setTitle("Fritura");
 		frmFritura.setBounds(new Rectangle(380, 170, 700, 500));
-		frmFritura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmFritura.getContentPane().setLayout(null);
 		frmFritura.setVisible(true);
 		
