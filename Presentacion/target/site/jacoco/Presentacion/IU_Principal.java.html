@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_Principal.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_Principal.java</span></div><h1>IU_Principal.java</h1><pre class="source lang-java linenums">package Presentacion;
+
+import java.awt.EventQueue;
+
+import java.sql.*;
+import java.time.LocalDateTime;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.swing.JFrame;
+import java.awt.Rectangle;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import Dominio.DTOReserva;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import java.awt.Font;
+
+public class IU_Principal implements Fuente{
+
+	private JFrame frmFritura;
+	private JPanel pnlPrincipal;
+	private JLabel lblBienvenida;
+	private JRadioButton rdbtnJefeDeSala;
+	private JRadioButton rdbtnCamarero;
+	private JButton btnEntrar;
+	private JRadioButton rdbtnCocinero;
+<span class="fc" id="L35">	private final ButtonGroup buttonGroup = new ButtonGroup();</span>
+	private JRadioButton rdBtnCamareroBarra;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L41">		EventQueue.invokeLater(new Runnable() {</span>
+			public void run() {
+				try {
+<span class="nc" id="L44">					IU_Principal window = new IU_Principal();</span>
+<span class="nc" id="L45">					window.frmFritura.setVisible(true);</span>
+<span class="nc" id="L46">				} catch (Exception e) {</span>
+<span class="nc" id="L47">					e.printStackTrace();</span>
+<span class="nc" id="L48">				}</span>
+<span class="nc" id="L49">			}</span>
+		});
+<span class="nc" id="L51">	}</span>
+
+	/**
+	 * Create the application.
+	 */
+<span class="fc" id="L56">	public IU_Principal() {</span>
+<span class="fc" id="L57">		initialize();</span>
+<span class="fc" id="L58">	}</span>
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+<span class="fc" id="L64">		frmFritura = new JFrame();</span>
+<span class="fc" id="L65">		frmFritura.setTitle(&quot;Fritura&quot;);</span>
+<span class="fc" id="L66">		frmFritura.setLocationRelativeTo(null);</span>
+<span class="fc" id="L67">		frmFritura.setResizable(false);</span>
+<span class="fc" id="L68">		frmFritura.setBounds(new Rectangle(380, 170, 700, 500));</span>
+
+<span class="fc" id="L70">		frmFritura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+
+<span class="fc" id="L72">		TimerTask timerTask = new TimerTask()</span>
+<span class="fc" id="L73">		{</span>
+			public void run() 
+			{
+<span class="fc" id="L76">				DTOReserva.comprobarClienteTardio();</span>
+<span class="fc" id="L77">			}</span>
+		};
+
+<span class="fc" id="L80">		Timer timer = new Timer();</span>
+<span class="fc" id="L81">		timer.scheduleAtFixedRate(timerTask, 1, 60000);</span>
+
+<span class="fc" id="L83">		pnlPrincipal = new JPanel();</span>
+<span class="fc" id="L84">		pnlPrincipal.setLayout(null);</span>
+<span class="fc" id="L85">		frmFritura.getContentPane().add(pnlPrincipal, BorderLayout.CENTER);</span>
+
+<span class="fc" id="L87">		lblBienvenida = new JLabel(&quot;Bienvenido a la aplicación Fritura&quot;);</span>
+<span class="fc" id="L88">		lblBienvenida.setHorizontalAlignment(SwingConstants.CENTER); </span>
+<span class="fc" id="L89">		lblBienvenida.setBounds(new Rectangle(134, 21, 421, 50));</span>
+<span class="fc" id="L90">		lblBienvenida.setFont(FUENTE_CAB);</span>
+
+<span class="fc" id="L92">		pnlPrincipal.add(lblBienvenida);</span>
+
+<span class="fc" id="L94">		rdbtnJefeDeSala = new JRadioButton(&quot;Jefe de Sala&quot;);</span>
+<span class="fc" id="L95">		buttonGroup.add(rdbtnJefeDeSala);</span>
+<span class="fc" id="L96">		rdbtnJefeDeSala.setBounds(234, 128, 132, 35);</span>
+<span class="fc" id="L97">		rdbtnJefeDeSala.setFont(FUENTE_RDBTN);</span>
+<span class="fc" id="L98">		pnlPrincipal.add(rdbtnJefeDeSala);</span>
+
+<span class="fc" id="L100">		rdbtnCamarero = new JRadioButton(&quot;Camarero&quot;);</span>
+<span class="fc" id="L101">		buttonGroup.add(rdbtnCamarero);</span>
+<span class="fc" id="L102">		rdbtnCamarero.setFont(FUENTE_RDBTN);</span>
+<span class="fc" id="L103">		rdbtnCamarero.setBounds(235, 169, 112, 50);</span>
+<span class="fc" id="L104">		pnlPrincipal.add(rdbtnCamarero);</span>
+
+<span class="fc" id="L106">		btnEntrar = new JButton(&quot;Entrar&quot;);</span>
+<span class="fc" id="L107">		btnEntrar.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="fc" id="L108">		btnEntrar.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc bnc" id="L110" title="All 2 branches missed.">				if(rdbtnJefeDeSala.isSelected()) {</span>
+<span class="nc" id="L111">					IU_Bienvenida_JefeSala bienjs = new IU_Bienvenida_JefeSala();</span>
+<span class="nc" id="L112">					bienjs.setVisible(true);</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">				}else if(rdbtnCamarero.isSelected()) {</span>
+<span class="nc" id="L114">					IU_Camarero iuCamarero = new IU_Camarero();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">				}else if(rdbtnCocinero.isSelected()) {</span>
+<span class="nc" id="L116">					IU_Cocinero iuCocinero = new IU_Cocinero();</span>
+<span class="nc" id="L117">					iuCocinero.setVisible(true);</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">				}else if(rdBtnCamareroBarra.isSelected()) {</span>
+<span class="nc" id="L119">					IU_AvisarCamarero iuAvisar= new IU_AvisarCamarero(&quot;Camarero barra&quot;);</span>
+				}
+<span class="nc" id="L121">			}</span>
+		});
+<span class="fc" id="L123">		btnEntrar.setBounds(255, 342, 112, 35);</span>
+<span class="fc" id="L124">		pnlPrincipal.add(btnEntrar);</span>
+		
+<span class="fc" id="L126">		rdbtnCocinero = new JRadioButton(&quot;Cocinero&quot;);</span>
+<span class="fc" id="L127">		buttonGroup.add(rdbtnCocinero);</span>
+<span class="fc" id="L128">		rdbtnCocinero.setFont(new Font(&quot;Verdana&quot;, Font.PLAIN, 16));</span>
+<span class="fc" id="L129">		rdbtnCocinero.setBounds(236, 222, 112, 50);</span>
+<span class="fc" id="L130">		pnlPrincipal.add(rdbtnCocinero);</span>
+		
+<span class="fc" id="L132">		rdBtnCamareroBarra = new JRadioButton(&quot;Camarero de barra&quot;);</span>
+<span class="fc" id="L133">		rdBtnCamareroBarra.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="fc" id="L134">		rdBtnCamareroBarra.setBounds(234, 283, 177, 23);</span>
+<span class="fc" id="L135">		pnlPrincipal.add(rdBtnCamareroBarra);</span>
+<span class="fc" id="L136">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

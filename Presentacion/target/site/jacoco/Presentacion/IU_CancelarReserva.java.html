@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_CancelarReserva.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_CancelarReserva.java</span></div><h1>IU_CancelarReserva.java</h1><pre class="source lang-java linenums">package Presentacion;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
+import Dominio.DTOReserva;
+import Dominio.Reserva;
+
+import java.awt.Rectangle;
+
+import java.awt.Color;
+
+import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.Locale;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+
+@SuppressWarnings({&quot;rawtypes&quot;, &quot;unchecked&quot;, &quot;serial&quot;})
+public class IU_CancelarReserva extends JFrame implements Fuente {
+
+	private JPanel contentPane;
+	private JPanel panel;
+	private JLabel lblCancelar_Cab;
+	private JLabel lblCancelar;
+	private JButton btnCancelar;
+	private JTextField txtFecha;
+	private JLabel lblHora;
+	private JLabel lblComensales;
+	private JComboBox cmbBxReservas;
+	private JLabel lblResultado;
+
+<span class="fc" id="L47">	private DateFormat df = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT);</span>
+<span class="fc" id="L48">	private static DateTimeFormatter df2 = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd' 'HH:mm&quot;).localizedBy(new Locale(&quot;es-ES&quot;));</span>
+	private JTextField txtComensales;
+	private JLabel lblNombre;
+	private JTextField txtNombre;
+	/**
+	 * Create the frame.
+	 */
+<span class="fc" id="L55">	public IU_CancelarReserva(final LinkedList&lt;Integer&gt; lista) {</span>
+<span class="fc" id="L56">		setResizable(false);</span>
+<span class="fc" id="L57">		setTitle(&quot;Fritura&quot;);</span>
+<span class="fc" id="L58">		setBounds(new Rectangle(380, 170, 700, 500));</span>
+<span class="fc" id="L59">		getContentPane().setLayout(null);</span>
+<span class="fc" id="L60">		contentPane = new JPanel();</span>
+<span class="fc" id="L61">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="fc" id="L62">		contentPane.setLayout(new BorderLayout(0, 0));</span>
+<span class="fc" id="L63">		setContentPane(contentPane);</span>
+
+<span class="fc" id="L65">		panel = new JPanel();</span>
+<span class="fc" id="L66">		contentPane.add(panel, BorderLayout.CENTER);</span>
+<span class="fc" id="L67">		panel.setLayout(null);</span>
+
+<span class="fc" id="L69">		lblCancelar_Cab = new JLabel(&quot;Sistema de cancelar reservas&quot;);</span>
+<span class="fc" id="L70">		lblCancelar_Cab.setBounds(161, 35, 332, 33);</span>
+<span class="fc" id="L71">		lblCancelar_Cab.setFont(FUENTE_CAB);</span>
+<span class="fc" id="L72">		panel.add(lblCancelar_Cab);</span>
+
+<span class="fc" id="L74">		lblCancelar = new JLabel(&quot;¿Que reserva desea cancelar?&quot;);</span>
+<span class="fc" id="L75">		lblCancelar.setBounds(205, 105, 232, 33);</span>
+<span class="fc" id="L76">		lblCancelar.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L77">		panel.add(lblCancelar);</span>
+
+<span class="fc" id="L79">		txtFecha = new JTextField();</span>
+<span class="fc" id="L80">		txtFecha.setEditable(false);</span>
+<span class="fc" id="L81">		txtFecha.setColumns(10);</span>
+<span class="fc" id="L82">		txtFecha.setBounds(318, 196, 298, 19);</span>
+<span class="fc" id="L83">		panel.add(txtFecha);</span>
+
+<span class="fc" id="L85">		lblHora = new JLabel(&quot;Fecha:&quot;);</span>
+<span class="fc" id="L86">		lblHora.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L87">		lblHora.setBounds(252, 197, 56, 13);</span>
+<span class="fc" id="L88">		panel.add(lblHora);</span>
+
+<span class="fc" id="L90">		lblComensales = new JLabel(&quot;Comensales:&quot;);</span>
+<span class="fc" id="L91">		lblComensales.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L92">		lblComensales.setBounds(204, 243, 99, 19);</span>
+<span class="fc" id="L93">		panel.add(lblComensales);</span>
+
+<span class="fc" id="L95">		cmbBxReservas = new JComboBox();</span>
+<span class="fc" id="L96">		cmbBxReservas.addItem(&quot;-------------&quot;);</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">		for(int i = 0; i &lt; lista.size(); i++) </span>
+<span class="nc" id="L98">			cmbBxReservas.addItem(lista.get(i));</span>
+
+<span class="fc" id="L100">		cmbBxReservas.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc bnc" id="L102" title="All 2 branches missed.">				if(cmbBxReservas.getSelectedIndex()!=0) {</span>
+<span class="nc" id="L103">					LinkedList&lt;Reserva&gt; lista = new LinkedList&lt;Reserva&gt;();</span>
+<span class="nc" id="L104">					DTOReserva.leerReserva(cmbBxReservas.getSelectedItem().toString(), lista);</span>
+<span class="nc" id="L105">					LocalDateTime turno=DTOReserva.obtenerFechaReserva(cmbBxReservas.getSelectedItem().toString());</span>
+					//txtFecha.setText(df.format(turno));
+<span class="nc" id="L107">					txtFecha.setText(turno.format(df2));</span>
+<span class="nc" id="L108">					txtComensales.setText(lista.get(0).getNumComensales()+&quot;&quot;);</span>
+<span class="nc" id="L109">					txtNombre.setText(lista.get(0).getNombre());</span>
+<span class="nc" id="L110">				}else {</span>
+<span class="nc" id="L111">					txtFecha.setText(&quot;&quot;);</span>
+<span class="nc" id="L112">					txtComensales.setText(&quot;&quot;);</span>
+<span class="nc" id="L113">					txtNombre.setText(&quot;&quot;);</span>
+				}
+<span class="nc" id="L115">			}</span>
+		});
+<span class="fc" id="L117">		cmbBxReservas.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L118">		cmbBxReservas.setBounds(50, 148, 123, 19);</span>
+<span class="fc" id="L119">		panel.add(cmbBxReservas);</span>
+
+<span class="fc" id="L121">		lblResultado = new JLabel(&quot;Resultado&quot;);</span>
+<span class="fc" id="L122">		lblResultado.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L123">		lblResultado.setVisible(false);</span>
+<span class="fc" id="L124">		lblResultado.setBounds(181, 416, 278, 27);</span>
+<span class="fc" id="L125">		lblResultado.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L126">		panel.add(lblResultado);</span>
+
+
+<span class="fc" id="L129">		btnCancelar = new JButton(&quot;Cancelar reserva&quot;);</span>
+<span class="fc" id="L130">		btnCancelar.setBounds(252, 367, 123, 28);</span>
+<span class="fc" id="L131">		btnCancelar.setFont(FUENTE_BTN);</span>
+
+<span class="fc" id="L133">		btnCancelar.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L135">				String id = cmbBxReservas.getSelectedItem().toString();</span>
+<span class="nc" id="L136">				DTOReserva.borrarReserva(id);</span>
+<span class="nc" id="L137">				cmbBxReservas.removeItemAt(cmbBxReservas.getSelectedIndex());</span>
+<span class="nc" id="L138">				lblResultado.setText(&quot;Reserva cancelada con exito.&quot;);</span>
+<span class="nc" id="L139">				lblResultado.setForeground(Color.green);</span>
+<span class="nc" id="L140">				lblResultado.setVisible(true);</span>
+<span class="nc" id="L141">			}</span>
+		});
+<span class="fc" id="L143">		panel.add(btnCancelar);</span>
+		
+<span class="fc" id="L145">		txtComensales = new JTextField();</span>
+<span class="fc" id="L146">		txtComensales.setEditable(false);</span>
+<span class="fc" id="L147">		txtComensales.setColumns(10);</span>
+<span class="fc" id="L148">		txtComensales.setBounds(318, 244, 45, 21);</span>
+<span class="fc" id="L149">		panel.add(txtComensales);</span>
+		
+<span class="fc" id="L151">		lblNombre = new JLabel(&quot;Nombre:&quot;);</span>
+<span class="fc" id="L152">		lblNombre.setFont(new Font(&quot;Verdana&quot;, Font.ITALIC, 15));</span>
+<span class="fc" id="L153">		lblNombre.setBounds(236, 283, 72, 19);</span>
+<span class="fc" id="L154">		panel.add(lblNombre);</span>
+		
+<span class="fc" id="L156">		txtNombre = new JTextField();</span>
+<span class="fc" id="L157">		txtNombre.setEditable(false);</span>
+<span class="fc" id="L158">		txtNombre.setColumns(10);</span>
+<span class="fc" id="L159">		txtNombre.setBounds(318, 285, 298, 19);</span>
+<span class="fc" id="L160">		panel.add(txtNombre);</span>
+
+<span class="fc" id="L162">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

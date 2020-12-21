@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_ComprobarReserva.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_ComprobarReserva.java</span></div><h1>IU_ComprobarReserva.java</h1><pre class="source lang-java linenums">package Presentacion;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import Dominio.*;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Rectangle;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import java.util.LinkedList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.DefaultComboBoxModel;
+
+@SuppressWarnings({&quot;rawtypes&quot;, &quot;unchecked&quot;, &quot;serial&quot;})
+public class IU_ComprobarReserva extends JFrame implements Fuente{
+
+	private JPanel contentPane;
+	private JPanel panel;
+	private JLabel lblComprobar_Cab;
+	private JLabel lblSeleccionar;
+	private JComboBox cmbBxReservas;
+	private JLabel lblCamarero;
+	private JComboBox cmbBxCamarero;
+	private JButton btnConfirmar;
+	private JLabel lblResultado;
+	private JTextField txtNombre;
+	private JLabel lblNombre;
+
+	/**
+	 * Create the frame.
+	 */
+<span class="fc" id="L40">	public IU_ComprobarReserva(final LinkedList&lt;Integer&gt; listaReserva, final LinkedList&lt;Camarero&gt; listaCamarero) {</span>
+<span class="fc" id="L41">		DTOMesa.actualizarEstadoMesasPorTurno();</span>
+<span class="fc" id="L42">		setResizable(false);</span>
+<span class="fc" id="L43">		setTitle(&quot;Fritura&quot;);</span>
+<span class="fc" id="L44">		setBounds(new Rectangle(380, 170, 700, 500));</span>
+<span class="fc" id="L45">		contentPane = new JPanel();</span>
+<span class="fc" id="L46">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="fc" id="L47">		contentPane.setLayout(new BorderLayout(0, 0));</span>
+<span class="fc" id="L48">		setContentPane(contentPane);</span>
+
+<span class="fc" id="L50">		panel = new JPanel();</span>
+<span class="fc" id="L51">		contentPane.add(panel, BorderLayout.CENTER);</span>
+<span class="fc" id="L52">		panel.setLayout(null);</span>
+
+<span class="fc" id="L54">		lblComprobar_Cab = new JLabel(&quot;Sistema de asignación de camareros&quot;);</span>
+<span class="fc" id="L55">		lblComprobar_Cab.setFont(FUENTE_CAB);</span>
+<span class="fc" id="L56">		lblComprobar_Cab.setBounds(136, 43, 425, 33);</span>
+<span class="fc" id="L57">		panel.add(lblComprobar_Cab);</span>
+
+<span class="fc" id="L59">		lblSeleccionar = new JLabel(&quot;Selecciona la reserva que desea comprobar&quot;);</span>
+<span class="fc" id="L60">		lblSeleccionar.setBounds(64, 142, 359, 18);</span>
+<span class="fc" id="L61">		lblSeleccionar.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L62">		panel.add(lblSeleccionar);</span>
+
+<span class="fc" id="L64">		cmbBxReservas = new JComboBox();</span>
+<span class="fc" id="L65">		cmbBxReservas.addItem(&quot;-------------&quot;);</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">		for(int i = 0; i &lt; listaReserva.size(); i++) {</span>
+<span class="nc" id="L67">			cmbBxReservas.addItem(listaReserva.get(i));</span>
+		}
+<span class="fc" id="L69">		cmbBxReservas.setBounds(78, 170, 136, 21);</span>
+<span class="fc" id="L70">		cmbBxReservas.setFont(FUENTE_LBL);</span>
+
+
+<span class="fc" id="L73">		cmbBxReservas.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc bnc" id="L75" title="All 2 branches missed.">				if(cmbBxReservas.getSelectedIndex()!=0) {</span>
+<span class="nc" id="L76">					String id = cmbBxReservas.getSelectedItem().toString();</span>
+<span class="nc" id="L77">					LinkedList&lt;Reserva&gt; listaRes = new LinkedList&lt;Reserva&gt;();</span>
+<span class="nc" id="L78">					DTOReserva.leerReserva(id, listaRes);</span>
+<span class="nc" id="L79">					txtNombre.setText(listaRes.getFirst().getNombre());</span>
+				}
+<span class="nc" id="L81">			}</span>
+		});
+
+<span class="fc" id="L84">		panel.add(cmbBxReservas);</span>
+
+<span class="fc" id="L86">		lblCamarero = new JLabel(&quot;¿Qué camarero desea asignar?&quot;);</span>
+<span class="fc" id="L87">		lblCamarero.setBounds(95, 262, 245, 33);</span>
+<span class="fc" id="L88">		lblCamarero.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L89">		panel.add(lblCamarero);</span>
+
+<span class="fc" id="L91">		cmbBxCamarero = new JComboBox();</span>
+<span class="fc" id="L92">		cmbBxCamarero.setBounds(371, 270, 111, 21);</span>
+
+<span class="fc" id="L94">		cmbBxCamarero.addItem(&quot;-----&quot;);</span>
+
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">		for(int i = 0; i &lt; listaCamarero.size(); i++)</span>
+<span class="nc" id="L97">			cmbBxCamarero.addItem(listaCamarero.get(i).getIdCamarero()+&quot;: &quot;+listaCamarero.get(i).getNombre());</span>
+
+<span class="fc" id="L99">		panel.add(cmbBxCamarero);</span>
+
+<span class="fc" id="L101">		btnConfirmar = new JButton(&quot;Confirmar&quot;);</span>
+<span class="fc" id="L102">		btnConfirmar.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+				//String id = cmbBxReservas.getSelectedItem().toString().substring(8);
+				//DTOReserva.cambiarEstado(Integer.parseInt(id), cmbBxEstados.getSelectedItem().toString());
+<span class="nc" id="L106">				String idReserva=cmbBxReservas.getSelectedItem().toString();</span>
+				//String nombreCamarero=
+<span class="nc" id="L108">				LinkedList&lt;Reserva&gt; listaReserva = new LinkedList&lt;Reserva&gt;();</span>
+<span class="nc" id="L109">				DTOReserva.leerReserva(idReserva,listaReserva);</span>
+<span class="nc" id="L110">				DTOMesa.cambiarMesaOcupada(idReserva);</span>
+<span class="nc" id="L111">				DTOMesa.asignarCamarero(listaCamarero.get(cmbBxCamarero.getSelectedIndex()-1), idReserva);</span>
+<span class="nc" id="L112">				lblResultado.setText(&quot;Cambios realizados con éxito.&quot;);</span>
+<span class="nc" id="L113">				lblResultado.setForeground(Color.green);</span>
+<span class="nc" id="L114">				lblResultado.setVisible(true);</span>
+<span class="nc" id="L115">				cmbBxReservas.setSelectedIndex(0);</span>
+<span class="nc" id="L116">				cmbBxCamarero.setSelectedIndex(0);</span>
+<span class="nc" id="L117">				txtNombre.setText(&quot;&quot;);</span>
+<span class="nc" id="L118">			}</span>
+		});
+<span class="fc" id="L120">		btnConfirmar.setBounds(281, 330, 99, 33);</span>
+<span class="fc" id="L121">		panel.add(btnConfirmar);</span>
+
+<span class="fc" id="L123">		lblResultado = new JLabel(&quot;New label&quot;);</span>
+<span class="fc" id="L124">		lblResultado.setVisible(false);</span>
+<span class="fc" id="L125">		lblResultado.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L126">		lblResultado.setBounds(201, 380, 257, 25);</span>
+<span class="fc" id="L127">		lblResultado.setFont(new Font(&quot;Verdana&quot;, Font.ITALIC, 13));</span>
+<span class="fc" id="L128">		panel.add(lblResultado);</span>
+
+<span class="fc" id="L130">		txtNombre = new JTextField();</span>
+<span class="fc" id="L131">		txtNombre.setFont(new Font(&quot;Verdana&quot;, Font.PLAIN, 16));</span>
+<span class="fc" id="L132">		txtNombre.setEditable(false);</span>
+<span class="fc" id="L133">		txtNombre.setColumns(10);</span>
+<span class="fc" id="L134">		txtNombre.setBounds(371, 216, 156, 22);</span>
+<span class="fc" id="L135">		panel.add(txtNombre);</span>
+
+<span class="fc" id="L137">		lblNombre = new JLabel(&quot;Reserva a nombre de:&quot;);</span>
+<span class="fc" id="L138">		lblNombre.setFont(new Font(&quot;Verdana&quot;, Font.ITALIC, 15));</span>
+<span class="fc" id="L139">		lblNombre.setBounds(159, 218, 181, 21);</span>
+<span class="fc" id="L140">		panel.add(lblNombre);</span>
+<span class="fc" id="L141">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

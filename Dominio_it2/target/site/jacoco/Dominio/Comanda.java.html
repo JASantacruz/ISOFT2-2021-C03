@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Comanda.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it2</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Comanda.java</span></div><h1>Comanda.java</h1><pre class="source lang-java linenums">package Dominio;
+import java.util.LinkedList;
+
+import Dominio.Mesa;
+
+public class Comanda {
+	private int _idComanda;
+	private Mesa _mesa;
+<span class="pc" id="L9">	private LinkedList&lt;String&gt; ingredientesComanda=new LinkedList&lt;String&gt;();</span>
+
+<span class="fc" id="L11">	public Comanda(int idComanda, Mesa mesa,LinkedList&lt;String&gt; ingredientesComanda) {</span>
+<span class="fc" id="L12">		this.setIdComanda(idComanda);</span>
+<span class="fc" id="L13">		this.setMesa(mesa);</span>
+<span class="fc" id="L14">		this.setIngredientesComanda(ingredientesComanda);</span>
+<span class="fc" id="L15">	}</span>
+
+	public LinkedList&lt;String&gt; getIngredientesComanda() {
+<span class="nc" id="L18">		return ingredientesComanda;</span>
+	}
+
+	public void setIngredientesComanda(LinkedList&lt;String&gt; ingredientesComanda) {
+<span class="fc" id="L22">		this.ingredientesComanda = ingredientesComanda;</span>
+<span class="fc" id="L23">	}</span>
+
+<span class="nc" id="L25">	public Comanda() {</span>
+<span class="nc" id="L26">		throw new UnsupportedOperationException();</span>
+	}
+
+	public int getIdComanda() {
+<span class="fc" id="L30">		return this._idComanda;</span>
+	}
+
+	public void setIdComanda(int aIdComanda) {
+<span class="fc" id="L34">		this._idComanda = aIdComanda;</span>
+<span class="fc" id="L35">	}</span>
+
+	public Mesa getMesa() {
+<span class="fc" id="L38">		return this._mesa;</span>
+	}
+
+	public void setMesa(Mesa aMesa) {
+<span class="fc" id="L42">		this._mesa = aMesa;</span>
+<span class="fc" id="L43">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cuenta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it4</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Cuenta.java</span></div><h1>Cuenta.java</h1><pre class="source lang-java linenums">package Dominio;
+
+import java.util.LinkedList;
+
+public class Cuenta {
+	//private double pago;
+	private LinkedList&lt;Alimento&gt; entrante;
+	private LinkedList&lt;Alimento&gt; primerPlato;
+	private LinkedList&lt;Alimento&gt; segundoPlato;
+	private LinkedList&lt;Alimento&gt; postre;
+	private LinkedList&lt;Bebida&gt; bebida;
+	public Cuenta(LinkedList&lt;Alimento&gt; entrante, LinkedList&lt;Alimento&gt; primerPlato,
+<span class="fc" id="L13">			LinkedList&lt;Alimento&gt; segundoPlato, LinkedList&lt;Alimento&gt; postre, LinkedList&lt;Bebida&gt; bebida) {</span>
+<span class="fc" id="L14">		this.setEntrante(entrante);</span>
+<span class="fc" id="L15">		this.setPrimerPlato(primerPlato);</span>
+<span class="fc" id="L16">		this.setSegundoPlato(segundoPlato);</span>
+<span class="fc" id="L17">		this.setPostre(postre);</span>
+<span class="fc" id="L18">		this.setBebida(bebida);</span>
+<span class="fc" id="L19">	}</span>
+	public LinkedList&lt;Alimento&gt; getEntrante() {
+<span class="fc" id="L21">		return entrante;</span>
+	}
+	public void setEntrante(LinkedList&lt;Alimento&gt; entrante) {
+<span class="fc" id="L24">		this.entrante = entrante;</span>
+<span class="fc" id="L25">	}</span>
+	public LinkedList&lt;Alimento&gt; getPrimerPlato() {
+<span class="fc" id="L27">		return primerPlato;</span>
+	}
+	public void setPrimerPlato(LinkedList&lt;Alimento&gt; primerPlato) {
+<span class="fc" id="L30">		this.primerPlato = primerPlato;</span>
+<span class="fc" id="L31">	}</span>
+	public LinkedList&lt;Alimento&gt; getSegundoPlato() {
+<span class="fc" id="L33">		return segundoPlato;</span>
+	}
+	public void setSegundoPlato(LinkedList&lt;Alimento&gt; segundoPlato) {
+<span class="fc" id="L36">		this.segundoPlato = segundoPlato;</span>
+<span class="fc" id="L37">	}</span>
+	public LinkedList&lt;Alimento&gt; getPostre() {
+<span class="fc" id="L39">		return postre;</span>
+	}
+	public void setPostre(LinkedList&lt;Alimento&gt; postre) {
+<span class="fc" id="L42">		this.postre = postre;</span>
+<span class="fc" id="L43">	}</span>
+	public LinkedList&lt;Bebida&gt; getBebida() {
+<span class="fc" id="L45">		return bebida;</span>
+	}
+	public void setBebida(LinkedList&lt;Bebida&gt; bebida) {
+<span class="fc" id="L48">		this.bebida = bebida;</span>
+<span class="fc" id="L49">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
