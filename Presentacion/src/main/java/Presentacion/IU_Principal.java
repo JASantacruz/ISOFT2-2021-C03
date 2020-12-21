@@ -32,8 +32,8 @@ public class IU_Principal implements Fuente{
 	private JRadioButton rdbtnCamarero;
 	private JButton btnEntrar;
 	private JRadioButton rdbtnCocinero;
-	private JRadioButton rdBtnCamareroBarra;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JRadioButton rdBtnCamareroBarra;
 	/**
 	 * Launch the application.
 	 */
@@ -130,7 +130,6 @@ public class IU_Principal implements Fuente{
 		pnlPrincipal.add(rdbtnCocinero);
 		
 		rdBtnCamareroBarra = new JRadioButton("Camarero de barra");
-		buttonGroup.add(rdBtnCamareroBarra);
 		rdBtnCamareroBarra.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		rdBtnCamareroBarra.setBounds(234, 283, 177, 23);
 		pnlPrincipal.add(rdBtnCamareroBarra);

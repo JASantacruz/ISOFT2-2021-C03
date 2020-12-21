@@ -33,7 +33,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class IU_AnotarComanda{
+public class IU_AnotarComanda extends JFrame{
 
 	private JFrame frmFritura;
 	private JLabel lblNumeroMesa;
@@ -85,9 +85,9 @@ public class IU_AnotarComanda{
 	 */
 	private void initialize(String camarero) {
 		frmFritura = new JFrame();
-		frmFritura.setResizable(false);
 		frmFritura.setTitle("Fritura");
 		frmFritura.setBounds(380, 170, 700, 500);
+		frmFritura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmFritura.setVisible(true);
 		frmFritura.getContentPane().setLayout(null);
 

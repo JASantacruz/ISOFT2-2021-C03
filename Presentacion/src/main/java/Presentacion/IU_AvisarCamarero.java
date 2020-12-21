@@ -21,7 +21,7 @@ import javax.swing.JButton;
 
 public class IU_AvisarCamarero {
 
-	private JFrame frmFritura;
+	private JFrame frame;
 	private JLabel lblAvisarCamarero;
 	private JLabel lblSelecciona;
 	private JComboBox cBoxCamareros;
@@ -39,7 +39,7 @@ public class IU_AvisarCamarero {
 			public void run() {
 				try {
 					IU_AvisarCamarero window = new IU_AvisarCamarero("");
-					window.frmFritura.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,29 +58,28 @@ public class IU_AvisarCamarero {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(String tipoEmpleado) {
-		frmFritura = new JFrame();
-		frmFritura.setResizable(false);
-		frmFritura.setTitle("Fritura");
-		frmFritura.setBounds(new Rectangle(380, 170, 700, 500));
-		frmFritura.setVisible(true);
-		frmFritura.getContentPane().setLayout(null);
+		frame = new JFrame();
+		frame.setBounds(new Rectangle(380, 170, 700, 500));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.getContentPane().setLayout(null);
 
 		this.tipoEmpleado=tipoEmpleado;
 
 		lblAvisarCamarero = new JLabel("Avisar a camarero");
 		lblAvisarCamarero.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblAvisarCamarero.setBounds(246, 64, 174, 33);
-		frmFritura.getContentPane().add(lblAvisarCamarero);
+		frame.getContentPane().add(lblAvisarCamarero);
 
 		lblSelecciona = new JLabel("Selecciona el camarero a avisar:");
 		lblSelecciona.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblSelecciona.setBounds(109, 166, 203, 17);
-		frmFritura.getContentPane().add(lblSelecciona);
+		frame.getContentPane().add(lblSelecciona);
 
 		cBoxCamareros = new JComboBox();
 		cBoxCamareros.addActionListener(new CBoxCamarerosActionListener());
 		cBoxCamareros.setBounds(359, 165, 98, 22);
-		frmFritura.getContentPane().add(cBoxCamareros);
+		frame.getContentPane().add(cBoxCamareros);
 		LinkedList<Camarero> listaCamareros=new LinkedList<Camarero>();
 		DTOCamarero.leerCamareros(listaCamareros);
 		cBoxCamareros.addItem("   ----");
@@ -88,26 +87,26 @@ public class IU_AvisarCamarero {
 		lblSeleccionaMesa = new JLabel("Selecciona la mesa:");
 		lblSeleccionaMesa.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblSeleccionaMesa.setBounds(189, 243, 123, 17);
-		frmFritura.getContentPane().add(lblSeleccionaMesa);
+		frame.getContentPane().add(lblSeleccionaMesa);
 
 		cBoxMesas = new JComboBox();
 		cBoxMesas.addActionListener(new CBoxMesasActionListener());
 		cBoxMesas.setEnabled(false);
 		cBoxMesas.setBounds(359, 242, 98, 22);
-		frmFritura.getContentPane().add(cBoxMesas);
+		frame.getContentPane().add(cBoxMesas);
 
 		btnConfirmar = new JButton("Confirmar preparacion");
 		btnConfirmar.addActionListener(new BtnConfirmarActionListener());
 		btnConfirmar.setEnabled(false);
 		btnConfirmar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnConfirmar.setBounds(246, 314, 173, 23);
-		frmFritura.getContentPane().add(btnConfirmar);
+		frame.getContentPane().add(btnConfirmar);
 
 		lblConfirmacion = new JLabel("Aviso enviado correctamente");
 		lblConfirmacion.setVisible(false);
 		lblConfirmacion.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblConfirmacion.setBounds(247, 370, 187, 22);
-		frmFritura.getContentPane().add(lblConfirmacion);
+		frame.getContentPane().add(lblConfirmacion);
 		for(Camarero camarero: listaCamareros) {
 			cBoxCamareros.addItem(camarero.getNombre());
 		}
