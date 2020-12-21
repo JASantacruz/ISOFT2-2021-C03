@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_Camarero.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_Camarero.java</span></div><h1>IU_Camarero.java</h1><pre class="source lang-java linenums">package Presentacion;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import Dominio.DTOCamarero;
+import Dominio.Camarero;
+
+import java.awt.Font;
+import javax.swing.JComboBox;
+
+public class IU_Camarero {
+
+	private JFrame frame;
+	private JButton btnCambiarEstadoMesa;
+	private JButton btnAnotarComanda;
+	private JButton btnEnviarComanda;
+	private JLabel lblSeleccionCamarero;
+	private JComboBox cBoxCamareros;
+	private JButton btnPagarCuenta;
+	private String avisos;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L38">		EventQueue.invokeLater(new Runnable() {</span>
+			public void run() {
+				try {
+<span class="nc" id="L41">					IU_Camarero window = new IU_Camarero();</span>
+<span class="nc" id="L42">					window.frame.setVisible(true);</span>
+<span class="nc" id="L43">				} catch (Exception e) {</span>
+<span class="nc" id="L44">					e.printStackTrace();</span>
+<span class="nc" id="L45">				}</span>
+<span class="nc" id="L46">			}</span>
+		});
+<span class="nc" id="L48">	}</span>
+
+	/**
+	 * Create the application.
+	 */
+<span class="nc" id="L53">	public IU_Camarero() {</span>
+<span class="nc" id="L54">		initialize();</span>
+<span class="nc" id="L55">	}</span>
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+<span class="nc" id="L61">		frame = new JFrame();</span>
+<span class="nc" id="L62">		frame.setBounds(380, 170, 700, 500);</span>
+<span class="nc" id="L63">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L64">		frame.setVisible(true);</span>
+<span class="nc" id="L65">		frame.getContentPane().setLayout(null);</span>
+		
+<span class="nc" id="L67">		btnCambiarEstadoMesa = new JButton(&quot;Secuenciar Estado Mesa&quot;);</span>
+<span class="nc" id="L68">		btnCambiarEstadoMesa.addActionListener(new BtnCambiarEstadoMesaActionListener());</span>
+<span class="nc" id="L69">		btnCambiarEstadoMesa.setEnabled(false);</span>
+<span class="nc" id="L70">		btnCambiarEstadoMesa.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="nc" id="L71">		btnCambiarEstadoMesa.setBounds(222, 239, 229, 31);</span>
+<span class="nc" id="L72">		frame.getContentPane().add(btnCambiarEstadoMesa);</span>
+		
+<span class="nc" id="L74">		btnAnotarComanda = new JButton(&quot;Anotar Comanda&quot;);</span>
+<span class="nc" id="L75">		btnAnotarComanda.setEnabled(false);</span>
+<span class="nc" id="L76">		btnAnotarComanda.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="nc" id="L77">		btnAnotarComanda.addActionListener(new BtnAnotarComandaActionListener());</span>
+<span class="nc" id="L78">		btnAnotarComanda.setBounds(33, 239, 172, 31);</span>
+<span class="nc" id="L79">		frame.getContentPane().add(btnAnotarComanda);</span>
+		
+<span class="nc" id="L81">		btnEnviarComanda = new JButton(&quot;Enviar Comanda&quot;);</span>
+<span class="nc" id="L82">		btnEnviarComanda.addActionListener(new BtnEnviarComandaActionListener());</span>
+<span class="nc" id="L83">		btnEnviarComanda.setEnabled(false);</span>
+<span class="nc" id="L84">		btnEnviarComanda.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="nc" id="L85">		btnEnviarComanda.setBounds(473, 239, 172, 31);</span>
+<span class="nc" id="L86">		frame.getContentPane().add(btnEnviarComanda);</span>
+		
+<span class="nc" id="L88">		btnPagarCuenta = new JButton(&quot;Imprimir cuenta&quot;);</span>
+<span class="nc" id="L89">		btnPagarCuenta.setEnabled(false);</span>
+<span class="nc" id="L90">		btnPagarCuenta.addActionListener(new BtnPagarCuentaActionListener());</span>
+<span class="nc" id="L91">		btnPagarCuenta.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="nc" id="L92">		btnPagarCuenta.setBounds(222, 291, 229, 31);</span>
+<span class="nc" id="L93">		frame.getContentPane().add(btnPagarCuenta);</span>
+		
+<span class="nc" id="L95">		lblSeleccionCamarero = new JLabel(&quot;Identificación del camarero:&quot;);</span>
+<span class="nc" id="L96">		lblSeleccionCamarero.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="nc" id="L97">		lblSeleccionCamarero.setBounds(116, 143, 229, 31);</span>
+<span class="nc" id="L98">		frame.getContentPane().add(lblSeleccionCamarero);</span>
+		
+<span class="nc" id="L100">		cBoxCamareros = new JComboBox();</span>
+<span class="nc" id="L101">		cBoxCamareros.addActionListener(new CBoxCamarerosActionListener());</span>
+<span class="nc" id="L102">		cBoxCamareros.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="nc" id="L103">		cBoxCamareros.setBounds(369, 147, 143, 22);</span>
+<span class="nc" id="L104">		frame.getContentPane().add(cBoxCamareros);</span>
+<span class="nc" id="L105">		LinkedList&lt;Camarero&gt; listaCamareros=new LinkedList&lt;Camarero&gt;();</span>
+<span class="nc" id="L106">		DTOCamarero.leerCamareros(listaCamareros);</span>
+<span class="nc" id="L107">		cBoxCamareros.addItem(&quot;   ----&quot;);</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">		for(Camarero camarero: listaCamareros) {</span>
+<span class="nc" id="L109">			cBoxCamareros.addItem(camarero.getNombre());</span>
+<span class="nc" id="L110">		}</span>
+<span class="nc" id="L111">	}</span>
+<span class="nc" id="L112">	private class BtnAnotarComandaActionListener implements ActionListener {</span>
+		public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L114">			IU_AnotarComanda iuAnotarComanda= new IU_AnotarComanda(cBoxCamareros.getSelectedItem().toString());</span>
+<span class="nc" id="L115">		}</span>
+	}
+<span class="nc" id="L117">	private class CBoxCamarerosActionListener implements ActionListener {</span>
+		public void actionPerformed(ActionEvent arg0) {
+<span class="nc bnc" id="L119" title="All 2 branches missed.">			if(!cBoxCamareros.getSelectedItem().toString().equals(&quot;   ----&quot;)) {</span>
+<span class="nc" id="L120">				avisos=&quot;&quot;;</span>
+<span class="nc" id="L121">				btnEnviarComanda.setEnabled(true);</span>
+<span class="nc" id="L122">				btnAnotarComanda.setEnabled(true);</span>
+<span class="nc" id="L123">				btnCambiarEstadoMesa.setEnabled(true);</span>
+<span class="nc" id="L124">				btnPagarCuenta.setEnabled(true);</span>
+<span class="nc" id="L125">				LinkedList&lt;String&gt; lista = new LinkedList&lt;String&gt;();</span>
+<span class="nc" id="L126">				DTOCamarero.leerAvisos(cBoxCamareros.getSelectedItem().toString(), lista);</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">				if(lista.size()!=0) {</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">					for(String aviso: lista) {</span>
+<span class="nc" id="L129">						avisos=avisos.concat(aviso+&quot;\n&quot;);</span>
+<span class="nc" id="L130">					}</span>
+<span class="nc" id="L131">					JOptionPane.showMessageDialog(null, avisos, &quot;Avisos&quot;,JOptionPane.WARNING_MESSAGE);</span>
+				}
+<span class="nc" id="L133">			}else {</span>
+<span class="nc" id="L134">				btnEnviarComanda.setEnabled(false);</span>
+<span class="nc" id="L135">				btnAnotarComanda.setEnabled(false);</span>
+<span class="nc" id="L136">				btnCambiarEstadoMesa.setEnabled(false);</span>
+<span class="nc" id="L137">				btnPagarCuenta.setEnabled(false);</span>
+			}
+<span class="nc" id="L139">		}</span>
+	}
+<span class="nc" id="L141">	private class BtnCambiarEstadoMesaActionListener implements ActionListener {</span>
+		public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L143">			IU_SecuenciarEstados iuSecuenciarEstado= new IU_SecuenciarEstados(cBoxCamareros.getSelectedItem().toString());</span>
+<span class="nc" id="L144">		}</span>
+	}
+<span class="nc" id="L146">	private class BtnEnviarComandaActionListener implements ActionListener {</span>
+		public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L148">		}</span>
+	}
+<span class="nc" id="L150">	private class BtnPagarCuentaActionListener implements ActionListener {</span>
+		public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L152">			IU_MostrarCuenta iuCuenta=new IU_MostrarCuenta(cBoxCamareros.getSelectedItem().toString());</span>
+<span class="nc" id="L153">		}</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

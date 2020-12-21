@@ -33,7 +33,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class IU_AnotarComanda extends JFrame{
+public class IU_AnotarComanda{
 
 	private JFrame frmFritura;
 	private JLabel lblNumeroMesa;

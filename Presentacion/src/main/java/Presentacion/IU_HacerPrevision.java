@@ -118,7 +118,7 @@ public class IU_HacerPrevision extends JFrame {
 		while(it.hasNext()) { //Leemos esos valores
 			String al = String.valueOf(it.next());
 			repeticiones = Collections.frequency(pedido, al); //Comprobamos cuantas veces aparecen esos valores en la lista Pedido
-			repe.add(new Repeticion(al, repeticiones)); //añadimos el valor y las veces que se repite
+			repe.add(new Repeticion(al, repeticiones)); //anadimos el valor y las veces que se repite
 		}
 		pedido.clear();
 		pedido.addAll(set);
@@ -127,11 +127,11 @@ public class IU_HacerPrevision extends JFrame {
 		lstPedidos.setModel(modeloAlimentos);
 		lstIngredientes.setModel(modeloIngredientes);
 
-		JLabel lblAñadir = new JLabel("Anadir ingredientes");
-		lblAñadir.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblAñadir.setBounds(289, 379, 164, 29);
-		lblAñadir.setFont(Fuente.FUENTE_LBL);
-		contentPane.add(lblAñadir);
+		JLabel lblAniadir = new JLabel("Anadir ingredientes");
+		lblAniadir.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblAniadir.setBounds(289, 379, 164, 29);
+		lblAniadir.setFont(Fuente.FUENTE_LBL);
+		contentPane.add(lblAniadir);
 
 		JButton btnAnadir = new JButton("Anadir");
 		btnAnadir.addActionListener(new ActionListener() {
@@ -141,7 +141,7 @@ public class IU_HacerPrevision extends JFrame {
 					nombre = nombre.substring(0, nombre.length()-4);
 					int cantidad = (Integer) spnCantidad.getValue();
 					DTOPrevision.actualizarStock(nombre, cantidad);
-					lblMensaje.setText("Cantidad añadida al stock");
+					lblMensaje.setText("Cantidad anadida al stock");
 					lblMensaje.setForeground(Color.green);
 					lblMensaje.setEnabled(true);
 					fecha = LocalDateTime.now();
