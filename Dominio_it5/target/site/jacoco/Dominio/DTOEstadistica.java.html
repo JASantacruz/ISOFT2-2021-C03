@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DTOEstadistica.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it5</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">DTOEstadistica.java</span></div><h1>DTOEstadistica.java</h1><pre class="source lang-java linenums">package Dominio;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+
+import Persistencia.Agente;
+
+<span class="nc" id="L9">public class DTOEstadistica {</span>
+<span class="fc" id="L10">	public static Agente agente = new Agente();</span>
+
+	public static double calcularTiempoTomaComandasRestaurante(String num_comensales, String restaurante) {
+<span class="fc" id="L13">		String consulta=&quot;SELECT AVG(tiempoEnEsperaComida - tiempoPidiendo)/100 &quot;</span>
+				+ &quot; FROM Reserva WHERE tiempoLibre IS NOT NULL AND num_comensales=&quot;+num_comensales+&quot; &quot;
+						+ &quot;AND restaurante=&quot;+restaurante+&quot;&quot;;
+<span class="fc" id="L16">		double tiempoTomaComandas=0;</span>
+		try {
+<span class="fc" id="L18">			ResultSet rs=agente.Read(consulta);</span>
+<span class="pc bpc" id="L19" title="1 of 2 branches missed.">			if(rs.next()) {</span>
+<span class="fc" id="L20">				tiempoTomaComandas=rs.getDouble(1);</span>
+			}
+<span class="nc" id="L22">		} catch (SQLException e) {</span>
+<span class="nc" id="L23">			e.printStackTrace();</span>
+<span class="fc" id="L24">		}</span>
+<span class="fc" id="L25">		return tiempoTomaComandas;</span>
+	}
+	public static double calcularTiempoTomaComandasCiudad(String num_comensales, String ciudad) {
+<span class="fc" id="L28">		String consultaCiudad=&quot;(SELECT idRestaurante FROM Restaurante WHERE ciudad='&quot;+ciudad+&quot;')&quot;;</span>
+<span class="fc" id="L29">		String consulta=&quot;SELECT AVG(tiempoEnEsperaComida - tiempoPidiendo)/100 FROM Reserva&quot;</span>
+				+ &quot; WHERE tiempoLibre IS NOT NULL AND num_comensales=&quot;+num_comensales+&quot; &quot;
+						+ &quot;AND restaurante IN &quot;+consultaCiudad;
+<span class="fc" id="L32">		double tiempoTomaComandas=0;</span>
+		try {
+<span class="fc" id="L34">			ResultSet rs=agente.Read(consulta);</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">			if(rs.next()) {</span>
+<span class="fc" id="L36">				tiempoTomaComandas=rs.getDouble(1);</span>
+			}
+<span class="nc" id="L38">		} catch (SQLException e) {</span>
+<span class="nc" id="L39">			e.printStackTrace();</span>
+<span class="fc" id="L40">		}</span>
+<span class="fc" id="L41">		return tiempoTomaComandas;</span>
+	}
+
+	public static double calcularTiempoPreparacionComandasRestaurante(String num_comensales, String restaurante) {
+<span class="fc" id="L45">		String consulta=&quot;SELECT AVG(tiempoServido - tiempoEnEsperaComida)/100 FROM Reserva&quot;</span>
+				+ &quot; WHERE tiempoLibre IS NOT NULL AND num_comensales=&quot;+num_comensales+&quot; &quot;
+						+ &quot;AND restaurante=&quot;+restaurante;
+<span class="fc" id="L48">		double tiempoPreparacionComandas=0;</span>
+		try {
+<span class="fc" id="L50">			ResultSet rs=agente.Read(consulta);</span>
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">			if(rs.next()) {</span>
+<span class="fc" id="L52">				tiempoPreparacionComandas=rs.getDouble(1);</span>
+			}
+<span class="nc" id="L54">		} catch (SQLException e) {</span>
+<span class="nc" id="L55">			e.printStackTrace();</span>
+<span class="fc" id="L56">		}</span>
+<span class="fc" id="L57">		return tiempoPreparacionComandas;</span>
+	}
+	public static double calcularTiempoPreparacionComandasCiudad(String num_comensales, String ciudad) {
+<span class="fc" id="L60">		String consultaCiudad=&quot;(SELECT idRestaurante FROM Restaurante WHERE ciudad='&quot;+ciudad+&quot;')&quot;;</span>
+<span class="fc" id="L61">		String consulta=&quot;SELECT AVG(tiempoServido - tiempoEnEsperaComida)/100 FROM Reserva&quot;</span>
+				+ &quot; WHERE tiempoLibre IS NOT NULL AND num_comensales=&quot;+num_comensales+&quot; &quot;
+						+ &quot;AND restaurante IN &quot;+consultaCiudad;
+<span class="fc" id="L64">		double tiempoPreparacionComandas=0;</span>
+		try {
+<span class="fc" id="L66">			ResultSet rs=agente.Read(consulta);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">			if(rs.next()) {</span>
+<span class="fc" id="L68">				tiempoPreparacionComandas=rs.getDouble(1);</span>
+			}
+<span class="nc" id="L70">		} catch (SQLException e) {</span>
+<span class="nc" id="L71">			e.printStackTrace();</span>
+<span class="fc" id="L72">		}</span>
+<span class="fc" id="L73">		return tiempoPreparacionComandas;</span>
+	}
+	public static double calcularTiempoEntregaNotaRestaurante(String num_comensales, String restaurante) {
+<span class="fc" id="L76">		String consulta=&quot;SELECT AVG(tiempoPagando - tiempoEsperandoCuenta)/100 FROM Reserva&quot;</span>
+				+&quot; WHERE tiempoLibre IS NOT NULL AND num_comensales=&quot;+num_comensales+ &quot;&quot;
+						+ &quot; AND restaurante=&quot;+restaurante+&quot;&quot;;
+<span class="fc" id="L79">		double tiempoEntregaNota=0;</span>
+		try {
+<span class="fc" id="L81">			ResultSet rs=agente.Read(consulta);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">			if(rs.next()) {</span>
+<span class="fc" id="L83">				tiempoEntregaNota=rs.getDouble(1);</span>
+			}
+<span class="nc" id="L85">		} catch (SQLException e) {</span>
+<span class="nc" id="L86">			e.printStackTrace();</span>
+<span class="fc" id="L87">		}</span>
+<span class="fc" id="L88">		return tiempoEntregaNota;</span>
+	}
+	public static double calcularTiempoEntregaNotaCiudad(String num_comensales, String ciudad) {
+<span class="fc" id="L91">		String consultaCiudad=&quot;(SELECT idRestaurante FROM Restaurante WHERE ciudad='&quot;+ciudad+&quot;')&quot;;</span>
+<span class="fc" id="L92">		String consulta=&quot;SELECT AVG(tiempoPagando - tiempoEsperandoCuenta)/100 FROM Reserva&quot;</span>
+				+&quot; WHERE tiempoLibre IS NOT NULL AND num_comensales=&quot;+num_comensales+ &quot;&quot;
+						+ &quot; AND restaurante IN &quot;+consultaCiudad;
+<span class="fc" id="L95">		double tiempoEntregaNota=0;</span>
+		try {
+<span class="fc" id="L97">			ResultSet rs=agente.Read(consulta);</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">			if(rs.next()) {</span>
+<span class="fc" id="L99">				tiempoEntregaNota=rs.getDouble(1);</span>
+			}
+<span class="nc" id="L101">		} catch (SQLException e) {</span>
+<span class="nc" id="L102">			e.printStackTrace();</span>
+<span class="fc" id="L103">		}</span>
+<span class="fc" id="L104">		return tiempoEntregaNota;</span>
+	}
+	public static double calcularTiempoPreparacionMesaLibreRestaurante(String num_comensales, String restaurante) {
+<span class="fc" id="L107">		String consulta=&quot;SELECT AVG(tiempoLibre - tiempoEnPreparacion)/100 FROM Reserva&quot;</span>
+				+ &quot; WHERE tiempoLibre IS NOT NULL AND num_comensales=&quot;+num_comensales+ &quot;&quot;
+						+ &quot; AND restaurante=&quot;+restaurante+&quot;&quot;;
+<span class="fc" id="L110">		double tiempoPreparacionMesaLibre=0;</span>
+		try {
+<span class="fc" id="L112">			ResultSet rs=agente.Read(consulta);</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">			if(rs.next()) {</span>
+<span class="fc" id="L114">				tiempoPreparacionMesaLibre=rs.getDouble(1);</span>
+			}
+<span class="nc" id="L116">		} catch (SQLException e) {</span>
+<span class="nc" id="L117">			e.printStackTrace();</span>
+<span class="fc" id="L118">		}</span>
+<span class="fc" id="L119">		return tiempoPreparacionMesaLibre;</span>
+	}
+	public static double calcularTiempoPreparacionMesaLibreCiudad(String num_comensales, String ciudad) {
+<span class="fc" id="L122">		String consultaCiudad=&quot;(SELECT idRestaurante FROM Restaurante WHERE ciudad='&quot;+ciudad+&quot;')&quot;;</span>
+<span class="fc" id="L123">		String consulta=&quot;SELECT AVG(tiempoLibre - tiempoEnPreparacion)/100 FROM Reserva&quot;</span>
+				+ &quot; WHERE tiempoLibre IS NOT NULL AND num_comensales=&quot;+num_comensales+ &quot;&quot;
+						+ &quot; AND restaurante IN &quot;+consultaCiudad;
+<span class="fc" id="L126">		double tiempoPreparacionMesaLibre=0;</span>
+		try {
+<span class="fc" id="L128">			ResultSet rs=agente.Read(consulta);</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">			if(rs.next()) {</span>
+<span class="fc" id="L130">				tiempoPreparacionMesaLibre=rs.getDouble(1);</span>
+			}
+<span class="nc" id="L132">		} catch (SQLException e) {</span>
+<span class="nc" id="L133">			e.printStackTrace();</span>
+<span class="fc" id="L134">		}</span>
+<span class="fc" id="L135">		return tiempoPreparacionMesaLibre;</span>
+	}
+	public static void leerRestaurantes(LinkedList&lt;String&gt; restaurantes) {
+<span class="fc" id="L138">		String consulta=&quot;SELECT idRestaurante FROM Restaurante&quot;;</span>
+		try {
+<span class="fc" id="L140">			ResultSet rs=agente.Read(consulta);</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">			while(rs.next()) {</span>
+<span class="fc" id="L142">				restaurantes.add(rs.getString(1));</span>
+			}
+<span class="nc" id="L144">		} catch (SQLException e) {</span>
+<span class="nc" id="L145">			e.printStackTrace();</span>
+<span class="fc" id="L146">		}</span>
+<span class="fc" id="L147">	}</span>
+	public static void leerCiudades(LinkedList&lt;String&gt; ciudades) {
+<span class="fc" id="L149">		String consulta=&quot;SELECT DISTINCT ciudad FROM Restaurante&quot;;</span>
+		try {
+<span class="fc" id="L151">			ResultSet rs=agente.Read(consulta);</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">			while(rs.next()) {</span>
+<span class="fc" id="L153">				ciudades.add(rs.getString(1));</span>
+			}
+<span class="nc" id="L155">		} catch (SQLException e) {</span>
+<span class="nc" id="L156">			e.printStackTrace();</span>
+<span class="fc" id="L157">		}</span>
+<span class="fc" id="L158">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

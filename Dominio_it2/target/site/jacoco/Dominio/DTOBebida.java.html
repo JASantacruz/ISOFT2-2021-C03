@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DTOBebida.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it2</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">DTOBebida.java</span></div><h1>DTOBebida.java</h1><pre class="source lang-java linenums">package Dominio;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+
+import Persistencia.Agente;
+
+<span class="fc" id="L9">public class DTOBebida {</span>
+<span class="fc" id="L10">	public static Agente agente = new Agente();</span>
+	
+	public static void leerBebidas(LinkedList&lt;Bebida&gt; listaBebidas) {
+		ResultSet rs;
+<span class="fc" id="L14">		String consulta = &quot;SELECT * FROM Bebida&quot;;</span>
+		try {
+<span class="fc" id="L16">			rs=agente.Read(consulta);</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">			while(rs.next()){</span>
+<span class="fc" id="L18">				Bebida bebida = new Bebida(rs.getInt(2), rs.getString(1), rs.getInt(3));</span>
+<span class="fc" id="L19">				listaBebidas.add(bebida);</span>
+<span class="fc" id="L20">			}</span>
+<span class="nc" id="L21">		} catch (SQLException e) {</span>
+<span class="nc" id="L22">			e.printStackTrace();</span>
+<span class="fc" id="L23">		}</span>
+<span class="fc" id="L24">	}</span>
+	
+	public static void leerNombreBebidas(LinkedList&lt;String&gt; listaBebidas) {
+		ResultSet rs;
+<span class="fc" id="L28">		String consulta = &quot;SELECT nombre FROM Bebida&quot;;</span>
+		try {
+<span class="fc" id="L30">			rs=agente.Read(consulta);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">			while(rs.next()){</span>
+<span class="fc" id="L32">				listaBebidas.add(rs.getString(1));</span>
+			}
+<span class="nc" id="L34">		} catch (SQLException e) {</span>
+<span class="nc" id="L35">			e.printStackTrace();</span>
+<span class="fc" id="L36">		}</span>
+<span class="fc" id="L37">	}</span>
+	
+	public static int leerStockBebida(Bebida bebida) {
+		ResultSet rs;
+<span class="fc" id="L41">		int stock=0;</span>
+<span class="fc" id="L42">		String consulta = &quot;SELECT stock FROM Bebida WHERE nombre='&quot;+bebida.getNombre()+&quot;'&quot;;</span>
+		try {
+<span class="fc" id="L44">			rs=agente.Read(consulta);</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">			if(rs.next()) stock=rs.getInt(1);</span>
+<span class="nc" id="L46">		} catch (SQLException e) {</span>
+<span class="nc" id="L47">			e.printStackTrace();</span>
+<span class="fc" id="L48">		}</span>
+<span class="fc" id="L49">		return stock;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

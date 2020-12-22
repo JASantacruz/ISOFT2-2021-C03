@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DTOComanda.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it2</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">DTOComanda.java</span></div><h1>DTOComanda.java</h1><pre class="source lang-java linenums">package Dominio;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.LinkedList;
+
+import Persistencia.Agente;
+
+<span class="nc" id="L13">public class DTOComanda {</span>
+<span class="fc" id="L14">	public static Agente agente = new Agente();</span>
+
+	public static LinkedList&lt;String&gt; comprobarStock(LinkedList&lt;String&gt; elementosComanda) {
+<span class="fc" id="L17">		LinkedList&lt;String&gt; cartaSinStock=new LinkedList&lt;String&gt;();</span>
+<span class="fc" id="L18">		LinkedList&lt;String&gt; elementosComprobados=new LinkedList&lt;String&gt;();</span>
+<span class="fc" id="L19">		LinkedList&lt;Ingrediente&gt; ingredientesNecesarios=new LinkedList&lt;Ingrediente&gt;();</span>
+		ResultSet resultStock;
+		ResultSet resultReceta;
+		ResultSet resultTipo;
+<span class="fc" id="L23">		String consultaStock=&quot;&quot;;</span>
+<span class="fc" id="L24">		String consultaIngredienteNecesario=&quot;&quot;;</span>
+<span class="fc" id="L25">		String consultaTipoCarta=&quot;&quot;;</span>
+<span class="fc" id="L26">		String tipo=&quot;&quot;;</span>
+<span class="fc" id="L27">		int stock=-1;</span>
+<span class="fc" id="L28">		int cantidadNecesaria=-1;</span>
+<span class="fc" id="L29">		int contadorElementoCarta=0;</span>
+		int indiceIngrediente;
+<span class="fc" id="L31">		String nombreIngrediente=&quot;&quot;;</span>
+		Ingrediente ingrediente;
+		try {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">			for(String elementoComanda: elementosComanda) {</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">				if(!cartaSinStock.contains(elementoComanda)) {</span>
+<span class="fc" id="L36">					consultaTipoCarta=&quot;SELECT tipo FROM Carta WHERE nombre='&quot;+elementoComanda+&quot;'&quot;;</span>
+<span class="fc" id="L37">					resultTipo=agente.Read(consultaTipoCarta);</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">					if(resultTipo.next()) {</span>
+<span class="fc" id="L39">						tipo=resultTipo.getString(1);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">						if(tipo.equals(&quot;Bebida&quot;)) {</span>
+<span class="fc" id="L41">							int contadorBebida=0;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">							for(String bebidaComprobacion: elementosComanda) {</span>
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">								if(bebidaComprobacion.equals(elementoComanda)) {</span>
+<span class="fc" id="L44">									contadorBebida++;</span>
+								}
+<span class="fc" id="L46">							}</span>
+<span class="fc" id="L47">							consultaStock=&quot;SELECT stock FROM Bebida WHERE nombre='&quot;+elementoComanda+&quot;'&quot;;</span>
+<span class="fc" id="L48">							resultStock=agente.Read(consultaStock);</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">							if(resultStock.next()) stock=resultStock.getInt(1);</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">							if(contadorBebida&gt;stock) {</span>
+<span class="nc" id="L51">								cartaSinStock.add(elementoComanda);</span>
+							}
+<span class="fc" id="L53">						}else {</span>
+<span class="fc" id="L54">							consultaIngredienteNecesario=&quot;SELECT nombreIngrediente, cantidad &quot;</span>
+									+ &quot;FROM Receta WHERE codigoCarta=(SELECT codigo FROM Carta WHERE nombre='&quot;+elementoComanda+&quot;')&quot;;
+<span class="fc" id="L56">							resultReceta=agente.Read(consultaIngredienteNecesario);</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">							while(resultReceta.next()) {//todos los ingredientes de cada plato</span>
+<span class="fc" id="L58">								nombreIngrediente=resultReceta.getString(1);</span>
+<span class="fc" id="L59">								cantidadNecesaria=resultReceta.getInt(2);</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">								if(!ingredienteComprobado(nombreIngrediente, ingredientesNecesarios)) {</span>
+<span class="fc" id="L61">									consultaStock=&quot;SELECT stock FROM Ingrediente WHERE nombre='&quot;+nombreIngrediente+&quot;'&quot;;</span>
+<span class="fc" id="L62">									resultStock=agente.Read(consultaStock);</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">									if(resultStock.next()) {</span>
+<span class="fc" id="L64">										stock=resultStock.getInt(1);</span>
+<span class="fc" id="L65">										ingrediente=new Ingrediente(nombreIngrediente, stock,cantidadNecesaria);</span>
+<span class="fc" id="L66">										ingredientesNecesarios.add(ingrediente);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">										if(ingrediente.getStock()&lt;ingrediente.getCantidadNecesaria()) {</span>
+<span class="nc" id="L68">											cartaSinStock.add(elementoComanda);</span>
+										}
+									}
+								}else {
+<span class="nc" id="L72">									indiceIngrediente=indiceListaIngrediente(nombreIngrediente,ingredientesNecesarios);</span>
+<span class="nc" id="L73">									int cantidadNecesariaNueva=ingredientesNecesarios.get(indiceIngrediente).getCantidadNecesaria()+cantidadNecesaria;</span>
+<span class="nc" id="L74">									ingredientesNecesarios.get(indiceIngrediente).setCantidadNecesaria(cantidadNecesariaNueva);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">									if(ingredientesNecesarios.get(indiceIngrediente).getStock()&lt;ingredientesNecesarios.get(indiceIngrediente).getCantidadNecesaria()) {</span>
+<span class="nc" id="L76">										cartaSinStock.add(elementoComanda);</span>
+									}
+<span class="nc" id="L78">								}</span>
+							}
+
+						}
+					}
+				}
+<span class="fc" id="L84">			}</span>
+<span class="nc" id="L85">		}catch(SQLException e) {</span>
+<span class="nc" id="L86">			e.printStackTrace();</span>
+<span class="fc" id="L87">		}</span>
+<span class="fc" id="L88">		return cartaSinStock;</span>
+	}
+	public static boolean ingredienteComprobado(String ingrediente,LinkedList&lt;Ingrediente&gt; ingredientesComprobados) {
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		for(Ingrediente ingredienteComprobado: ingredientesComprobados) {</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">			if(ingredienteComprobado.getNombre().equals(ingrediente)) {</span>
+<span class="fc" id="L93">				return true;</span>
+			}
+<span class="fc" id="L95">		}</span>
+<span class="fc" id="L96">		return false;</span>
+	}
+	public static int indiceListaIngrediente(String ingrediente,LinkedList&lt;Ingrediente&gt; ingredientesComprobados) {
+<span class="fc" id="L99">		int indice=-1;</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">		for(int i=0;i&lt;ingredientesComprobados.size();i++) {</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">			if(ingredientesComprobados.get(i).getNombre().equals(ingrediente)) {</span>
+<span class="fc" id="L102">				indice=i;</span>
+			}
+		}
+<span class="fc" id="L105">		return indice;</span>
+	}
+	public static int guardarComanda(String idMesa, LinkedList&lt;String&gt; comanda) {
+<span class="fc" id="L108">		int res = 0;</span>
+		ResultSet resultIdElemento;
+		ResultSet resultComanda;
+		int idElemento;
+		int idComanda;
+		int contadorElemento;
+<span class="fc" id="L114">		LocalDateTime turnoActual=DTOReserva.obtenerTurno();</span>
+<span class="fc" id="L115">		String consultaCreacionComanda=&quot;INSERT INTO Comanda(idComanda,idMesa,turno) VALUES (null,&quot;+idMesa+&quot;,'&quot;+turnoActual+&quot;');&quot;;</span>
+<span class="fc" id="L116">		String consultaObtenerComanda=&quot;SELECT idComanda FROM Comanda WHERE idMesa=&quot;+idMesa+&quot; AND turno='&quot;+turnoActual+&quot;';&quot;;</span>
+		try {
+<span class="fc" id="L118">			agente.Update(consultaCreacionComanda);</span>
+<span class="fc" id="L119">			resultComanda=agente.Read(consultaObtenerComanda);</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">			if(resultComanda.next()) {</span>
+<span class="fc" id="L121">				idComanda=resultComanda.getInt(1);</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">				for(String elementoComanda: comanda) {</span>
+<span class="fc" id="L123">					contadorElemento=0;</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">					for(String elemento: comanda) {</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">						if(elemento.equals(elementoComanda)) {</span>
+<span class="fc" id="L126">							contadorElemento++;</span>
+						}
+<span class="fc" id="L128">					}</span>
+<span class="fc" id="L129">					String consultaIdElemento=&quot;SELECT codigo FROM Carta WHERE nombre='&quot;+elementoComanda+&quot;';&quot;;</span>
+<span class="fc" id="L130">					resultIdElemento=agente.Read(consultaIdElemento);</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">					while(resultIdElemento.next()) {</span>
+<span class="fc" id="L132">						idElemento=resultIdElemento.getInt(1);</span>
+<span class="fc" id="L133">						String consultaInsertarElementoComanda=&quot;INSERT INTO Pedido (comanda, codigo, cantidad) VALUES (&quot;+idComanda+&quot;,&quot;+idElemento+&quot;,&quot;+contadorElemento+&quot;);&quot;;</span>
+<span class="fc" id="L134">						agente.Update(consultaInsertarElementoComanda);</span>
+<span class="fc" id="L135">					}</span>
+
+<span class="fc" id="L137">				}</span>
+			}
+<span class="fc" id="L139">			res = 1;</span>
+<span class="nc" id="L140">		} catch (SQLException e) {</span>
+<span class="nc" id="L141">			e.printStackTrace();</span>
+<span class="fc" id="L142">		}</span>
+<span class="fc" id="L143">		return res;</span>
+	}
+
+	public static int actualizarStock(LinkedList&lt;String&gt; lista) {
+<span class="fc" id="L147">		Agente ag = new Agente();</span>
+		ResultSet res;
+<span class="fc" id="L149">		int resultado = 0;</span>
+		Receta rec;
+<span class="fc" id="L151">		LinkedList&lt;Receta&gt; listReceta = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L152">		LinkedList&lt;Integer&gt; listStock = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L153">		int codigo = 0;</span>
+<span class="fc" id="L154">		int stock = 0;</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">		for(int i = 0; i &lt; lista.size(); i++) {</span>
+<span class="fc" id="L156">			String consulta = &quot;SELECT codigo FROM Carta WHERE nombre='&quot;+lista.get(i)+&quot;';&quot;;</span>
+			try {
+<span class="fc" id="L158">				res = ag.Read(consulta);</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">				while(res.next())</span>
+<span class="fc" id="L160">					codigo = res.getInt(1); </span>
+<span class="fc" id="L161">				consulta = &quot;SELECT nombreIngrediente, cantidad FROM Receta WHERE codigoCarta=&quot;+codigo+&quot;;&quot;;</span>
+<span class="fc" id="L162">				res = ag.Read(consulta);</span>
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">				while(res.next()) {</span>
+<span class="nc" id="L164">					rec = new Receta(res.getString(1), res.getInt(2));</span>
+<span class="nc" id="L165">					listReceta.add(rec);</span>
+				}
+<span class="pc bpc" id="L167" title="1 of 2 branches missed.">				for(int j = 0; j &lt; listReceta.size(); j++) {</span>
+<span class="nc" id="L168">					consulta = &quot;SELECT stock FROM Ingrediente WHERE nombre='&quot;+listReceta.get(j).getNombreIngrediente()+&quot;';&quot;; </span>
+<span class="nc" id="L169">					res = ag.Read(consulta);</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">					while(res.next())</span>
+<span class="nc" id="L171">						stock = res.getInt(1);</span>
+<span class="nc" id="L172">					consulta = &quot;UPDATE Ingrediente SET stock=&quot;+(stock-1)+&quot; WHERE nombre='&quot;+listReceta.get(j).getNombreIngrediente()+&quot;';&quot;;</span>
+<span class="nc" id="L173">					ag.Update(consulta);</span>
+				}//Fin for j
+<span class="fc" id="L175">				resultado = 1;</span>
+<span class="nc" id="L176">			} catch (SQLException e) {</span>
+<span class="nc" id="L177">				e.printStackTrace();</span>
+<span class="fc" id="L178">			}</span>
+		}
+<span class="fc" id="L180">		return resultado;</span>
+	}
+
+	public static int leerAlimentosDeComandas(LinkedList&lt;String&gt; pedidos) {
+<span class="fc" id="L184">		Agente ag = new Agente();</span>
+		ResultSet res;
+<span class="fc" id="L186">		LinkedList&lt;Integer&gt; Comandas = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L187">		int resultado = 1;</span>
+<span class="fc" id="L188">		String consulta = &quot;SELECT idComanda FROM Comanda WHERE (SELECT DATEDIFF(NOW(), turno)) &lt; 3;&quot;; </span>
+		try {
+<span class="fc" id="L190">			res = ag.Read(consulta);</span>
+<span class="fc bfc" id="L191" title="All 2 branches covered.">			while(res.next()) </span>
+<span class="fc" id="L192">				Comandas.add(res.getInt(1));</span>
+
+<span class="fc bfc" id="L194" title="All 2 branches covered.">			for(int i = 0; i &lt; Comandas.size(); i++) {</span>
+<span class="fc" id="L195">				consulta = &quot;SELECT nombre FROM Carta WHERE codigo IN (SELECT codigo FROM Pedido WHERE comanda=&quot;+Comandas.get(i)+&quot;);&quot;;</span>
+<span class="fc" id="L196">				res = ag.Read(consulta);</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">				while(res.next())</span>
+<span class="fc" id="L198">					pedidos.add(res.getString(1));</span>
+			}
+<span class="fc" id="L200">			resultado = 1;</span>
+<span class="nc" id="L201">		} catch (SQLException e) {</span>
+<span class="nc" id="L202">			e.printStackTrace();</span>
+<span class="fc" id="L203">		} </span>
+<span class="fc" id="L204">		return resultado;</span>
+	}
+	public static int subirAvisoCocina(String idMesa, String camarero) {
+<span class="fc" id="L207">		LocalDateTime turno=DTOReserva.obtenerTurno();</span>
+<span class="fc" id="L208">		String consultaIdCamarero=&quot;SELECT idCamarero FROM Camarero WHERE nombre='&quot;+camarero+&quot;'&quot;;</span>
+		ResultSet idCamarero;
+<span class="fc" id="L210">		int res=-1;</span>
+		try {
+<span class="fc" id="L212">			idCamarero=agente.Read(consultaIdCamarero);</span>
+<span class="pc bpc" id="L213" title="1 of 2 branches missed.">			if(idCamarero.next())</span>
+<span class="fc" id="L214">			res=agente.Insert(&quot;INSERT INTO Aviso (idAviso, descripcion, idCamarero, turno) VALUES &quot;</span>
+<span class="fc" id="L215">					+ &quot;(null, 'Comida de la mesa &quot;+idMesa+&quot; preparada',&quot;+idCamarero.getInt(1)+&quot;,'&quot;+turno+&quot;')&quot;);</span>
+<span class="nc" id="L216">		} catch (SQLException e) {</span>
+<span class="nc" id="L217">			e.printStackTrace();</span>
+<span class="fc" id="L218">		}</span>
+<span class="fc" id="L219">		return res;</span>
+	}
+	public static int subirAvisoCamareroBarra(String idMesa, String camarero) {
+<span class="fc" id="L222">		LocalDateTime turno=DTOReserva.obtenerTurno();</span>
+<span class="fc" id="L223">		String consultaIdCamarero=&quot;SELECT idCamarero FROM Camarero WHERE nombre='&quot;+camarero+&quot;'&quot;;</span>
+		ResultSet idCamarero;
+<span class="fc" id="L225">		int res=-1;</span>
+		try {
+<span class="fc" id="L227">			idCamarero=agente.Read(consultaIdCamarero);</span>
+<span class="pc bpc" id="L228" title="1 of 2 branches missed.">			if(idCamarero.next())</span>
+<span class="fc" id="L229">			res=agente.Insert(&quot;INSERT INTO Aviso (idAviso, descripcion, idCamarero, turno) VALUES &quot;</span>
+<span class="fc" id="L230">					+ &quot;(null, 'Bebidas de la mesa &quot;+idMesa+&quot; preparadas',&quot;+idCamarero.getInt(1)+&quot;,'&quot;+turno+&quot;')&quot;);</span>
+<span class="nc" id="L231">		} catch (SQLException e) {</span>
+<span class="nc" id="L232">			e.printStackTrace();</span>
+<span class="fc" id="L233">		}</span>
+<span class="fc" id="L234">		return res;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

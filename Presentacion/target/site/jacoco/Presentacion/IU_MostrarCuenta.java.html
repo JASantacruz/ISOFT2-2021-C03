@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_MostrarCuenta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_MostrarCuenta.java</span></div><h1>IU_MostrarCuenta.java</h1><pre class="source lang-java linenums">package Presentacion;
+
+import java.awt.EventQueue;
+import java.awt.Rectangle;
+import java.util.LinkedList;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+
+import Dominio.DTOMesa;
+import Dominio.Mesa;
+import Dominio.Alimento;
+import Dominio.Bebida;
+import Dominio.Cuenta;
+import Dominio.DTOAlimento;
+import Dominio.DTOCuenta;
+
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.ListSelectionModel;
+
+public class IU_MostrarCuenta {
+
+	private JFrame frmFritura;
+	private JLabel lblCuentaTotal;
+	private JLabel lblMesa;
+	private JComboBox cBoxMesas;
+	private JScrollPane scrollPane;
+	private JLabel lblTotalCuenta;
+	private JLabel lblPrecio;
+<span class="fc" id="L40">	private final JScrollPane scrollPane_1 = new JScrollPane();</span>
+<span class="fc" id="L41">	private final JScrollPane scrollPane_2 = new JScrollPane();</span>
+<span class="fc" id="L42">	private final JScrollPane scrollPane_3 = new JScrollPane();</span>
+<span class="fc" id="L43">	private final JScrollPane scrollPane_4 = new JScrollPane();</span>
+<span class="fc" id="L44">	private final JLabel lblbebida = new JLabel(&quot;Bebida&quot;);</span>
+<span class="fc" id="L45">	private final JLabel lblentrantes = new JLabel(&quot;Entrantes&quot;);</span>
+<span class="fc" id="L46">	private final JLabel lblpPrimero = new JLabel(&quot;Primer Plato&quot;);</span>
+<span class="fc" id="L47">	private final JLabel lblsPlato = new JLabel(&quot;Segundo Plato&quot;);</span>
+<span class="fc" id="L48">	private final JLabel lblNewLabel = new JLabel(&quot;Postres&quot;);</span>
+	Cuenta cuenta;
+	DefaultListModel modeloBebidas;
+	DefaultListModel modeloEntrantes;
+	DefaultListModel modeloPrimerPlato;
+	DefaultListModel modeloSegundoPlato;
+	DefaultListModel modeloPostre;
+	private JList listBebida;
+	private JList listEntrante;
+	private JList listPrimerPlato;
+	private JList listSegundoPlato;
+	private JList listPostre;
+	private JButton btnPagar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L66">		EventQueue.invokeLater(new Runnable() {</span>
+			public void run() {
+				try {
+<span class="nc" id="L69">					IU_MostrarCuenta window = new IU_MostrarCuenta(null);</span>
+<span class="nc" id="L70">					window.frmFritura.setVisible(true);</span>
+<span class="nc" id="L71">				} catch (Exception e) {</span>
+<span class="nc" id="L72">					e.printStackTrace();</span>
+<span class="nc" id="L73">				}</span>
+<span class="nc" id="L74">			}</span>
+		});
+<span class="nc" id="L76">	}</span>
+
+	/**
+	 * Create the application.
+	 */
+<span class="fc" id="L81">	public IU_MostrarCuenta(String camarero) {</span>
+<span class="fc" id="L82">		initialize(camarero);</span>
+<span class="fc" id="L83">	}</span>
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize(String camarero) {
+<span class="fc" id="L89">		frmFritura = new JFrame();</span>
+<span class="fc" id="L90">		frmFritura.setTitle(&quot;Fritura&quot;);</span>
+<span class="fc" id="L91">		frmFritura.setBounds(new Rectangle(380, 170, 700, 500));</span>
+<span class="fc" id="L92">		frmFritura.getContentPane().setLayout(null);</span>
+<span class="fc" id="L93">		frmFritura.setVisible(true);</span>
+		
+<span class="fc" id="L95">		btnPagar = new JButton(&quot;Pagar&quot;);</span>
+<span class="fc" id="L96">		btnPagar.setEnabled(false);</span>
+<span class="fc" id="L97">		btnPagar.addActionListener(new BtnPagarActionListener());</span>
+<span class="fc" id="L98">		btnPagar.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L99">		btnPagar.setBounds(570, 414, 89, 23);</span>
+<span class="fc" id="L100">		frmFritura.getContentPane().add(btnPagar);</span>
+
+<span class="fc" id="L102">		lblCuentaTotal = new JLabel(&quot;Cuenta total&quot;);</span>
+<span class="fc" id="L103">		lblCuentaTotal.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 18));</span>
+<span class="fc" id="L104">		lblCuentaTotal.setBounds(248, 33, 110, 14);</span>
+<span class="fc" id="L105">		frmFritura.getContentPane().add(lblCuentaTotal);</span>
+
+<span class="fc" id="L107">		lblMesa = new JLabel(&quot;Seleccione mesa:&quot;);</span>
+<span class="fc" id="L108">		lblMesa.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L109">		lblMesa.setBounds(12, 94, 123, 14);</span>
+<span class="fc" id="L110">		frmFritura.getContentPane().add(lblMesa);</span>
+
+<span class="fc" id="L112">		cBoxMesas = new JComboBox();</span>
+<span class="fc" id="L113">		cBoxMesas.addActionListener(new CBoxMesasActionListener());</span>
+<span class="fc" id="L114">		cBoxMesas.setBounds(174, 91, 93, 22);</span>
+<span class="fc" id="L115">		frmFritura.getContentPane().add(cBoxMesas);</span>
+<span class="fc" id="L116">		LinkedList&lt;Mesa&gt; listaMesas=new LinkedList&lt;Mesa&gt;();</span>
+<span class="fc" id="L117">		DTOMesa.leerMesasPorCamarero(listaMesas, camarero);</span>
+<span class="fc" id="L118">		cBoxMesas.addItem(&quot;   ----&quot;);</span>
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">		for(Mesa mesa: listaMesas) {</span>
+<span class="nc" id="L120">			cBoxMesas.addItem(mesa.getId());</span>
+<span class="nc" id="L121">		}</span>
+
+<span class="fc" id="L123">		scrollPane = new JScrollPane();</span>
+<span class="fc" id="L124">		scrollPane.setBounds(12, 183, 93, 190);</span>
+<span class="fc" id="L125">		frmFritura.getContentPane().add(scrollPane);</span>
+
+<span class="fc" id="L127">		listBebida = new JList();</span>
+<span class="fc" id="L128">		listBebida.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);</span>
+<span class="fc" id="L129">		scrollPane.setViewportView(listBebida);</span>
+
+<span class="fc" id="L131">		lblTotalCuenta = new JLabel(&quot;Total a pagar:&quot;);</span>
+<span class="fc" id="L132">		lblTotalCuenta.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L133">		lblTotalCuenta.setBounds(12, 412, 93, 22);</span>
+<span class="fc" id="L134">		frmFritura.getContentPane().add(lblTotalCuenta);</span>
+
+<span class="fc" id="L136">		lblPrecio = new JLabel(&quot;&quot;);</span>
+<span class="fc" id="L137">		lblPrecio.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L138">		lblPrecio.setBounds(136, 411, 68, 24);</span>
+<span class="fc" id="L139">		frmFritura.getContentPane().add(lblPrecio);</span>
+		{
+<span class="fc" id="L141">			scrollPane_1.setBounds(141, 183, 102, 190);</span>
+<span class="fc" id="L142">			frmFritura.getContentPane().add(scrollPane_1);</span>
+		}
+
+<span class="fc" id="L145">		listEntrante = new JList();</span>
+<span class="fc" id="L146">		scrollPane_1.setViewportView(listEntrante);</span>
+		{
+<span class="fc" id="L148">			scrollPane_2.setBounds(279, 183, 102, 190);</span>
+<span class="fc" id="L149">			frmFritura.getContentPane().add(scrollPane_2);</span>
+		}
+
+<span class="fc" id="L152">		listPrimerPlato = new JList();</span>
+<span class="fc" id="L153">		scrollPane_2.setViewportView(listPrimerPlato);</span>
+		{
+<span class="fc" id="L155">			scrollPane_3.setBounds(420, 183, 102, 190);</span>
+<span class="fc" id="L156">			frmFritura.getContentPane().add(scrollPane_3);</span>
+		}
+
+<span class="fc" id="L159">		listSegundoPlato = new JList();</span>
+<span class="fc" id="L160">		scrollPane_3.setViewportView(listSegundoPlato);</span>
+		{
+<span class="fc" id="L162">			scrollPane_4.setBounds(549, 183, 110, 190);</span>
+<span class="fc" id="L163">			frmFritura.getContentPane().add(scrollPane_4);</span>
+		}
+
+<span class="fc" id="L166">		listPostre = new JList();</span>
+<span class="fc" id="L167">		scrollPane_4.setViewportView(listPostre);</span>
+		{
+<span class="fc" id="L169">			lblbebida.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L170">			lblbebida.setBounds(12, 154, 56, 16);</span>
+<span class="fc" id="L171">			frmFritura.getContentPane().add(lblbebida);</span>
+		}
+		{
+<span class="fc" id="L174">			lblentrantes.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L175">			lblentrantes.setBounds(141, 154, 77, 16);</span>
+<span class="fc" id="L176">			frmFritura.getContentPane().add(lblentrantes);</span>
+		}
+		{
+<span class="fc" id="L179">			lblpPrimero.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L180">			lblpPrimero.setBounds(279, 148, 102, 22);</span>
+<span class="fc" id="L181">			frmFritura.getContentPane().add(lblpPrimero);</span>
+		}
+		{
+<span class="fc" id="L184">			lblsPlato.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L185">			lblsPlato.setBounds(420, 148, 102, 22);</span>
+<span class="fc" id="L186">			frmFritura.getContentPane().add(lblsPlato);</span>
+		}
+		{
+<span class="fc" id="L189">			lblNewLabel.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L190">			lblNewLabel.setBounds(549, 154, 56, 16);</span>
+<span class="fc" id="L191">			frmFritura.getContentPane().add(lblNewLabel);</span>
+		}
+<span class="fc" id="L193">	}</span>
+<span class="fc" id="L194">	private class CBoxMesasActionListener implements ActionListener {</span>
+		public void actionPerformed(ActionEvent arg0) {
+<span class="pc bpc" id="L196" title="1 of 2 branches missed.">			if(!cBoxMesas.getSelectedItem().toString().equals(&quot;   ----&quot;)) {</span>
+<span class="nc" id="L197">				btnPagar.setEnabled(true);</span>
+<span class="nc" id="L198">				lblPrecio.setText(String.valueOf(DTOCuenta.calcularPrecio(cBoxMesas.getSelectedItem().toString()))+&quot; €&quot;);</span>
+
+<span class="nc" id="L200">				cuenta=DTOCuenta.devolverCuenta(cBoxMesas.getSelectedItem().toString());</span>
+<span class="nc" id="L201">				modeloBebidas = new DefaultListModel();</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">				for(Bebida bebida: cuenta.getBebida()) {</span>
+<span class="nc" id="L203">					modeloBebidas.addElement(bebida.getNombre());</span>
+<span class="nc" id="L204">				}</span>
+<span class="nc" id="L205">				listBebida.setModel(modeloBebidas);</span>
+
+<span class="nc" id="L207">				modeloEntrantes = new DefaultListModel();</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">				for(Alimento entrante: cuenta.getEntrante()) {</span>
+<span class="nc" id="L209">					modeloEntrantes.addElement(entrante.getNombre());</span>
+<span class="nc" id="L210">				}</span>
+<span class="nc" id="L211">				listEntrante.setModel(modeloEntrantes);</span>
+
+<span class="nc" id="L213">				modeloPrimerPlato = new DefaultListModel();</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">				for(Alimento primerp: cuenta.getPrimerPlato()) {</span>
+<span class="nc" id="L215">					modeloPrimerPlato.addElement(primerp.getNombre());</span>
+<span class="nc" id="L216">				}</span>
+<span class="nc" id="L217">				listPrimerPlato.setModel(modeloPrimerPlato);</span>
+
+<span class="nc" id="L219">				modeloSegundoPlato = new DefaultListModel();</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">				for(Alimento segundop: cuenta.getSegundoPlato()) {</span>
+<span class="nc" id="L221">					modeloSegundoPlato.addElement(segundop.getNombre());</span>
+<span class="nc" id="L222">				}</span>
+<span class="nc" id="L223">				listSegundoPlato.setModel(modeloSegundoPlato);</span>
+
+<span class="nc" id="L225">				modeloPostre = new DefaultListModel();</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">				for(Alimento postre: cuenta.getPostre()) {</span>
+<span class="nc" id="L227">					modeloPostre.addElement(postre.getNombre());</span>
+<span class="nc" id="L228">				}</span>
+<span class="nc" id="L229">				listPostre.setModel(modeloPostre);</span>
+			}else {
+<span class="fc" id="L231">				btnPagar.setEnabled(false);</span>
+			}
+<span class="fc" id="L233">		}</span>
+	}
+<span class="fc" id="L235">	private class BtnPagarActionListener implements ActionListener {</span>
+		public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L237">			JOptionPane.showOptionDialog(null, &quot;Selecciona el metodo de pago&quot; ,&quot;Metodo de pago&quot;</span>
+					, JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,
+				null,new Object[] { &quot;Efectivo&quot;, &quot;Tarjeta&quot;},&quot;Efectivo&quot;);
+<span class="nc" id="L240">			IU_Camarero iuIntPrin=new IU_Camarero();</span>
+<span class="nc" id="L241">			frmFritura.setVisible(false);</span>
+<span class="nc" id="L242">		}</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

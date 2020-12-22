@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Agente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Persistencia</a> &gt; <a href="index.source.html" class="el_package">Persistencia</a> &gt; <span class="el_source">Agente.java</span></div><h1>Agente.java</h1><pre class="source lang-java linenums">package Persistencia;
+
+import java.sql.*;
+
+public class Agente {
+
+	private static Connection con;
+<span class="fc" id="L8">	public Agente() {</span>
+<span class="fc" id="L9">		String url=&quot;jdbc:mysql://172.20.48.70:3306/C03dbservice?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&quot;;</span>
+<span class="fc" id="L10">		String user=&quot;C03&quot;;</span>
+<span class="fc" id="L11">		String password=&quot;@ISoft2.2020#&quot;;</span>
+
+		try {
+<span class="fc" id="L14">			con=DriverManager.getConnection(url, user, password);</span>
+<span class="nc" id="L15">		} catch (SQLException e) {</span>
+<span class="nc" id="L16">			e.printStackTrace();</span>
+<span class="fc" id="L17">		}</span>
+<span class="fc" id="L18">	}</span>
+
+	public static int Update(String consulta) {
+<span class="fc" id="L21">		int res=0;</span>
+		try {
+<span class="fc" id="L23">			PreparedStatement stmt = con.prepareStatement(consulta);</span>
+<span class="fc" id="L24">			res = stmt.executeUpdate();</span>
+<span class="fc" id="L25">			stmt.close();</span>
+
+<span class="fc" id="L27">		}catch(SQLException ex) {</span>
+<span class="fc" id="L28">			System.out.println(ex.getMessage());</span>
+<span class="fc" id="L29">		}</span>
+<span class="fc" id="L30">		return res;</span>
+	}
+
+
+	public static int Delete(String consulta) throws SQLException{
+<span class="fc" id="L35">		int res=0;</span>
+		try {
+<span class="fc" id="L37">			PreparedStatement stmt = con.prepareStatement(consulta);</span>
+<span class="fc" id="L38">			res = stmt.executeUpdate();</span>
+<span class="fc" id="L39">			stmt.close();</span>
+<span class="fc" id="L40">		}catch(SQLException ex) {</span>
+<span class="fc" id="L41">			System.out.println(ex.getMessage());</span>
+<span class="fc" id="L42">		}</span>
+<span class="fc" id="L43">		return res;</span>
+	}
+
+
+	public static int Insert(String consulta) throws SQLException{
+<span class="fc" id="L48">		int res=0;</span>
+		try {
+			PreparedStatement stmt;
+<span class="fc" id="L51">			stmt = con.prepareStatement(consulta);</span>
+<span class="fc" id="L52">			res = stmt.executeUpdate();</span>
+<span class="fc" id="L53">			stmt.close();</span>
+<span class="fc" id="L54">		}catch(SQLException ex) {</span>
+<span class="fc" id="L55">			System.out.println(ex.getMessage());</span>
+<span class="fc" id="L56">		}</span>
+<span class="fc" id="L57">		return res;</span>
+	}
+
+	public static ResultSet Read(String consulta) {
+<span class="fc" id="L61">		ResultSet rs=null;</span>
+		try {
+<span class="fc" id="L63">			PreparedStatement ps = con.prepareStatement(consulta);</span>
+<span class="fc" id="L64">			rs = ps.executeQuery();</span>
+<span class="fc" id="L65">		}catch(Exception e) {</span>
+<span class="fc" id="L66">			System.out.println(e.getMessage());</span>
+<span class="fc" id="L67">		}</span>
+<span class="fc" id="L68">		return rs;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

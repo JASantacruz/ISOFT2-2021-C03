@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Reserva.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it1</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Reserva.java</span></div><h1>Reserva.java</h1><pre class="source lang-java linenums">package Dominio;
+
+public class Reserva implements Estado {
+	/**
+	 * id de la reserva.
+	 */
+	private int id;
+	/**
+	 * numero comensales reserva.
+	 */
+	private int numComensales;
+	/**
+	 * nombre reserva.
+	 */
+	private String nombre;
+	/**
+	 * Constructor clase Reserva
+	 * @param pId
+	 * @param pNumComensales
+	 * @param pNombre
+	 */
+<span class="fc" id="L22">	public Reserva(final int pId, final int pNumComensales, final String pNombre) {</span>
+<span class="fc" id="L23">		this.setId(pId);</span>
+<span class="fc" id="L24">		this.setNumComensales(pNumComensales);</span>
+<span class="fc" id="L25">		this.setNombre(pNombre);</span>
+<span class="fc" id="L26">	}</span>
+	/**
+	 * Modificar nombre de reserva.
+	 * @return
+	 */
+	public String getNombre() {
+<span class="fc" id="L32">		return nombre;</span>
+	}
+	/**
+	 * Devuelve el nombre de quien es la reserva.
+	 * @param pNombre
+	 */
+	public void setNombre(final String pNombre) {
+<span class="fc" id="L39">		this.nombre = pNombre;</span>
+<span class="fc" id="L40">	}</span>
+	/**
+	 * Devuelve id de reserva.
+	 * @return
+	 */
+	public int getId() {
+<span class="fc" id="L46">		return id;</span>
+	}
+	/**
+	 * Modificar id reserva.
+	 * @param pId
+	 */
+	public void setId(final int pId) {
+<span class="fc" id="L53">		this.id = pId;</span>
+<span class="fc" id="L54">	}</span>
+	/**
+	 * Devuelve numero de comensales de la reserva.
+	 * @return
+	 */
+	public int getNumComensales() {
+<span class="fc" id="L60">		return numComensales;</span>
+	}
+	/**
+	 * Modificar numero de comensales de la reserva.
+	 * @param pNumComensales
+	 */
+	public void setNumComensales(final int pNumComensales) {
+<span class="fc" id="L67">		this.numComensales = pNumComensales;</span>
+<span class="fc" id="L68">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DTOReserva.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it1</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">DTOReserva.java</span></div><h1>DTOReserva.java</h1><pre class="source lang-java linenums">package Dominio;
+
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import Persistencia.Agente;
+
+
+@SuppressWarnings(&quot;static-access&quot;)
+<span class="fc" id="L22">public class DTOReserva implements Turnos {</span>
+
+<span class="fc" id="L24">	public static Agente agente = new Agente();</span>
+<span class="fc" id="L25">	private static DateTimeFormatter df2 =</span>
+<span class="fc" id="L26">			DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd'T'HH:mm&quot;).localizedBy(new Locale(&quot;es-ES&quot;));</span>
+<span class="fc" id="L27">	private static ZoneId z = ZoneId.of(&quot;Europe/London&quot;);</span>
+
+	/**
+	 * Lee las reservas que estan reservadas (en la tabla Reserva y
+	 *  MesaCamareroReserva) y cuya mesa tiene estado Reservada
+	 * en el turno actual.
+	 * @param lista
+	 */
+	public static void leerReservas(LinkedList&lt;Integer&gt; lista) {
+<span class="fc" id="L36">		LocalDateTime turnoActual = obtenerTurno();</span>
+
+<span class="fc" id="L38">		String consultaMesasTurnoActual =</span>
+				&quot;(SELECT idMesa FROM MesaCamareroReserva WHERE turno='&quot; + turnoActual + &quot;')&quot;;
+<span class="fc" id="L40">		String consultaMesasReservadasActuales = </span>
+				&quot;(SELECT idMesa FROM Mesa WHERE estado='reservada' AND idMesa IN &quot; + consultaMesasTurnoActual + &quot;)&quot;;
+<span class="fc" id="L42">		String consultaReservasMesaReservada = </span>
+				&quot;SELECT idReserva FROM MesaCamareroReserva &quot;
+						+  &quot;WHERE turno='&quot; + turnoActual + &quot;' AND idMesa IN &quot; + consultaMesasReservadasActuales;
+		try {
+<span class="fc" id="L46">			ResultSet rs = agente.Read(consultaReservasMesaReservada);</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">			while (rs.next()) {</span>
+<span class="fc" id="L48">				lista.add(rs.getInt(1));</span>
+			}
+<span class="nc" id="L50">		} catch (SQLException e) {</span>
+<span class="nc" id="L51">			e.printStackTrace();</span>
+<span class="fc" id="L52">		}</span>
+<span class="fc" id="L53">	}</span>
+
+	public static void leerTodasReservas(LinkedList&lt;Integer&gt; lista) {
+<span class="fc" id="L56">		LocalDateTime turnoActual = obtenerTurno();</span>
+		//reservas distintas del turno actual
+<span class="fc" id="L58">		String consulta = &quot;(SELECT idReserva FROM MesaCamareroReserva WHERE turno&lt;&gt;'&quot; + turnoActual + &quot;')&quot;;</span>
+		try {
+<span class="fc" id="L60">			ResultSet resultReservas = agente.Read(consulta);</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">			while (resultReservas.next()) {</span>
+<span class="fc" id="L62">				lista.add(resultReservas.getInt(1));</span>
+			}
+<span class="nc" id="L64">		} catch (SQLException e) {</span>
+<span class="nc" id="L65">			e.printStackTrace();</span>
+<span class="fc" id="L66">		}</span>
+		//reservas con mesa reservada del turno actual
+<span class="fc" id="L68">		String consultaMesasTurnoActual = &quot;(SELECT idMesa FROM MesaCamareroReserva WHERE turno = '&quot; + turnoActual + &quot;')&quot;;</span>
+<span class="fc" id="L69">		String consultaMesasReservadasActuales = &quot;(SELECT idMesa FROM Mesa WHERE estado = 'reservada' AND idMesa IN &quot; + consultaMesasTurnoActual + &quot;)&quot;;</span>
+<span class="fc" id="L70">		String consultaReservasMesaReservada = &quot;(SELECT idReserva FROM MesaCamareroReserva WHERE turno = '&quot; + turnoActual + &quot;' AND idMesa IN &quot; + consultaMesasReservadasActuales + &quot;)&quot;;</span>
+		try {
+<span class="fc" id="L72">			ResultSet rs = agente.Read(consultaReservasMesaReservada);</span>
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">			while (rs.next()) {</span>
+<span class="fc" id="L75">				lista.add(rs.getInt(1));</span>
+			}
+<span class="nc" id="L77">		} catch (SQLException e) {</span>
+<span class="nc" id="L78">			e.printStackTrace();</span>
+<span class="fc" id="L79">		}</span>
+<span class="fc" id="L80">	}</span>
+	public static int anadirReserva(String comensales, LocalDateTime fecha, String nombre, String idMesa) {
+<span class="fc" id="L82">		int res = 0;</span>
+		ResultSet resultIdReserva;
+		int idReserva;
+		try {
+<span class="fc" id="L86">			res = agente.Insert(&quot;INSERT INTO Reserva (idReserva,num_comensales, nombre, &quot;</span>
+					+ &quot;tiempoReservada, restaurante) VALUES &quot;
+					+ &quot;(null,&quot; + comensales + &quot;,'&quot; + nombre + &quot;', '&quot; + fecha + &quot;', 1)&quot;);
+<span class="fc" id="L89">			resultIdReserva = agente.Read(&quot;SELECT idReserva FROM Reserva &quot;</span>
+					+ &quot;WHERE num_comensales = &quot; + comensales + &quot; AND nombre = '&quot; + nombre + &quot;' &quot;
+					+ &quot;AND tiempoReservada = '&quot; + fecha + &quot;'&quot;);
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">			if (resultIdReserva.next()) {</span>
+<span class="fc" id="L93">				idReserva = resultIdReserva.getInt(1);</span>
+<span class="fc" id="L94">				int res2 = agente.Insert(&quot;INSERT INTO MesaCamareroReserva (idReserva, idMesa, &quot;</span>
+						+ &quot;turno, idCamarero) VALUES (&quot; + idReserva + &quot;, &quot; + idMesa + &quot;, '&quot; + fecha + &quot;', null)&quot;);
+			}
+<span class="fc" id="L97">			DTOMesa.cambiarEstado(idMesa, &quot;reservada&quot;);</span>
+<span class="nc" id="L98">		} catch (SQLException e) {</span>
+<span class="nc" id="L99">			e.printStackTrace();</span>
+<span class="fc" id="L100">		}</span>
+<span class="fc" id="L101">		return res;</span>
+	}
+
+	public static int borrarReserva(String id) {
+<span class="nc" id="L105">		int result = 0;</span>
+<span class="nc" id="L106">		LocalDateTime turnoActual = obtenerTurno();</span>
+		LocalDateTime turno;
+<span class="nc" id="L108">		String consultaTurno = &quot;SELECT turno FROM MesaCamareroReserva WHERE idReserva = &quot; + id;</span>
+
+		try {
+<span class="nc" id="L111">			ResultSet rsTurno = agente.Read(consultaTurno);</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">			if (rsTurno.next()) {</span>
+<span class="nc" id="L113">				turno = rsTurno.getTimestamp(1).toLocalDateTime();</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">				if (turno.equals(turnoActual)) {</span>
+<span class="nc" id="L115">					String consultaMesaCancelar = &quot;(SELECT idMesa FROM MesaCamareroReserva WHERE idReserva = &quot; + id + &quot;)&quot;;</span>
+<span class="nc" id="L116">					String con = &quot;UPDATE Mesa SET (estado) VALUES ('libre') WHERE idMesa = &quot; + consultaMesaCancelar;</span>
+<span class="nc" id="L117">					agente.Update(con);</span>
+				}
+<span class="nc" id="L119">				agente.Delete(&quot;DELETE FROM Reserva WHERE idReserva = &quot; + id + &quot;&quot;);</span>
+			}
+<span class="nc" id="L121">		} catch (SQLException e) {</span>
+<span class="nc" id="L122">			e.printStackTrace();</span>
+<span class="nc" id="L123">		}</span>
+<span class="nc" id="L124">		return result;</span>
+	}
+	public static void leerReservasAux(int id, LocalDateTime turno, LinkedList&lt;Integer&gt; listaAux) {
+<span class="fc" id="L127">		ResultSet rs = agente.Read(&quot;SELECT idReserva FROM MesaCamareroReserva &quot;</span>
+				+ &quot;WHERE idMesa = &quot; + id + &quot; AND turno = '&quot; + turno + &quot;'&quot;);
+		try {
+<span class="fc bfc" id="L130" title="All 2 branches covered.">			while (rs.next()) {</span>
+
+				//Reserva reserva = new Reserva(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getTimestamp(4), rs.getInt(5), rs.getString(6), rs.getString(7));
+<span class="fc" id="L133">				listaAux.add(rs.getInt(1));</span>
+			}
+<span class="nc" id="L135">		} catch (SQLException e) {</span>
+<span class="nc" id="L136">			e.printStackTrace();</span>
+<span class="fc" id="L137">		}</span>
+<span class="fc" id="L138">	}</span>
+
+	public static int cambiarTiempoEstado(String mesa, String estado) {
+<span class="fc" id="L141">		String consulta = &quot;&quot;;</span>
+<span class="fc" id="L142">		String subConsulta = &quot;&quot;;</span>
+<span class="fc" id="L143">		LocalDateTime turno = obtenerTurno();</span>
+<span class="fc" id="L144">		String tiempoActual = LocalDateTime.now().format(df2);</span>
+		ResultSet rs;
+<span class="fc" id="L146">		int idReserva = 0;</span>
+<span class="pc bpc" id="L147" title="7 of 8 branches missed.">		switch (estado) {</span>
+		case &quot;ocupada&quot;:
+<span class="nc" id="L149">			idReserva = obtenerIdResesrvaPorMesaTurno(mesa, turno);</span>
+<span class="nc" id="L150">			consulta = &quot;UPDATE Reserva SET tiempoOcupada  =  '&quot; + tiempoActual + &quot;' WHERE &quot;</span>
+					+ &quot;idReserva = &quot; + idReserva;
+<span class="nc" id="L152">			break;</span>
+		case &quot;pidiendo&quot;:
+<span class="fc" id="L154">			idReserva = obtenerIdResesrvaPorMesaTurno(mesa, turno);</span>
+<span class="fc" id="L155">			consulta = &quot;UPDATE Reserva SET tiempoPidiendo = '&quot; + tiempoActual + &quot;' WHERE &quot;</span>
+					+ &quot;idReserva = &quot; + idReserva;
+<span class="fc" id="L157">			break;</span>
+		case &quot;en espera de comida&quot;:
+<span class="nc" id="L159">			idReserva = obtenerIdResesrvaPorMesaTurno(mesa, turno);</span>
+<span class="nc" id="L160">			consulta = &quot;UPDATE Reserva SET tiempoEnEsperaComida = '&quot; + tiempoActual + &quot;' WHERE &quot;</span>
+					+ &quot;idReserva = &quot; + idReserva;
+<span class="nc" id="L162">			break;</span>
+		case &quot;servidos&quot;:
+<span class="nc" id="L164">			idReserva = obtenerIdResesrvaPorMesaTurno(mesa, turno);</span>
+<span class="nc" id="L165">			consulta = &quot;UPDATE Reserva SET tiempoServido = '&quot; + tiempoActual + &quot;' WHERE &quot;</span>
+					+ &quot;idReserva = &quot; + idReserva;
+<span class="nc" id="L167">			break;</span>
+		case &quot;esperando la cuenta&quot;:
+<span class="nc" id="L169">			idReserva = obtenerIdResesrvaPorMesaTurno(mesa, turno);</span>
+<span class="nc" id="L170">			consulta = &quot;UPDATE Reserva SET tiempoEsperandoCuenta = '&quot; + tiempoActual + &quot;' WHERE &quot;</span>
+					+ &quot;idReserva = &quot; + idReserva;
+<span class="nc" id="L172">			break;</span>
+		case &quot;pagando&quot;:
+<span class="nc" id="L174">			idReserva = obtenerIdResesrvaPorMesaTurno(mesa, turno);</span>
+<span class="nc" id="L175">			consulta = &quot;UPDATE Reserva SET tiempoPagando = '&quot; + tiempoActual + &quot;' WHERE &quot;</span>
+					+ &quot;idReserva = &quot; + idReserva;
+<span class="nc" id="L177">			break;</span>
+		case &quot;en preparacion&quot;:
+<span class="nc" id="L179">			idReserva = obtenerIdResesrvaPorMesaTurno(mesa, turno);</span>
+<span class="nc" id="L180">			consulta = &quot;UPDATE Reserva SET tiempoEnPreparacion = '&quot; + tiempoActual + &quot;' WHERE &quot;</span>
+					+ &quot;idReserva = &quot; + idReserva;
+			break;
+		}
+<span class="fc" id="L184">		return agente.Update(consulta);</span>
+	}
+	public static int obtenerIdResesrvaPorMesaTurno(String idMesa, LocalDateTime turno) {
+<span class="fc" id="L187">		int idReserva = -1;</span>
+<span class="fc" id="L188">		String consulta = &quot;(SELECT idReserva FROM MesaCamareroReserva &quot;</span>
+				+ &quot;WHERE idMesa = &quot; + idMesa +  &quot; AND turno = '&quot; + turno + &quot;')&quot;;
+		try {
+<span class="fc" id="L191">			ResultSet rs = agente.Read(consulta);</span>
+<span class="pc bpc" id="L192" title="1 of 2 branches missed.">			if (rs.next()) {</span>
+<span class="fc" id="L193">				idReserva = rs.getInt(1);</span>
+			}
+<span class="nc" id="L195">		} catch (SQLException e) {</span>
+<span class="nc" id="L196">			e.printStackTrace();</span>
+<span class="fc" id="L197">		}</span>
+<span class="fc" id="L198">		return idReserva;</span>
+	}
+	public static LocalDateTime obtenerTurno() {
+<span class="fc" id="L201">		DateTimeFormatter df2 = DateTimeFormatter.ofPattern(&quot;HH:mm&quot;).localizedBy(new Locale(&quot;es-ES&quot;));</span>
+<span class="fc" id="L202">		LocalDateTime turno = null;</span>
+<span class="fc" id="L203">		LocalDate fechaActual = LocalDate.now(ZoneId.systemDefault());</span>
+<span class="fc" id="L204">		LocalTime horaPrueba = LocalTime.parse(&quot;13:30&quot;, df2);</span>
+<span class="fc" id="L205">		LocalDateTime turno1Comida = LocalDateTime.of(fechaActual, TURNO_1_COMIDA);</span>
+<span class="fc" id="L206">		LocalDateTime turno2Comida = LocalDateTime.of(fechaActual, TURNO_2_COMIDA);</span>
+<span class="fc" id="L207">		LocalDateTime turno3Comida = LocalDateTime.of(fechaActual, TURNO_3_COMIDA);</span>
+<span class="fc" id="L208">		LocalDateTime turno1Cena = LocalDateTime.of(fechaActual, TURNO_1_CENA);</span>
+<span class="fc" id="L209">		LocalDateTime turno2Cena = LocalDateTime.of(fechaActual, TURNO_2_CENA);</span>
+<span class="fc" id="L210">		LocalDateTime turno3Cena = LocalDateTime.of(fechaActual, TURNO_3_CENA);</span>
+<span class="fc" id="L211">		LocalDateTime turnoLimite = LocalDateTime.of(fechaActual, LIMITE_TURNO);</span>
+		//LocalDateTime tiempoActual = LocalDateTime.now();
+<span class="fc" id="L213">		LocalDateTime tiempoActual = LocalDateTime.of(fechaActual, horaPrueba);</span>
+
+<span class="pc bpc" id="L215" title="2 of 4 branches missed.">		if (tiempoActual.isAfter(turno1Comida) &amp;&amp; tiempoActual.isBefore(turno2Comida)) {</span>
+<span class="fc" id="L216">			turno = turno1Comida;</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">		} else if (tiempoActual.isAfter(turno2Comida)</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">				&amp;&amp; tiempoActual.isBefore(turno3Comida)) {</span>
+<span class="nc" id="L219">			turno = turno2Comida;</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">		} else if (tiempoActual.isAfter(turno3Comida)</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">				&amp;&amp; tiempoActual.isBefore(turno1Cena)) {</span>
+<span class="nc" id="L222">			turno = turno3Comida;</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">		} else if (tiempoActual.isAfter(turno1Cena)</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">				&amp;&amp; tiempoActual.isBefore(turno2Cena)) {</span>
+<span class="nc" id="L225">			turno = turno1Cena;</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">		} else if (tiempoActual.isAfter(turno2Cena)</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">				&amp;&amp; tiempoActual.isBefore(turno3Cena)) {</span>
+<span class="nc" id="L228">			turno = turno2Cena;</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">		} else if (tiempoActual.isAfter(turno3Cena)</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">				&amp;&amp; tiempoActual.isBefore(turnoLimite)) {</span>
+<span class="nc" id="L231">			turno = turno3Cena;</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">		} else if (tiempoActual.isBefore(turno1Comida)) {</span>
+<span class="nc" id="L233">			turno = null;</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">		} else if (tiempoActual.isAfter(turnoLimite)) {</span>
+<span class="nc" id="L235">			turno = null;</span>
+		}
+<span class="fc" id="L237">		return turno;</span>
+	}
+
+	public static void leerReserva(String id, LinkedList&lt;Reserva&gt; listaAux) {
+<span class="fc" id="L241">		ResultSet rs = agente.Read(&quot;SELECT * FROM Reserva WHERE idReserva = &quot; + id + &quot;;&quot;);</span>
+		try {
+<span class="fc bfc" id="L243" title="All 2 branches covered.">			while (rs.next()) {</span>
+<span class="fc" id="L244">				Reserva reserva = new Reserva(rs.getInt(1), rs.getInt(2), rs.getString(3));</span>
+<span class="fc" id="L245">				listaAux.add(reserva);</span>
+<span class="fc" id="L246">			}</span>
+<span class="nc" id="L247">		} catch (SQLException e) {</span>
+<span class="nc" id="L248">			e.printStackTrace();</span>
+<span class="fc" id="L249">		}</span>
+<span class="fc" id="L250">	}</span>
+	public static LocalDateTime obtenerFechaReserva(String idReserva) {
+<span class="fc" id="L252">		String consulta = &quot;SELECT turno FROM MesaCamareroReserva WHERE idReserva=&quot; + idReserva;</span>
+<span class="fc" id="L253">		LocalDateTime turno = null;</span>
+		try {
+<span class="fc" id="L255">			ResultSet resultTurno = agente.Read(consulta);</span>
+<span class="pc bpc" id="L256" title="1 of 2 branches missed.">			if (resultTurno.next()) {</span>
+<span class="fc" id="L257">				turno = resultTurno.getTimestamp(1).toInstant().atZone(z).toLocalDateTime();</span>
+			}
+<span class="nc" id="L259">		} catch (SQLException e) {</span>
+<span class="nc" id="L260">			e.printStackTrace();</span>
+<span class="fc" id="L261">		}</span>
+<span class="fc" id="L262">		return turno;</span>
+	}
+	public static void comprobarClienteTardio() {
+<span class="fc" id="L265">		DateTimeFormatter df2 = DateTimeFormatter.ofPattern(&quot;HH:mm&quot;).localizedBy(new Locale(&quot;es-ES&quot;));</span>
+<span class="fc" id="L266">		LocalDateTime turno = null;</span>
+<span class="fc" id="L267">		LocalDate fechaActual = LocalDate.now(ZoneId.systemDefault());</span>
+<span class="fc" id="L268">		LocalTime horaActual = LocalTime.now();</span>
+<span class="fc" id="L269">		LocalDateTime turnoActual = DTOReserva.obtenerTurno();</span>
+<span class="fc" id="L270">		LocalDateTime tiempoActual = LocalDateTime.of(fechaActual, LocalTime.parse(horaActual.format(df2)));</span>
+<span class="pc bpc" id="L271" title="1 of 2 branches missed.">		if (tiempoActual.isAfter(turnoActual.plusMinutes(20))) {</span>
+			ResultSet resultIdMesa;
+<span class="nc" id="L273">			String consultaMesasTurnoActual = &quot;(SELECT idMesa FROM&quot;</span>
+					+ &quot; MesaCamareroReserva WHERE turno='&quot; + turnoActual + &quot;')&quot;;
+<span class="nc" id="L275">			String consulta = &quot;SELECT idMesa FROM Mesa WHERE&quot;</span>
+					+ &quot; estado='reservada' AND idMesa IN&quot; + consultaMesasTurnoActual;
+			try {
+<span class="nc" id="L278">				resultIdMesa = agente.Read(consulta);</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">				while (resultIdMesa.next()) {</span>
+<span class="nc" id="L280">					String consultaIdReservaEliminar = &quot;(SELECT &quot;</span>
+							+ &quot;idReserva FROM MesaCamareroReserva WHERE &quot;
+<span class="nc" id="L282">							+ &quot;idMesa=&quot; + resultIdMesa.getInt(1) + &quot; AND turno='&quot; + turnoActual + &quot;')&quot;;</span>
+<span class="nc" id="L283">					agente.Delete(&quot;DELETE FROM Reserva WHERE idReserva=&quot; + consultaIdReservaEliminar);</span>
+<span class="nc" id="L284">				}</span>
+<span class="nc" id="L285">			} catch (SQLException e) {</span>
+<span class="nc" id="L286">				e.printStackTrace();</span>
+<span class="nc" id="L287">			}</span>
+		}
+<span class="fc" id="L289">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

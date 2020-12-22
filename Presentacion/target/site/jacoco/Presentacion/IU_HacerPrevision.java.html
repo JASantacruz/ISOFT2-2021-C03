@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_HacerPrevision.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_HacerPrevision.java</span></div><h1>IU_HacerPrevision.java</h1><pre class="source lang-java linenums">package Presentacion;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Rectangle;
+import java.util.*;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Dominio.DTOComanda;
+import Dominio.DTOPrevision;
+import Dominio.DTOReceta;
+import Dominio.Receta;
+import Dominio.Repeticion;
+
+import javax.swing.JList;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JSpinner;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.time.LocalDateTime;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+
+@SuppressWarnings({ &quot;unchecked&quot;, &quot;serial&quot;, &quot;rawtypes&quot; })
+public class IU_HacerPrevision extends JFrame {
+
+	private JPanel contentPane;
+	private DefaultListModel modeloAlimentos;
+	private DefaultListModel modeloIngredientes;
+	private JLabel lblMensaje;
+	private LocalDateTime fecha;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L44">		EventQueue.invokeLater(new Runnable() {</span>
+			public void run() {
+				try {
+<span class="nc" id="L47">					IU_HacerPrevision frame = new IU_HacerPrevision();</span>
+<span class="nc" id="L48">					frame.setVisible(true);</span>
+<span class="nc" id="L49">				} catch (Exception e) {</span>
+<span class="nc" id="L50">					e.printStackTrace();</span>
+<span class="nc" id="L51">				}</span>
+<span class="nc" id="L52">			}</span>
+		});
+<span class="nc" id="L54">	}</span>
+
+	/**
+	 * Create the frame.
+	 */
+<span class="fc" id="L59">	public IU_HacerPrevision() {</span>
+<span class="fc" id="L60">		setResizable(false);</span>
+<span class="fc" id="L61">		setTitle(&quot;Fritura&quot;);</span>
+<span class="fc" id="L62">		setBounds(new Rectangle(380, 170, 700, 500));</span>
+<span class="fc" id="L63">		contentPane = new JPanel();</span>
+<span class="fc" id="L64">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="fc" id="L65">		setContentPane(contentPane);</span>
+<span class="fc" id="L66">		contentPane.setLayout(null);</span>
+
+<span class="fc" id="L68">		JLabel lblPedidos = new JLabel(&quot;Ultimos pedidos&quot;);</span>
+<span class="fc" id="L69">		lblPedidos.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L70">		lblPedidos.setBounds(80, 61, 209, 21);</span>
+<span class="fc" id="L71">		lblPedidos.setFont(Fuente.FUENTE_LBL);</span>
+<span class="fc" id="L72">		contentPane.add(lblPedidos);</span>
+
+<span class="fc" id="L74">		final JSpinner spnCantidad = new JSpinner();</span>
+<span class="fc" id="L75">		spnCantidad.setBounds(475, 379, 56, 29);</span>
+<span class="fc" id="L76">		spnCantidad.setFont(Fuente.FUENTE_LBL);</span>
+<span class="fc" id="L77">		contentPane.add(spnCantidad);</span>
+
+<span class="fc" id="L79">		JLabel lblIngredientes = new JLabel(&quot;Ingredientes&quot;);</span>
+<span class="fc" id="L80">		lblIngredientes.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L81">		lblIngredientes.setBounds(396, 61, 209, 19);</span>
+<span class="fc" id="L82">		lblIngredientes.setFont(Fuente.FUENTE_LBL);</span>
+<span class="fc" id="L83">		contentPane.add(lblIngredientes);</span>
+
+
+<span class="fc" id="L86">		modeloAlimentos = new DefaultListModel();</span>
+<span class="fc" id="L87">		modeloIngredientes = new DefaultListModel();</span>
+
+<span class="fc" id="L89">		final JList lstPedidos = new JList();</span>
+<span class="fc" id="L90">		lstPedidos.addMouseListener(new MouseAdapter() {</span>
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L94">				modeloIngredientes.clear();</span>
+<span class="nc" id="L95">				LinkedList&lt;Receta&gt; recetario = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L96">				String nombre = String.valueOf(lstPedidos.getSelectedValue());</span>
+<span class="nc" id="L97">				nombre = nombre.substring(0, nombre.length()-4);</span>
+<span class="nc" id="L98">				DTOReceta.leerReceta(nombre, recetario);</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">				for(Receta rec : recetario) {</span>
+<span class="nc" id="L100">					modeloIngredientes.addElement(rec.getNombreIngrediente() + &quot; - &quot; + rec.getCantidad());</span>
+<span class="nc" id="L101">				}</span>
+<span class="nc" id="L102">			}</span>
+		});
+<span class="fc" id="L104">		lstPedidos.setBounds(80, 92, 209, 270);</span>
+<span class="fc" id="L105">		contentPane.add(lstPedidos);</span>
+
+<span class="fc" id="L107">		final JList lstIngredientes = new JList();</span>
+<span class="fc" id="L108">		lstIngredientes.setBounds(396, 92, 209, 270);</span>
+<span class="fc" id="L109">		contentPane.add(lstIngredientes);</span>
+
+<span class="fc" id="L111">		LinkedList&lt;String&gt; pedido = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L112">		DTOComanda.leerAlimentosDeComandas(pedido);</span>
+
+<span class="fc" id="L114">		LinkedList&lt;Repeticion&gt; repe = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L115">		int repeticiones = 0;</span>
+<span class="fc" id="L116">		Set&lt;String&gt; set = new HashSet&lt;&gt;(pedido); //Hacemos un conjunto donde no haya valores repetidos</span>
+<span class="fc" id="L117">		Iterator it = set.iterator(); //Lo separamos en esos valores</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">		while(it.hasNext()) { //Leemos esos valores</span>
+<span class="fc" id="L119">			String al = String.valueOf(it.next());</span>
+<span class="fc" id="L120">			repeticiones = Collections.frequency(pedido, al); //Comprobamos cuantas veces aparecen esos valores en la lista Pedido</span>
+<span class="fc" id="L121">			repe.add(new Repeticion(al, repeticiones)); //anadimos el valor y las veces que se repite</span>
+<span class="fc" id="L122">		}</span>
+<span class="fc" id="L123">		pedido.clear();</span>
+<span class="fc" id="L124">		pedido.addAll(set);</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">		for(int i = 0; i &lt; pedido.size(); i++)</span>
+<span class="fc" id="L126">			modeloAlimentos.addElement(pedido.get(i) + &quot; - &quot;+String.valueOf(repe.get(i).getRepeticiones()));</span>
+<span class="fc" id="L127">		lstPedidos.setModel(modeloAlimentos);</span>
+<span class="fc" id="L128">		lstIngredientes.setModel(modeloIngredientes);</span>
+
+<span class="fc" id="L130">		JLabel lblAniadir = new JLabel(&quot;Anadir ingredientes&quot;);</span>
+<span class="fc" id="L131">		lblAniadir.setHorizontalAlignment(SwingConstants.RIGHT);</span>
+<span class="fc" id="L132">		lblAniadir.setBounds(289, 379, 164, 29);</span>
+<span class="fc" id="L133">		lblAniadir.setFont(Fuente.FUENTE_LBL);</span>
+<span class="fc" id="L134">		contentPane.add(lblAniadir);</span>
+
+<span class="fc" id="L136">		JButton btnAnadir = new JButton(&quot;Anadir&quot;);</span>
+<span class="fc" id="L137">		btnAnadir.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L139" title="All 2 branches missed.">				if(lstIngredientes.getSelectedValue()!=null) {</span>
+<span class="nc" id="L140">					String nombre = String.valueOf(lstIngredientes.getSelectedValue());</span>
+<span class="nc" id="L141">					nombre = nombre.substring(0, nombre.length()-4);</span>
+<span class="nc" id="L142">					int cantidad = (Integer) spnCantidad.getValue();</span>
+<span class="nc" id="L143">					DTOPrevision.actualizarStock(nombre, cantidad);</span>
+<span class="nc" id="L144">					lblMensaje.setText(&quot;Cantidad anadida al stock&quot;);</span>
+<span class="nc" id="L145">					lblMensaje.setForeground(Color.green);</span>
+<span class="nc" id="L146">					lblMensaje.setEnabled(true);</span>
+<span class="nc" id="L147">					fecha = LocalDateTime.now();</span>
+<span class="nc" id="L148">					DTOPrevision.hacerPrevision(nombre, cantidad, fecha);</span>
+				}
+<span class="nc" id="L150">			}</span>
+		});
+<span class="fc" id="L152">		btnAnadir.setBounds(299, 413, 115, 29);</span>
+<span class="fc" id="L153">		btnAnadir.setFont(Fuente.FUENTE_BTN);</span>
+<span class="fc" id="L154">		contentPane.add(btnAnadir);</span>
+
+<span class="fc" id="L156">		JButton btnAtras = new JButton(&quot;Atras&quot;);</span>
+<span class="fc" id="L157">		btnAtras.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L159">				dispose();</span>
+<span class="nc" id="L160">			}</span>
+		});
+<span class="fc" id="L162">		btnAtras.setFont(Fuente.FUENTE_BTN);</span>
+<span class="fc" id="L163">		btnAtras.setBounds(22, 413, 85, 29);</span>
+<span class="fc" id="L164">		contentPane.add(btnAtras);</span>
+
+<span class="fc" id="L166">		lblMensaje = new JLabel(&quot;&quot;);</span>
+<span class="fc" id="L167">		lblMensaje.setFont(new Font(&quot;Verdana&quot;, Font.PLAIN, 12));</span>
+<span class="fc" id="L168">		lblMensaje.setEnabled(false);</span>
+<span class="fc" id="L169">		lblMensaje.setBounds(439, 418, 214, 24);</span>
+<span class="fc" id="L170">		contentPane.add(lblMensaje);</span>
+
+<span class="fc" id="L172">		JLabel lblBienvenida = new JLabel(&quot;Bienvenido al sistema Fritura&quot;);</span>
+<span class="fc" id="L173">		lblBienvenida.setFont(new Font(&quot;Verdana&quot;, Font.BOLD, 20));</span>
+<span class="fc" id="L174">		lblBienvenida.setBounds(163, 10, 357, 33);</span>
+<span class="fc" id="L175">		contentPane.add(lblBienvenida);</span>
+<span class="fc" id="L176">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

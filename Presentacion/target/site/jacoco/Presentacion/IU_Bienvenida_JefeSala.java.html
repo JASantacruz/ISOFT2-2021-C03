@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_Bienvenida_JefeSala.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_Bienvenida_JefeSala.java</span></div><h1>IU_Bienvenida_JefeSala.java</h1><pre class="source lang-java linenums">package Presentacion;
+
+import java.awt.Font;
+
+import java.util.LinkedList;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+
+import Dominio.*;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+@SuppressWarnings(&quot;serial&quot;)
+public class IU_Bienvenida_JefeSala extends JFrame implements Fuente{
+
+	private JPanel contentPane;
+	private JPanel pnlBienvenida;
+	private JLabel lblBienvenida;
+<span class="fc" id="L25">	public Font fuente = new Font(&quot;verdana&quot;, 1, 20);</span>
+	private JLabel lblDeseoJefeDeSala;
+	private JButton btnAccesoReserva;
+	private JButton btnAccesoCancelar;
+	private JButton btnAccesoComprobar;
+	
+	
+	/**
+	 * Create the frame.
+	 */
+<span class="fc" id="L35">	public IU_Bienvenida_JefeSala() {</span>
+<span class="fc" id="L36">		setTitle(&quot;Fritura&quot;);</span>
+<span class="fc" id="L37">		setResizable(false);</span>
+<span class="fc" id="L38">		setLocationRelativeTo(null);</span>
+<span class="fc" id="L39">		setBounds(380, 170, 700, 500);</span>
+<span class="fc" id="L40">		contentPane = new JPanel();</span>
+<span class="fc" id="L41">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="fc" id="L42">		setContentPane(contentPane);</span>
+<span class="fc" id="L43">		contentPane.setLayout(null);</span>
+		
+<span class="fc" id="L45">		pnlBienvenida = new JPanel();</span>
+<span class="fc" id="L46">		pnlBienvenida.setBounds(5, 5, 676, 453);</span>
+<span class="fc" id="L47">		contentPane.add(pnlBienvenida);</span>
+<span class="fc" id="L48">		pnlBienvenida.setLayout(null);</span>
+		
+<span class="fc" id="L50">		lblBienvenida = new JLabel(&quot;Bienvenido al sistema Fritura&quot;);</span>
+<span class="fc" id="L51">		lblBienvenida.setBounds(158, 26, 357, 33);</span>
+<span class="fc" id="L52">		lblBienvenida.setFont(FUENTE_CAB);</span>
+<span class="fc" id="L53">		pnlBienvenida.add(lblBienvenida);</span>
+		
+<span class="fc" id="L55">		lblDeseoJefeDeSala = new JLabel(&quot;¿Qué desea hacer?&quot;);</span>
+<span class="fc" id="L56">		lblDeseoJefeDeSala.setBounds(250, 88, 153, 21);</span>
+<span class="fc" id="L57">		lblDeseoJefeDeSala.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L58">		pnlBienvenida.add(lblDeseoJefeDeSala);</span>
+		
+<span class="fc" id="L60">		btnAccesoReserva = new JButton(&quot;Reservar Mesa&quot;);</span>
+<span class="fc" id="L61">		btnAccesoReserva.setHorizontalAlignment(SwingConstants.LEFT);</span>
+<span class="fc" id="L62">		btnAccesoReserva.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L64">				LinkedList&lt;Mesa&gt; lista = new LinkedList&lt;Mesa&gt;();</span>
+<span class="nc" id="L65">				DTOMesa.leerMesas(lista);</span>
+<span class="nc" id="L66">				IU_ReservarMesa iu_reserv = new IU_ReservarMesa(lista);</span>
+<span class="nc" id="L67">				iu_reserv.setVisible(true);</span>
+<span class="nc" id="L68">			}</span>
+		});
+<span class="fc" id="L70">		btnAccesoReserva.setHorizontalTextPosition(SwingConstants.CENTER);</span>
+<span class="fc" id="L71">		btnAccesoReserva.setBounds(57, 185, 123, 33);</span>
+<span class="fc" id="L72">		btnAccesoReserva.setFont(FUENTE_BTN);</span>
+<span class="fc" id="L73">		pnlBienvenida.add(btnAccesoReserva);</span>
+		
+<span class="fc" id="L75">		btnAccesoCancelar = new JButton(&quot;Cancelar Reserva&quot;);</span>
+<span class="fc" id="L76">		btnAccesoCancelar.setHorizontalAlignment(SwingConstants.LEFT);</span>
+<span class="fc" id="L77">		btnAccesoCancelar.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L79">				LinkedList&lt;Integer&gt; lista = new LinkedList&lt;Integer&gt;();</span>
+<span class="nc" id="L80">				DTOReserva.leerTodasReservas(lista);</span>
+<span class="nc" id="L81">				IU_CancelarReserva iu_canc = new IU_CancelarReserva(lista);</span>
+<span class="nc" id="L82">				iu_canc.setVisible(true);</span>
+				
+<span class="nc" id="L84">			}</span>
+		});
+<span class="fc" id="L86">		btnAccesoCancelar.setHorizontalTextPosition(SwingConstants.LEFT);</span>
+<span class="fc" id="L87">		btnAccesoCancelar.setBounds(276, 185, 132, 33);</span>
+<span class="fc" id="L88">		btnAccesoCancelar.setFont(FUENTE_BTN);</span>
+<span class="fc" id="L89">		pnlBienvenida.add(btnAccesoCancelar);</span>
+		
+<span class="fc" id="L91">		btnAccesoComprobar = new JButton(&quot;  Asignar camarero&quot;);</span>
+<span class="fc" id="L92">		btnAccesoComprobar.setHorizontalAlignment(SwingConstants.LEFT);</span>
+<span class="fc" id="L93">		btnAccesoComprobar.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L95">				LinkedList&lt;Camarero&gt; listaCamarero = new LinkedList&lt;Camarero&gt;();</span>
+<span class="nc" id="L96">				DTOCamarero.leerCamareros(listaCamarero);</span>
+<span class="nc" id="L97">				LinkedList&lt;Integer&gt; listaReserva = new LinkedList&lt;Integer&gt;();</span>
+<span class="nc" id="L98">				DTOReserva.leerReservas(listaReserva);</span>
+<span class="nc" id="L99">				IU_ComprobarReserva iu_compr = new IU_ComprobarReserva(listaReserva, listaCamarero);</span>
+<span class="nc" id="L100">				iu_compr.setVisible(true);</span>
+<span class="nc" id="L101">			}</span>
+		});
+<span class="fc" id="L103">		btnAccesoComprobar.setHorizontalTextPosition(SwingConstants.CENTER);</span>
+<span class="fc" id="L104">		btnAccesoComprobar.setBounds(492, 185, 141, 33);</span>
+<span class="fc" id="L105">		btnAccesoComprobar.setFont(FUENTE_BTN);</span>
+<span class="fc" id="L106">		pnlBienvenida.add(btnAccesoComprobar);</span>
+<span class="fc" id="L107">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
