@@ -101,10 +101,7 @@ public class IU_ComprobarReserva extends JFrame implements Fuente{
 		btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//String id = cmbBxReservas.getSelectedItem().toString().substring(8);
-				//DTOReserva.cambiarEstado(Integer.parseInt(id), cmbBxEstados.getSelectedItem().toString());
 				String idReserva=cmbBxReservas.getSelectedItem().toString();
-				//String nombreCamarero=
 				LinkedList<Reserva> listaReserva = new LinkedList<Reserva>();
 				DTOReserva.leerReserva(idReserva,listaReserva);
 				DTOMesa.cambiarMesaOcupada(idReserva);

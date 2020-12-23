@@ -164,9 +164,9 @@ public class IU_HacerPrevision extends JFrame {
 		contentPane.add(btnAtras);
 
 		lblMensaje = new JLabel("");
-		lblMensaje.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblMensaje.setFont(new Font("Verdana", Font.PLAIN, 12));
 		lblMensaje.setEnabled(false);
-		lblMensaje.setBounds(439, 418, 166, 24);
+		lblMensaje.setBounds(439, 418, 214, 24);
 		contentPane.add(lblMensaje);
 
 		JLabel lblBienvenida = new JLabel("Bienvenido al sistema Fritura");

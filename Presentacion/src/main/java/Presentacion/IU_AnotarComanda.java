@@ -87,7 +87,7 @@ public class IU_AnotarComanda{
 		frmFritura = new JFrame();
 		frmFritura.setTitle("Fritura");
 		frmFritura.setBounds(380, 170, 700, 500);
-		frmFritura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmFritura.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frmFritura.setVisible(true);
 		frmFritura.getContentPane().setLayout(null);
 
@@ -256,6 +256,7 @@ public class IU_AnotarComanda{
 			ingredientesSinStock=DTOComanda.comprobarStock(ingredientes);
 			if(ingredientesSinStock.size()==0) {
 				DTOComanda.guardarComanda(comboBox.getSelectedItem().toString(), ingredientes);
+				DTOComanda.actualizarStock(ingredientes);
 				JOptionPane.showMessageDialog(null, "Comanda enviada a cocina", "Comanda realizada",JOptionPane.INFORMATION_MESSAGE);
 			}else {
 

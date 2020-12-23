@@ -161,11 +161,11 @@ public class DTOComanda {
 				consulta = "SELECT nombreIngrediente, cantidad FROM Receta WHERE codigoCarta="+codigo+";";
 				res = ag.Read(consulta);
 				while(res.next()) {
-					rec = new Receta(res.getString(1), res.getInt(2)); 
+					rec = new Receta(res.getString(1), res.getInt(2));
 					listReceta.add(rec);
 				}
 				for(int j = 0; j < listReceta.size(); j++) {
-					consulta = "SELECT stock FROM Ingrediente WHERE nombre"+listReceta.get(j).getNombreIngrediente()+";"; 
+					consulta = "SELECT stock FROM Ingrediente WHERE nombre='"+listReceta.get(j).getNombreIngrediente()+"';"; 
 					res = ag.Read(consulta);
 					while(res.next())
 						stock = res.getInt(1);

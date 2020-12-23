@@ -1,5 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Presentacion,Presentacion,IU_Camarero.BtnPagarCuentaActionListener,16,0,0,0,3,0,2,0,2,0
+Presentacion,Presentacion,IU_Camarero.BtnPagarCuentaActionListener,10,6,0,0,2,1,1,1,1,1
+Presentacion,Presentacion,IU_Principal.BtnConsultarEstadisticasActionListener,5,6,0,0,2,1,1,1,1,1
 Presentacion,Presentacion,IU_SecuenciarEstados.BtnSecuenciarEstadoActionListener,80,6,6,0,12,1,4,1,1,1
 Presentacion,Presentacion,IU_MostrarCuenta.new Runnable() {...},17,0,0,0,7,0,2,0,2,0
 Presentacion,Presentacion,IU_Almacen,25,216,1,3,2,44,1,2,0,1
@@ -10,10 +11,10 @@ Presentacion,Presentacion,IU_HacerPrevision.new MouseAdapter() {...},53,9,2,0,9,
 Presentacion,Presentacion,IU_HacerPrevision.new Runnable() {...},15,0,0,0,7,0,2,0,2,0
 Presentacion,Presentacion,IU_Cocinero,5,126,0,0,2,23,1,1,1,1
 Presentacion,Presentacion,IU_HacerPrevision,5,364,0,4,2,73,1,3,1,1
-Presentacion,Presentacion,IU_MostrarCuenta,16,534,1,1,4,86,2,2,1,2
-Presentacion,Presentacion,IU_Camarero.CBoxCamarerosActionListener,109,0,6,0,20,0,5,0,2,0
-Presentacion,Presentacion,IU_Camarero,291,0,2,0,50,0,4,0,3,0
-Presentacion,Presentacion,IU_Camarero.BtnCambiarEstadoMesaActionListener,16,0,0,0,3,0,2,0,2,0
+Presentacion,Presentacion,IU_MostrarCuenta,16,530,1,1,4,85,2,2,1,2
+Presentacion,Presentacion,IU_Camarero.CBoxCamarerosActionListener,69,30,5,1,12,6,3,2,0,2
+Presentacion,Presentacion,IU_Camarero,5,245,0,2,2,42,1,3,1,2
+Presentacion,Presentacion,IU_Camarero.BtnCambiarEstadoMesaActionListener,10,6,0,0,2,1,1,1,1,1
 Presentacion,Presentacion,IU_ReservarMesa.new ActionListener() {...},55,6,4,0,10,1,3,1,1,1
 Presentacion,Presentacion,IU_Cocinero.new ActionListener() {...},15,6,0,0,5,1,1,1,1,1
 Presentacion,Presentacion,IU_Cocinero.new Runnable() {...},15,0,0,0,7,0,2,0,2,0
@@ -28,39 +29,38 @@ Presentacion,Presentacion,IU_Principal.new ActionListener() {...},47,6,8,0,11,1,
 Presentacion,Presentacion,IU_Principal.new Runnable() {...},16,0,0,0,7,0,2,0,2,0
 Presentacion,Presentacion,IU_Principal.new TimerTask() {...},0,8,0,0,0,3,0,2,0,2
 Presentacion,Presentacion,IU_SecuenciarEstados.new Runnable() {...},17,0,0,0,7,0,2,0,2,0
-Presentacion,Presentacion,IU_AnotarComanda,32,581,3,9,8,103,4,5,1,2
+Presentacion,Presentacion,IU_AnotarComanda,16,597,1,11,4,107,2,7,1,2
 Presentacion,Presentacion,IU_AnotarComanda.LstBebidasMouseListener,13,6,0,0,3,1,1,1,1,1
 Presentacion,Presentacion,IU_AnotarComanda.LstSegundoPlatoMouseListener,13,6,0,0,3,1,1,1,1,1
-Presentacion,Presentacion,IU_AnotarComanda.BtnConfirmarComandaActionListener,118,6,12,0,23,1,7,1,1,1
-Presentacion,Presentacion,IU_AvisarCamarero.CBoxCamarerosActionListener,60,0,4,0,12,0,4,0,2,0
-Presentacion,Presentacion,IU_Camarero.BtnAnotarComandaActionListener,16,0,0,0,3,0,2,0,2,0
+Presentacion,Presentacion,IU_AnotarComanda.BtnConfirmarComandaActionListener,121,6,12,0,24,1,7,1,1,1
+Presentacion,Presentacion,IU_AvisarCamarero.CBoxCamarerosActionListener,48,12,3,1,9,3,2,2,0,2
+Presentacion,Presentacion,IU_Camarero.BtnAnotarComandaActionListener,10,6,0,0,2,1,1,1,1,1
 Presentacion,Presentacion,IU_AnotarComanda.LstPrimerPlatoMouseListener,13,6,0,0,3,1,1,1,1,1
-Presentacion,Presentacion,IU_Principal,5,254,0,0,2,46,1,2,1,2
+Presentacion,Presentacion,IU_Principal,5,295,0,0,2,52,1,2,1,2
 Presentacion,Presentacion,IU_SecuenciarEstados.CBoxMesasActionListener,12,15,1,1,2,3,1,2,0,2
-Presentacion,Presentacion,IU_AvisarCamarero.BtnConfirmarActionListener,48,0,2,0,9,0,3,0,2,0
+Presentacion,Presentacion,IU_AvisarCamarero.BtnConfirmarActionListener,42,6,2,0,8,1,2,1,1,1
 Presentacion,Presentacion,Fuente,0,29,0,0,0,4,0,1,0,1
 Presentacion,Presentacion,IU_CancelarReserva,8,376,1,1,1,68,1,2,0,2
 Presentacion,Presentacion,IU_AnotarComanda.new Runnable() {...},17,0,0,0,7,0,2,0,2,0
 Presentacion,Presentacion,IU_Camarero.new Runnable() {...},16,0,0,0,7,0,2,0,2,0
-Presentacion,Presentacion,IU_ConsultarEstadisticas,5,401,0,0,2,61,1,2,1,2
+Presentacion,Presentacion,IU_ConsultarEstadisticas,5,405,0,0,2,62,1,2,1,2
 Presentacion,Presentacion,IU_ConsultarEstadisticas.RdBtnCiudadActionListener,42,6,2,0,10,1,2,1,1,1
 Presentacion,Presentacion,IU_Almacen.new ActionListener() {...},8,6,0,0,3,1,1,1,1,1
 Presentacion,Presentacion,IU_Bienvenida_JefeSala,0,231,0,0,0,44,0,1,0,1
 Presentacion,Presentacion,IU_Almacen.new MouseAdapter() {...},13,9,0,0,3,1,1,1,1,1
 Presentacion,Presentacion,IU_ReservarMesa.new ActionListener() {...},28,6,0,0,6,1,1,1,1,1
 Presentacion,Presentacion,IU_ReservarMesa.new ActionListener() {...},28,6,0,0,6,1,1,1,1,1
-Presentacion,Presentacion,IU_AvisarCamarero,288,0,2,0,50,0,4,0,3,0
+Presentacion,Presentacion,IU_AvisarCamarero,5,283,0,2,2,48,1,3,1,2
 Presentacion,Presentacion,IU_ComprobarReserva,31,323,2,2,2,57,2,1,0,1
-Presentacion,Presentacion,IU_ReservarMesa.new ActionListener() {...},58,9,2,0,13,1,2,1,1,1
+Presentacion,Presentacion,IU_ReservarMesa.new ActionListener() {...},73,9,2,0,16,1,2,1,1,1
 Presentacion,Presentacion,IU_ReservarMesa.new ActionListener() {...},101,6,6,0,16,1,4,1,1,1
 Presentacion,Presentacion,IU_AnotarComanda.BtnConfirmarNMesaActionListener,28,6,2,0,5,1,2,1,1,1
 Presentacion,Presentacion,IU_AnotarComanda.LstEntrantesMouseListener,13,6,0,0,3,1,1,1,1,1
-Presentacion,Presentacion,IU_Camarero.BtnEnviarComandaActionListener,7,0,0,0,2,0,2,0,2,0
 Presentacion,Presentacion,IU_MostrarCuenta.CBoxMesasActionListener,198,20,11,1,28,4,6,2,0,2
-Presentacion,Presentacion,IU_AvisarCamarero.CBoxMesasActionListener,22,0,2,0,5,0,3,0,2,0
+Presentacion,Presentacion,IU_AvisarCamarero.CBoxMesasActionListener,16,6,2,0,4,1,2,1,1,1
 Presentacion,Presentacion,IU_Cocinero.BtnAvisarActionListener,6,6,0,0,2,1,1,1,1,1
 Presentacion,Presentacion,IU_Bienvenida_JefeSala.new ActionListener() {...},15,6,0,0,5,1,1,1,1,1
-Presentacion,Presentacion,IU_ReservarMesa,17,611,1,1,1,106,1,1,0,1
+Presentacion,Presentacion,IU_ReservarMesa,17,623,1,1,1,109,1,1,0,1
 Presentacion,Presentacion,IU_Bienvenida_JefeSala.new ActionListener() {...},22,6,0,0,7,1,1,1,1,1
 Presentacion,Presentacion,IU_AvisarCamarero.new Runnable() {...},17,0,0,0,7,0,2,0,2,0
 Presentacion,Presentacion,IU_Bienvenida_JefeSala.new ActionListener() {...},15,6,0,0,5,1,1,1,1,1

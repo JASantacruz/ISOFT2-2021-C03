@@ -96,6 +96,9 @@ public class IU_ReservarMesa extends JFrame implements Fuente, Turnos{
 					buttonGroup.clearSelection();
 					txtEstado.setText("");
 					txtNombre.setText("");
+					cmbbxComensales.setEnabled(true);
+					rdbtnComida.setEnabled(true);
+					rdbtnCena.setEnabled(true);
 				}
 				else {
 					txtMesa.setText("");
@@ -180,12 +183,13 @@ public class IU_ReservarMesa extends JFrame implements Fuente, Turnos{
 		pnlReservar.add(lblTurno);
 
 		rdbtnComida = new JRadioButton("Comida");
+		rdbtnComida.setEnabled(false);
 		rdbtnComida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cmbbxTurnos.removeAllItems();
-				cmbbxTurnos.addItem(Turno1Comida.toString());
-				cmbbxTurnos.addItem(Turno2Comida.toString());
-				cmbbxTurnos.addItem(Turno3Comida.toString());
+				cmbbxTurnos.addItem(TURNO_1_COMIDA.toString());
+				cmbbxTurnos.addItem(TURNO_2_COMIDA.toString());
+				cmbbxTurnos.addItem(TURNO_3_COMIDA.toString());
 				cmbbxTurnos.setVisible(true);
 			}
 		});
@@ -196,12 +200,13 @@ public class IU_ReservarMesa extends JFrame implements Fuente, Turnos{
 		pnlReservar.add(rdbtnComida);
 
 		rdbtnCena = new JRadioButton("Cena");
+		rdbtnCena.setEnabled(false);
 		rdbtnCena.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cmbbxTurnos.removeAllItems();
-				cmbbxTurnos.addItem(Turno1Cena.toString());
-				cmbbxTurnos.addItem(Turno2Cena.toString());
-				cmbbxTurnos.addItem(Turno3Cena.toString());
+				cmbbxTurnos.addItem(TURNO_1_CENA.toString());
+				cmbbxTurnos.addItem(TURNO_2_CENA.toString());
+				cmbbxTurnos.addItem(TURNO_3_CENA.toString());
 				cmbbxTurnos.setVisible(true);
 			}
 		});
@@ -235,6 +240,7 @@ public class IU_ReservarMesa extends JFrame implements Fuente, Turnos{
 		pnlReservar.add(cmbbxTurnos);
 
 		cmbbxComensales = new JComboBox();
+		cmbbxComensales.setEnabled(false);
 		cmbbxComensales.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6"}));
 		cmbbxComensales.setFont(FUENTE_RDBTN);
 		cmbbxComensales.setBounds(461, 177, 43, 21);

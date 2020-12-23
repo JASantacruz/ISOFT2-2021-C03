@@ -60,7 +60,7 @@ public class IU_AvisarCamarero {
 	private void initialize(String tipoEmpleado) {
 		frame = new JFrame();
 		frame.setBounds(new Rectangle(380, 170, 700, 500));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(null);
 

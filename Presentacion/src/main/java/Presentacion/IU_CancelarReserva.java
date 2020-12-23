@@ -72,7 +72,7 @@ public class IU_CancelarReserva extends JFrame implements Fuente {
 		panel.add(lblCancelar_Cab);
 
 		lblCancelar = new JLabel("¿Que reserva desea cancelar?");
-		lblCancelar.setBounds(205, 105, 232, 33);
+		lblCancelar.setBounds(205, 105, 288, 33);
 		lblCancelar.setFont(FUENTE_LBL);
 		panel.add(lblCancelar);
 

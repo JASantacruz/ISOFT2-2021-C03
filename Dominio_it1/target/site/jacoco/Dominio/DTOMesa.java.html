@@ -1,167 +1,165 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DTOMesa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it1</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">DTOMesa.java</span></div><h1>DTOMesa.java</h1><pre class="source lang-java linenums">package Dominio;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DTOMesa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it1</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">DTOMesa.java</span></div><h1>DTOMesa.java</h1><pre class="source lang-java linenums">package Dominio;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 import Persistencia.Agente;
 
-@SuppressWarnings(&quot;static-access&quot;)
-<span class="fc" id="L12">public class DTOMesa {</span>
+<span class="fc" id="L10">public class DTOMesa {</span>
 
-<span class="fc" id="L14">	public static Agente agente = new Agente();</span>
+<span class="fc" id="L12">	private static Agente agente = new Agente();</span>
 
-	public static void leerMesas(LinkedList&lt;Mesa&gt; lista) {
+	public static void leerMesas(final LinkedList&lt;Mesa&gt; pLista) {
 		ResultSet rs;
-<span class="fc" id="L18">		rs=agente.Read(&quot;SELECT * FROM Mesa&quot;);</span>
+<span class="fc" id="L16">		rs = agente.Read(&quot;SELECT * FROM Mesa&quot;);</span>
 		try {
-<span class="fc bfc" id="L20" title="All 2 branches covered.">			while(rs.next()){</span>
-<span class="fc" id="L21">				Mesa mesa = new Mesa(rs.getInt(1), rs.getString(2));</span>
-<span class="fc" id="L22">				lista.add(mesa);</span>
-<span class="fc" id="L23">			}</span>
-<span class="nc" id="L24">		} catch (SQLException e) {</span>
-<span class="nc" id="L25">			e.printStackTrace();</span>
-<span class="fc" id="L26">		}</span>
-<span class="fc" id="L27">	}</span>
-	
-	public static void leerMesasOcupadas(LinkedList&lt;Mesa&gt; lista) {
+<span class="fc bfc" id="L18" title="All 2 branches covered.">			while (rs.next()) {</span>
+<span class="fc" id="L19">				Mesa mesa = new Mesa(rs.getInt(1), rs.getString(2));</span>
+<span class="fc" id="L20">				pLista.add(mesa);</span>
+<span class="fc" id="L21">			}</span>
+<span class="nc" id="L22">		} catch (SQLException e) {</span>
+<span class="nc" id="L23">			e.printStackTrace();</span>
+<span class="fc" id="L24">		}</span>
+<span class="fc" id="L25">	}</span>
+
+	public static void leerMesasOcupadas(final LinkedList&lt;Mesa&gt; pLista) {
 		ResultSet rs;
-<span class="fc" id="L31">		rs=agente.Read(&quot;SELECT * FROM Mesa WHERE estado='ocupada'&quot;);</span>
+<span class="fc" id="L29">		rs = agente.Read(&quot;SELECT * FROM Mesa WHERE estado='ocupada'&quot;);</span>
 		try {
-<span class="fc bfc" id="L33" title="All 2 branches covered.">			while(rs.next()){</span>
-<span class="fc" id="L34">				Mesa mesa = new Mesa(rs.getInt(1), rs.getString(2));</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">			while (rs.next()) {</span>
+<span class="fc" id="L32">				Mesa mesa = new Mesa(rs.getInt(1), rs.getString(2));</span>
 				
-<span class="fc" id="L36">				lista.add(mesa);</span>
-<span class="fc" id="L37">			}</span>
-<span class="nc" id="L38">		} catch (SQLException e) {</span>
-<span class="nc" id="L39">			e.printStackTrace();</span>
-<span class="fc" id="L40">		}</span>
-<span class="fc" id="L41">	}</span>
-	
-	public static void leerMesasPorCamarero(LinkedList&lt;Mesa&gt; lista, String camarero) {
+<span class="fc" id="L34">				pLista.add(mesa);</span>
+<span class="fc" id="L35">			}</span>
+<span class="nc" id="L36">		} catch (SQLException e) {</span>
+<span class="nc" id="L37">			e.printStackTrace();</span>
+<span class="fc" id="L38">		}</span>
+<span class="fc" id="L39">	}</span>
+
+	public static void leerMesasPorCamarero(final LinkedList&lt;Mesa&gt; pLista, final String pCamarero) {
 		ResultSet rs;
-<span class="fc" id="L45">		LocalDateTime turnoActual= DTOReserva.obtenerTurno();</span>
-<span class="fc" id="L46">		String subConsultaIdCamarero=&quot;(SELECT idCamarero FROM Camarero WHERE nombre='&quot;+camarero+&quot;')&quot;;</span>
+<span class="fc" id="L43">		LocalDateTime turnoActual = DTOReserva.obtenerTurno();</span>
+<span class="fc" id="L44">		String subConsultaIdCamarero = &quot;(SELECT idCamarero FROM Camarero WHERE nombre='&quot; + pCamarero + &quot;')&quot;;</span>
 		
-<span class="fc" id="L48">		rs=agente.Read(&quot;SELECT idMesa FROM MesaCamareroReserva WHERE turno='&quot;+turnoActual+&quot;' &quot;</span>
-				+ &quot;AND idCamarero=&quot;+subConsultaIdCamarero);
+<span class="fc" id="L46">		rs = agente.Read(&quot;SELECT idMesa FROM MesaCamareroReserva WHERE turno='&quot; + turnoActual + &quot;' &quot;</span>
+				+ &quot;AND idCamarero=&quot; + subConsultaIdCamarero);
 		try {
-<span class="fc bfc" id="L51" title="All 2 branches covered.">			while(rs.next()){</span>
-<span class="fc" id="L52">				Mesa mesa = new Mesa(rs.getInt(1), &quot;&quot;);</span>
-<span class="fc" id="L53">				lista.add(mesa);</span>
-<span class="fc" id="L54">			}</span>
-<span class="nc" id="L55">		} catch (SQLException e) {</span>
-<span class="nc" id="L56">			e.printStackTrace();</span>
-<span class="fc" id="L57">		}</span>
-<span class="fc" id="L58">	}</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">			while (rs.next()) {</span>
+<span class="fc" id="L50">				Mesa mesa = new Mesa(rs.getInt(1), &quot;&quot;);</span>
+<span class="fc" id="L51">				pLista.add(mesa);</span>
+<span class="fc" id="L52">			}</span>
+<span class="nc" id="L53">		} catch (SQLException e) {</span>
+<span class="nc" id="L54">			e.printStackTrace();</span>
+<span class="fc" id="L55">		}</span>
+<span class="fc" id="L56">	}</span>
 
-	public static int asignarCamarero(Camarero camarero, String idReserva) {
-<span class="fc" id="L61">		return agente.Update(&quot;UPDATE MesaCamareroReserva SET idCamarero&quot;</span>
-<span class="fc" id="L62">				+ &quot;=&quot;+camarero.getIdCamarero()+&quot; WHERE idReserva=&quot;+idReserva);</span>
+	public static int asignarCamarero(final Camarero pCamarero, final String pIdReserva) {
+<span class="fc" id="L59">		return agente.Update(&quot;UPDATE MesaCamareroReserva SET idCamarero&quot;</span>
+<span class="fc" id="L60">				+ &quot;=&quot; + pCamarero.getIdCamarero() + &quot; WHERE idReserva=&quot; + pIdReserva);</span>
 	}
-	public static int cambiarMesaOcupada(String idReserva) {
-<span class="fc" id="L65">		ResultSet resultIdMesa=agente.Read(&quot;SELECT idMesa FROM MesaCamareroReserva WHERE idReserva=&quot;+idReserva);</span>
-<span class="fc" id="L66">		int idMesa, resultado=0;</span>
+	public static int cambiarMesaOcupada(final String pIdReserva) {
+<span class="fc" id="L63">		ResultSet resultIdMesa = agente.Read(&quot;SELECT idMesa FROM MesaCamareroReserva WHERE idReserva=&quot; + pIdReserva);</span>
+<span class="fc" id="L64">		int idMesa, resultado = 0;</span>
 		try {
-<span class="pc bpc" id="L68" title="1 of 2 branches missed.">			if(resultIdMesa.next()) {</span>
-<span class="fc" id="L69">				idMesa=resultIdMesa.getInt(1);</span>
-<span class="fc" id="L70">				resultado=cambiarEstado(idMesa+&quot;&quot;, &quot;ocupada&quot;);</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">			if (resultIdMesa.next()) {</span>
+<span class="fc" id="L67">				idMesa = resultIdMesa.getInt(1);</span>
+<span class="fc" id="L68">				resultado = cambiarEstado(idMesa + &quot;&quot;, &quot;ocupada&quot;);</span>
 			}
-<span class="nc" id="L72">		} catch (SQLException e) {</span>
-<span class="nc" id="L73">			e.printStackTrace();</span>
-<span class="fc" id="L74">		}</span>
-<span class="fc" id="L75">		return resultado;</span>
+<span class="nc" id="L70">		} catch (SQLException e) {</span>
+<span class="nc" id="L71">			e.printStackTrace();</span>
+<span class="fc" id="L72">		}</span>
+<span class="fc" id="L73">		return resultado;</span>
 	}
 
-	public static void leerMesa(int id, LinkedList&lt;Mesa&gt; lista) {
+	public static void leerMesa(final int pId, final LinkedList&lt;Mesa&gt; pLista) {
 		ResultSet rs;
-<span class="fc" id="L80">		rs=agente.Read(&quot;SELECT * FROM Mesa WHERE IdMesa= &quot;+id+&quot;;&quot;);</span>
+<span class="fc" id="L78">		rs = agente.Read(&quot;SELECT * FROM Mesa WHERE IdMesa= &quot; + pId + &quot;;&quot;);</span>
 		try {
-<span class="fc bfc" id="L82" title="All 2 branches covered.">			while(rs.next()){</span>
-<span class="fc" id="L83">				Mesa mesa = new Mesa(rs.getInt(1), rs.getString(2));</span>
-<span class="fc" id="L84">				lista.add(mesa);</span>
-<span class="fc" id="L85">			}</span>
-<span class="nc" id="L86">		} catch (SQLException e) {</span>
-<span class="nc" id="L87">			e.printStackTrace();</span>
-<span class="fc" id="L88">		}</span>
-<span class="fc" id="L89">	}</span>
-	public static String consultarEstadoMesa(String id) {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">			while (rs.next()) {</span>
+<span class="fc" id="L81">				Mesa mesa = new Mesa(rs.getInt(1), rs.getString(2));</span>
+<span class="fc" id="L82">				pLista.add(mesa);</span>
+<span class="fc" id="L83">			}</span>
+<span class="nc" id="L84">		} catch (SQLException e) {</span>
+<span class="nc" id="L85">			e.printStackTrace();</span>
+<span class="fc" id="L86">		}</span>
+<span class="fc" id="L87">	}</span>
+	public static String consultarEstadoMesa(final String pId) {
 		ResultSet rs;
-<span class="fc" id="L92">		String estado=&quot;&quot;;</span>
-<span class="fc" id="L93">		rs=agente.Read(&quot;SELECT estado FROM Mesa WHERE idMesa=&quot;+id);</span>
+<span class="fc" id="L90">		String estado = &quot;&quot;;</span>
+<span class="fc" id="L91">		rs = agente.Read(&quot;SELECT estado FROM Mesa WHERE idMesa=&quot; + pId);</span>
 		try {
-<span class="pc bpc" id="L95" title="1 of 2 branches missed.">				if(rs.next()) {</span>
-<span class="fc" id="L96">					estado=rs.getString(1);</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">				if (rs.next()) {</span>
+<span class="fc" id="L94">					estado = rs.getString(1);</span>
 				}
-<span class="nc" id="L98">		} catch (SQLException e) {</span>
-<span class="nc" id="L99">			e.printStackTrace();</span>
-<span class="fc" id="L100">		}</span>
-<span class="fc" id="L101">		return estado;</span>
+<span class="nc" id="L96">		} catch (SQLException e) {</span>
+<span class="nc" id="L97">			e.printStackTrace();</span>
+<span class="fc" id="L98">		}</span>
+<span class="fc" id="L99">		return estado;</span>
 	}
-	public static int cambiarEstado(String id, String estado) {
-<span class="fc" id="L104">		return agente.Update(&quot;UPDATE Mesa SET estado = '&quot;+estado+&quot;' WHERE idMesa = &quot;+id);</span>
+	public static int cambiarEstado(final String pId, final String pEstado) {
+<span class="fc" id="L102">		return agente.Update(&quot;UPDATE Mesa SET estado = '&quot; + pEstado + &quot;' WHERE idMesa = &quot; + pId);</span>
 	}
-	public static String secuenciarEstado(String estadoActual) {
-<span class="fc" id="L107">		String estado=&quot;&quot;;</span>
-<span class="pc bpc" id="L108" title="9 of 10 branches missed.">		switch(estadoActual) {</span>
+	public static String secuenciarEstado(final String pEstadoActual) {
+<span class="fc" id="L105">		String estado = &quot;&quot;;</span>
+<span class="pc bpc" id="L106" title="9 of 10 branches missed.">		switch (pEstadoActual) {</span>
 		case &quot;libre&quot;:
-<span class="nc" id="L110">			estado=&quot;reservada&quot;;</span>
-<span class="nc" id="L111">			break;</span>
+<span class="nc" id="L108">			estado = &quot;reservada&quot;;</span>
+<span class="nc" id="L109">			break;</span>
 		case &quot;reservada&quot;:
-<span class="nc" id="L113">			estado=&quot;ocupada&quot;;</span>
-<span class="nc" id="L114">			break;</span>
+<span class="nc" id="L111">			estado = &quot;ocupada&quot;;</span>
+<span class="nc" id="L112">			break;</span>
 		case &quot;ocupada&quot;:
-<span class="fc" id="L116">			estado=&quot;pidiendo&quot;;</span>
-<span class="fc" id="L117">			break;</span>
+<span class="fc" id="L114">			estado = &quot;pidiendo&quot;;</span>
+<span class="fc" id="L115">			break;</span>
 		case &quot;pidiendo&quot;:
-<span class="nc" id="L119">			estado=&quot;en espera de comida&quot;;</span>
-<span class="nc" id="L120">			break;</span>
+<span class="nc" id="L117">			estado = &quot;en espera de comida&quot;;</span>
+<span class="nc" id="L118">			break;</span>
 		case &quot;en espera de comida&quot;:
-<span class="nc" id="L122">			estado=&quot;servidos&quot;;</span>
-<span class="nc" id="L123">			break;</span>
+<span class="nc" id="L120">			estado = &quot;servidos&quot;;</span>
+<span class="nc" id="L121">			break;</span>
 		case &quot;servidos&quot;:
-<span class="nc" id="L125">			estado=&quot;esperando la cuenta&quot;;</span>
-<span class="nc" id="L126">			break;</span>
+<span class="nc" id="L123">			estado = &quot;esperando la cuenta&quot;;</span>
+<span class="nc" id="L124">			break;</span>
 		case &quot;esperando la cuenta&quot;:
-<span class="nc" id="L128">			estado=&quot;pagando&quot;;</span>
-<span class="nc" id="L129">			break;</span>
+<span class="nc" id="L126">			estado = &quot;pagando&quot;;</span>
+<span class="nc" id="L127">			break;</span>
 		case &quot;pagando&quot;:
-<span class="nc" id="L131">			estado=&quot;en preparacion&quot;;</span>
-<span class="nc" id="L132">			break;</span>
+<span class="nc" id="L129">			estado = &quot;en preparacion&quot;;</span>
+<span class="nc" id="L130">			break;</span>
 		case &quot;en preparacion&quot;:
-<span class="nc" id="L134">			estado=&quot;libre&quot;;</span>
+<span class="nc" id="L132">			estado = &quot;libre&quot;;</span>
 			break;
 		}
-<span class="fc" id="L137">		return estado;</span>
+<span class="fc" id="L135">		return estado;</span>
 	}
-	public static boolean estadoCorrecto(String idMesa) {
-<span class="fc" id="L140">		boolean correcto=false;</span>
-<span class="fc" id="L141">		ResultSet rs=agente.Read(&quot;SELECT estado FROM Mesa WHERE idMesa=&quot;+idMesa);</span>
+	public static boolean estadoCorrecto(final String pIdMesa) {
+<span class="fc" id="L138">		boolean correcto = false;</span>
+<span class="fc" id="L139">		ResultSet rs = agente.Read(&quot;SELECT estado FROM Mesa WHERE idMesa=&quot; + pIdMesa);</span>
 		try {
-<span class="pc bpc" id="L143" title="1 of 2 branches missed.">			if(rs.next()) {</span>
-<span class="pc bpc" id="L144" title="1 of 2 branches missed.">				if(rs.getString(1).equals(&quot;pidiendo&quot;)) {</span>
-<span class="fc" id="L145">					correcto=true;</span>
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">			if (rs.next()) {</span>
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">				if (rs.getString(1).equals(&quot;pidiendo&quot;)) {</span>
+<span class="fc" id="L143">					correcto = true;</span>
 				}
 			}
-<span class="nc" id="L148">		} catch (SQLException e) {</span>
-<span class="nc" id="L149">			e.printStackTrace();</span>
-<span class="fc" id="L150">		}</span>
-<span class="fc" id="L151">		return correcto;</span>
+<span class="nc" id="L146">		} catch (SQLException e) {</span>
+<span class="nc" id="L147">			e.printStackTrace();</span>
+<span class="fc" id="L148">		}</span>
+<span class="fc" id="L149">		return correcto;</span>
 	}
 	public static void actualizarEstadoMesasPorTurno() {
-<span class="fc" id="L154">		LocalDateTime turnoActual=DTOReserva.obtenerTurno();</span>
-<span class="fc" id="L155">		String subConsulta=&quot;SELECT idMesa FROM MesaCamareroReserva WHERE turno='&quot;+turnoActual+&quot;'&quot;;</span>
-<span class="fc" id="L156">		ResultSet rs=agente.Read(subConsulta);</span>
+<span class="fc" id="L152">		LocalDateTime turnoActual = DTOReserva.obtenerTurno();</span>
+<span class="fc" id="L153">		String subConsulta = &quot;SELECT idMesa FROM MesaCamareroReserva WHERE turno='&quot; + turnoActual + &quot;'&quot;;</span>
+<span class="fc" id="L154">		ResultSet rs = agente.Read(subConsulta);</span>
 		try {
-<span class="fc bfc" id="L158" title="All 2 branches covered.">			while(rs.next()) {</span>
-<span class="fc" id="L159">				String consulta=&quot;UPDATE Mesa SET estado='reservada' WHERE estado='libre' &quot;</span>
-<span class="fc" id="L160">						+ &quot;AND idMesa=&quot;+rs.getInt(1);</span>
-<span class="fc" id="L161">			}</span>
-<span class="nc" id="L162">		} catch (SQLException e) {</span>
-<span class="nc" id="L163">			e.printStackTrace();</span>
-<span class="fc" id="L164">		}</span>
-<span class="fc" id="L165">	}</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">			while (rs.next()) {</span>
+<span class="fc" id="L157">				String consulta = &quot;UPDATE Mesa SET estado='reservada' WHERE estado='libre' &quot;</span>
+<span class="fc" id="L158">						+ &quot;AND idMesa=&quot; + rs.getInt(1);</span>
+<span class="fc" id="L159">			}</span>
+<span class="nc" id="L160">		} catch (SQLException e) {</span>
+<span class="nc" id="L161">			e.printStackTrace();</span>
+<span class="fc" id="L162">		}</span>
+<span class="fc" id="L163">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

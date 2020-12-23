@@ -39,7 +39,6 @@ public class DTOReservaTest {
 		fecha = LocalDateTime.of(s, hm);
 		turno=dtoReserva.obtenerTurno();
 		try {
-//			agente.Insert("INSERT INTO Camarero (idCamarero, nombre) VALUES (100,'Alex')");
 			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (100,'libre')");
 			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (102,'reservada')");
 			agente.Insert("INSERT INTO Mesa (idMesa, estado) VALUES (101,'pidiendo')");

@@ -1,28 +1,50 @@
 package Dominio;
 
 public class Mesa {
-
+	/**
+	 * idMesa.
+	 */
 	private int id;
+	/**
+	 * Estado de la mesa.
+	 */
 	private String estado;
-	
-	public Mesa(int id, String estado) {
-		this.setId(id);
-		this.setEstado(estado);
+	/**
+	 * Constructor clase Mesa.
+	 * @param pId
+	 * @param pEstado
+	 */
+	public Mesa(final int pId, final String pEstado) {
+		this.setId(pId);
+		this.setEstado(pEstado);
 	}
 
+	/**
+	 * Obtener el estado de la mesa.
+	 * @return String
+	 */
 	public String getEstado() {
 		return estado;
 	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
+	/**
+	 * Establecer el estado de la mesa.
+	 * @param pEstado
+	 */
+	public void setEstado(final String pEstado) {
+		this.estado = pEstado;
 	}
-
+	/**
+	 * Obtener el id de la mesa.
+	 * @return int
+	 */
 	public int getId() {
 		return this.id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	/**
+	 * Establecer el id de la mesa.
+	 * @param pId
+	 */
+	public void setId(final int pId) {
+		this.id = pId;
 	}
 }

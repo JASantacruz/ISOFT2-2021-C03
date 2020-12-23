@@ -5,32 +5,23 @@ public class Camarero {
 	private int idCamarero;
 	private String nombre;
 	
-	public Camarero(int idCamarero, String nombre) {
+	public Camarero(final int pIdCamarero,final String pNombre) {
 		super();
-		this.setIdCamarero(idCamarero);
-		this.setNombre(nombre);
+		this.setIdCamarero(pIdCamarero);
+		this.setNombre(pNombre);
 	}
-	
-	
 	public int getIdCamarero() {
 		return idCamarero;
 	}
-	
-	
-	public void setIdCamarero(int idCamarero) {
-		this.idCamarero = idCamarero;
+	public void setIdCamarero(final int pIdCamarero) {
+		this.idCamarero = pIdCamarero;
 	}
-	
-	
+
 	public String getNombre() {
 		return nombre;
 	}
-	
-	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public void setNombre(final String pNombre) {
+		this.nombre = pNombre;
 	}
-	
-	
-	
 }

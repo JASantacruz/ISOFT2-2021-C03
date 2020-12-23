@@ -1,12 +1,14 @@
 Presentacion\IU_AnotarComandaTest.class
-Presentacion\IU_AlmacenTest.class
 Presentacion\IU_Bienvenida_JefeSalaTest.class
 Presentacion\IU_CancelarReservaTest.class
 Presentacion\IU_HacerPrevisionTest.class
-Presentacion\IU_SecuenciarEstadosTest.class
 Presentacion\IU_MostrarCuentaTest.class
 Presentacion\IU_CocineroTest.class
-Presentacion\IU_ReservarMesaTest.class
 Presentacion\IU_ConsultarEstadisticasTest.class
 Presentacion\IU_ComprobarReservaTest.class
+Presentacion\IU_AlmacenTest.class
+Presentacion\IU_AvisarCamareroTest.class
+Presentacion\IU_CamareroTest.class
+Presentacion\IU_SecuenciarEstadosTest.class
+Presentacion\IU_ReservarMesaTest.class
 Presentacion\IU_PrincipalTest.class

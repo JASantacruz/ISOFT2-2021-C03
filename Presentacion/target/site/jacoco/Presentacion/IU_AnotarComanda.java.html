@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_AnotarComanda.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_AnotarComanda.java</span></div><h1>IU_AnotarComanda.java</h1><pre class="source lang-java linenums">package Presentacion;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_AnotarComanda.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_AnotarComanda.java</span></div><h1>IU_AnotarComanda.java</h1><pre class="source lang-java linenums">package Presentacion;
 
 import java.awt.EventQueue;
 import java.util.LinkedList;
@@ -87,7 +87,7 @@ public class IU_AnotarComanda{
 <span class="fc" id="L87">		frmFritura = new JFrame();</span>
 <span class="fc" id="L88">		frmFritura.setTitle(&quot;Fritura&quot;);</span>
 <span class="fc" id="L89">		frmFritura.setBounds(380, 170, 700, 500);</span>
-<span class="fc" id="L90">		frmFritura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L90">		frmFritura.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);</span>
 <span class="fc" id="L91">		frmFritura.setVisible(true);</span>
 <span class="fc" id="L92">		frmFritura.getContentPane().setLayout(null);</span>
 
@@ -168,9 +168,9 @@ public class IU_AnotarComanda{
 <span class="fc" id="L168">		LinkedList&lt;String&gt; listaEntrantes=new LinkedList&lt;String&gt;();</span>
 <span class="fc" id="L169">		DTOAlimento.leerNombreAlimentosPorTipo(listaEntrantes, lblEntrantes.getText());</span>
 <span class="fc" id="L170">		DefaultListModel modeloEntrantes = new DefaultListModel();</span>
-<span class="pc bpc" id="L171" title="1 of 2 branches missed.">		for(String nombre: listaEntrantes) {</span>
-<span class="nc" id="L172">			modeloEntrantes.addElement(nombre);</span>
-<span class="nc" id="L173">		}</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">		for(String nombre: listaEntrantes) {</span>
+<span class="fc" id="L172">			modeloEntrantes.addElement(nombre);</span>
+<span class="fc" id="L173">		}</span>
 <span class="fc" id="L174">		lstEntrantes.setModel(modeloEntrantes);</span>
 
 <span class="fc" id="L176">		lstPrimerPlato = new JList();</span>
@@ -192,9 +192,9 @@ public class IU_AnotarComanda{
 <span class="fc" id="L192">		LinkedList&lt;String&gt; listaSegundosPlatos=new LinkedList&lt;String&gt;();</span>
 <span class="fc" id="L193">		DTOAlimento.leerNombreAlimentosPorTipo(listaSegundosPlatos, lblSegundoPlato.getText());</span>
 <span class="fc" id="L194">		DefaultListModel modeloSegundosPlatos = new DefaultListModel();</span>
-<span class="pc bpc" id="L195" title="1 of 2 branches missed.">		for(String nombre: listaSegundosPlatos) {</span>
-<span class="nc" id="L196">			modeloSegundosPlatos.addElement(nombre);</span>
-<span class="nc" id="L197">		}</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">		for(String nombre: listaSegundosPlatos) {</span>
+<span class="fc" id="L196">			modeloSegundosPlatos.addElement(nombre);</span>
+<span class="fc" id="L197">		}</span>
 <span class="fc" id="L198">		lstSegundoPlato.setModel(modeloSegundosPlatos);</span>
 
 <span class="fc" id="L200">		lstPostre = new JList();</span>
@@ -256,37 +256,38 @@ public class IU_AnotarComanda{
 <span class="nc" id="L256">			ingredientesSinStock=DTOComanda.comprobarStock(ingredientes);</span>
 <span class="nc bnc" id="L257" title="All 2 branches missed.">			if(ingredientesSinStock.size()==0) {</span>
 <span class="nc" id="L258">				DTOComanda.guardarComanda(comboBox.getSelectedItem().toString(), ingredientes);</span>
-<span class="nc" id="L259">				JOptionPane.showMessageDialog(null, &quot;Comanda enviada a cocina&quot;, &quot;Comanda realizada&quot;,JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="nc" id="L259">				DTOComanda.actualizarStock(ingredientes);</span>
+<span class="nc" id="L260">				JOptionPane.showMessageDialog(null, &quot;Comanda enviada a cocina&quot;, &quot;Comanda realizada&quot;,JOptionPane.INFORMATION_MESSAGE);</span>
 			}else {
 
-<span class="nc bnc" id="L262" title="All 2 branches missed.">				while(ingredientesSinStock.size()!=0) {</span>
-<span class="nc" id="L263">					int contador=0;</span>
-<span class="nc bnc" id="L264" title="All 2 branches missed.">					for(int i=0;i&lt;modeloComandaActual.getSize();i++) {</span>
-<span class="nc bnc" id="L265" title="All 2 branches missed.">						if(modeloComandaActual.get(i).equals(ingredientesSinStock.get(0))) {</span>
-<span class="nc" id="L266">							contador++;</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">				while(ingredientesSinStock.size()!=0) {</span>
+<span class="nc" id="L264">					int contador=0;</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">					for(int i=0;i&lt;modeloComandaActual.getSize();i++) {</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">						if(modeloComandaActual.get(i).equals(ingredientesSinStock.get(0))) {</span>
+<span class="nc" id="L267">							contador++;</span>
 						}
 					}
-<span class="nc bnc" id="L269" title="All 2 branches missed.">					while(contador!=0) {</span>
-<span class="nc" id="L270">						modeloComandaActual.removeElement(ingredientesSinStock.get(0));</span>
-<span class="nc" id="L271">						contador--;</span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">					while(contador!=0) {</span>
+<span class="nc" id="L271">						modeloComandaActual.removeElement(ingredientesSinStock.get(0));</span>
+<span class="nc" id="L272">						contador--;</span>
 					}
-<span class="nc" id="L273">					mensajeIngredientesSinStock=mensajeIngredientesSinStock.concat(&quot;- &quot;+ingredientesSinStock.get(0)+&quot;\n&quot;);</span>
-<span class="nc" id="L274">					ingredientesSinStock.remove(0);</span>
-<span class="nc" id="L275">				}</span>
-<span class="nc" id="L276">				JOptionPane.showMessageDialog(null, mensajeIngredientesSinStock, &quot;Sin stock&quot;,JOptionPane.WARNING_MESSAGE);</span>
+<span class="nc" id="L274">					mensajeIngredientesSinStock=mensajeIngredientesSinStock.concat(&quot;- &quot;+ingredientesSinStock.get(0)+&quot;\n&quot;);</span>
+<span class="nc" id="L275">					ingredientesSinStock.remove(0);</span>
+<span class="nc" id="L276">				}</span>
+<span class="nc" id="L277">				JOptionPane.showMessageDialog(null, mensajeIngredientesSinStock, &quot;Sin stock&quot;,JOptionPane.WARNING_MESSAGE);</span>
 			}
-<span class="nc" id="L278">		}</span>
+<span class="nc" id="L279">		}</span>
 	}
-<span class="fc" id="L280">	private class BtnConfirmarNMesaActionListener implements ActionListener {</span>
+<span class="fc" id="L281">	private class BtnConfirmarNMesaActionListener implements ActionListener {</span>
 		public void actionPerformed(ActionEvent arg0) {
-<span class="nc" id="L282">			String idMesa=comboBox.getSelectedItem().toString();</span>
-<span class="nc bnc" id="L283" title="All 2 branches missed.">			if(DTOMesa.estadoCorrecto(idMesa)) {</span>
-<span class="nc" id="L284">				btnConfirmarComanda.setEnabled(true);</span>
+<span class="nc" id="L283">			String idMesa=comboBox.getSelectedItem().toString();</span>
+<span class="nc bnc" id="L284" title="All 2 branches missed.">			if(DTOMesa.estadoCorrecto(idMesa)) {</span>
+<span class="nc" id="L285">				btnConfirmarComanda.setEnabled(true);</span>
 			}else {
-<span class="nc" id="L286">				JOptionPane.showMessageDialog(null, &quot;Debe secuenciar el estado &quot;</span>
+<span class="nc" id="L287">				JOptionPane.showMessageDialog(null, &quot;Debe secuenciar el estado &quot;</span>
 						+ &quot;de la mesa:&quot;+idMesa, &quot;Estado incorrecto&quot;,JOptionPane.WARNING_MESSAGE);
 			}
-<span class="nc" id="L289">		}</span>
+<span class="nc" id="L290">		}</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

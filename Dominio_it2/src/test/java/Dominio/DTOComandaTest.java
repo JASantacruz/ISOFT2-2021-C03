@@ -55,7 +55,7 @@ public class DTOComandaTest {
 
 	@Test
 	public void testIndiceIngrediente() throws SQLException {
-		String ce = "Cebolla";
+		String ce = "Calabacin";
 		Ingrediente in;
 		LinkedList<Ingrediente> ig = new LinkedList<>();
 		ResultSet rs = ag.Read("SELECT * FROM Ingrediente");

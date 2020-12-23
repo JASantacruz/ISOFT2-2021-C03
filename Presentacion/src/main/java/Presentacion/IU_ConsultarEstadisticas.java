@@ -63,7 +63,8 @@ public class IU_ConsultarEstadisticas {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.setVisible(true);
 		frame.setBounds(new Rectangle(380, 170, 700, 500));
 		frame.getContentPane().setLayout(null);
 		

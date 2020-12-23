@@ -32,8 +32,9 @@ public class IU_Principal implements Fuente{
 	private JRadioButton rdbtnCamarero;
 	private JButton btnEntrar;
 	private JRadioButton rdbtnCocinero;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton rdBtnCamareroBarra;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JButton btnConsultarEstadisticas;
 	/**
 	 * Launch the application.
 	 */
@@ -78,7 +79,7 @@ public class IU_Principal implements Fuente{
 		};
 
 		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(timerTask, 1, 60000);
+		timer.scheduleAtFixedRate(timerTask, 1, 120000);
 
 		pnlPrincipal = new JPanel();
 		pnlPrincipal.setLayout(null);
@@ -130,8 +131,20 @@ public class IU_Principal implements Fuente{
 		pnlPrincipal.add(rdbtnCocinero);
 		
 		rdBtnCamareroBarra = new JRadioButton("Camarero de barra");
+		buttonGroup.add(rdBtnCamareroBarra);
 		rdBtnCamareroBarra.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		rdBtnCamareroBarra.setBounds(234, 283, 177, 23);
 		pnlPrincipal.add(rdBtnCamareroBarra);
+		
+		btnConsultarEstadisticas = new JButton("Consultar Estadisticas");
+		btnConsultarEstadisticas.addActionListener(new BtnConsultarEstadisticasActionListener());
+		btnConsultarEstadisticas.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnConsultarEstadisticas.setBounds(467, 392, 177, 23);
+		pnlPrincipal.add(btnConsultarEstadisticas);
+	}
+	private class BtnConsultarEstadisticasActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			IU_ConsultarEstadisticas iuConsEst= new IU_ConsultarEstadisticas();
+		}
 	}
 }

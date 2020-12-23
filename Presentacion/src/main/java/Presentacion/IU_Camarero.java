@@ -25,7 +25,6 @@ public class IU_Camarero {
 	private JFrame frame;
 	private JButton btnCambiarEstadoMesa;
 	private JButton btnAnotarComanda;
-	private JButton btnEnviarComanda;
 	private JLabel lblSeleccionCamarero;
 	private JComboBox cBoxCamareros;
 	private JButton btnPagarCuenta;
@@ -60,7 +59,7 @@ public class IU_Camarero {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(380, 170, 700, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(null);
 		
@@ -78,18 +77,11 @@ public class IU_Camarero {
 		btnAnotarComanda.setBounds(33, 239, 172, 31);
 		frame.getContentPane().add(btnAnotarComanda);
 		
-		btnEnviarComanda = new JButton("Enviar Comanda");
-		btnEnviarComanda.addActionListener(new BtnEnviarComandaActionListener());
-		btnEnviarComanda.setEnabled(false);
-		btnEnviarComanda.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnEnviarComanda.setBounds(473, 239, 172, 31);
-		frame.getContentPane().add(btnEnviarComanda);
-		
 		btnPagarCuenta = new JButton("Imprimir cuenta");
 		btnPagarCuenta.setEnabled(false);
 		btnPagarCuenta.addActionListener(new BtnPagarCuentaActionListener());
 		btnPagarCuenta.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnPagarCuenta.setBounds(222, 291, 229, 31);
+		btnPagarCuenta.setBounds(471, 239, 187, 31);
 		frame.getContentPane().add(btnPagarCuenta);
 		
 		lblSeleccionCamarero = new JLabel("Identificación del camarero:");
@@ -118,7 +110,6 @@ public class IU_Camarero {
 		public void actionPerformed(ActionEvent arg0) {
 			if(!cBoxCamareros.getSelectedItem().toString().equals("   ----")) {
 				avisos="";
-				btnEnviarComanda.setEnabled(true);
 				btnAnotarComanda.setEnabled(true);
 				btnCambiarEstadoMesa.setEnabled(true);
 				btnPagarCuenta.setEnabled(true);
@@ -131,7 +122,6 @@ public class IU_Camarero {
 					JOptionPane.showMessageDialog(null, avisos, "Avisos",JOptionPane.WARNING_MESSAGE);
 				}
 			}else {
-				btnEnviarComanda.setEnabled(false);
 				btnAnotarComanda.setEnabled(false);
 				btnCambiarEstadoMesa.setEnabled(false);
 				btnPagarCuenta.setEnabled(false);
@@ -141,10 +131,6 @@ public class IU_Camarero {
 	private class BtnCambiarEstadoMesaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			IU_SecuenciarEstados iuSecuenciarEstado= new IU_SecuenciarEstados(cBoxCamareros.getSelectedItem().toString());
-		}
-	}
-	private class BtnEnviarComandaActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
 		}
 	}
 	private class BtnPagarCuentaActionListener implements ActionListener {

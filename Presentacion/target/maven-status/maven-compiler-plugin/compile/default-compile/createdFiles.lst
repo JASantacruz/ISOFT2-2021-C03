@@ -27,6 +27,7 @@ Presentacion\IU_Cocinero$2.class
 Presentacion\IU_ReservarMesa$1.class
 Presentacion\IU_CancelarReserva.class
 Presentacion\IU_AnotarComanda$LstBebidasMouseListener.class
+Presentacion\IU_Principal$BtnConsultarEstadisticasActionListener.class
 Presentacion\IU_AnotarComanda$BtnConfirmarComandaActionListener.class
 Presentacion\IU_Almacen$2.class
 Presentacion\IU_AvisarCamarero$CBoxCamarerosActionListener.class
@@ -59,7 +60,6 @@ Presentacion\IU_CancelarReserva$1.class
 Presentacion\IU_ConsultarEstadisticas$1.class
 Presentacion\IU_Camarero$1.class
 Presentacion\IU_Bienvenida_JefeSala.class
-Presentacion\IU_Camarero$BtnEnviarComandaActionListener.class
 Presentacion\IU_ConsultarEstadisticas.class
 Presentacion\IU_AvisarCamarero$BtnConfirmarActionListener.class
 Presentacion\IU_ConsultarEstadisticas$RdBtnRestauranteActionListener.class

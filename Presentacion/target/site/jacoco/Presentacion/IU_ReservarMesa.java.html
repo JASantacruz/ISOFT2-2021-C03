@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_ReservarMesa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_ReservarMesa.java</span></div><h1>IU_ReservarMesa.java</h1><pre class="source lang-java linenums">package Presentacion;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_ReservarMesa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_ReservarMesa.java</span></div><h1>IU_ReservarMesa.java</h1><pre class="source lang-java linenums">package Presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -96,171 +96,177 @@ public class IU_ReservarMesa extends JFrame implements Fuente, Turnos{
 <span class="nc" id="L96">					buttonGroup.clearSelection();</span>
 <span class="nc" id="L97">					txtEstado.setText(&quot;&quot;);</span>
 <span class="nc" id="L98">					txtNombre.setText(&quot;&quot;);</span>
-<span class="nc" id="L99">				}</span>
+<span class="nc" id="L99">					cmbbxComensales.setEnabled(true);</span>
+<span class="nc" id="L100">					rdbtnComida.setEnabled(true);</span>
+<span class="nc" id="L101">					rdbtnCena.setEnabled(true);</span>
+<span class="nc" id="L102">				}</span>
 				else {
-<span class="nc" id="L101">					txtMesa.setText(&quot;&quot;);</span>
-<span class="nc" id="L102">					buttonGroup.clearSelection();</span>
-<span class="nc" id="L103">					txtEstado.setText(&quot;&quot;);</span>
-<span class="nc" id="L104">					txtNombre.setText(&quot;&quot;);</span>
+<span class="nc" id="L104">					txtMesa.setText(&quot;&quot;);</span>
+<span class="nc" id="L105">					buttonGroup.clearSelection();</span>
+<span class="nc" id="L106">					txtEstado.setText(&quot;&quot;);</span>
+<span class="nc" id="L107">					txtNombre.setText(&quot;&quot;);</span>
 				}
-<span class="nc" id="L106">			}</span>
+<span class="nc" id="L109">			}</span>
 		});
-<span class="fc" id="L108">		pnlReservar.add(cmbBxMesas);</span>
+<span class="fc" id="L111">		pnlReservar.add(cmbBxMesas);</span>
 
-<span class="fc" id="L110">		lblMesaComensales = new JLabel(&quot;Nº Comensales: &quot;);</span>
-<span class="fc" id="L111">		lblMesaComensales.setBounds(334, 175, 136, 21);</span>
-<span class="fc" id="L112">		lblMesaComensales.setHorizontalAlignment(SwingConstants.CENTER);</span>
-<span class="fc" id="L113">		lblMesaComensales.setFont(FUENTE_LBL);</span>
-<span class="fc" id="L114">		pnlReservar.add(lblMesaComensales);</span>
+<span class="fc" id="L113">		lblMesaComensales = new JLabel(&quot;Nº Comensales: &quot;);</span>
+<span class="fc" id="L114">		lblMesaComensales.setBounds(334, 175, 136, 21);</span>
+<span class="fc" id="L115">		lblMesaComensales.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L116">		lblMesaComensales.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L117">		pnlReservar.add(lblMesaComensales);</span>
 
-<span class="fc" id="L116">		lblEstado = new JLabel(&quot;Estado: &quot;);</span>
-<span class="fc" id="L117">		lblEstado.setBounds(393, 339, 73, 21);</span>
-<span class="fc" id="L118">		lblEstado.setHorizontalAlignment(SwingConstants.CENTER);</span>
-<span class="fc" id="L119">		lblEstado.setFont(FUENTE_LBL);</span>
-<span class="fc" id="L120">		pnlReservar.add(lblEstado);</span>
+<span class="fc" id="L119">		lblEstado = new JLabel(&quot;Estado: &quot;);</span>
+<span class="fc" id="L120">		lblEstado.setBounds(393, 339, 73, 21);</span>
+<span class="fc" id="L121">		lblEstado.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L122">		lblEstado.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L123">		pnlReservar.add(lblEstado);</span>
 
-<span class="fc" id="L122">		txtEstado = new JTextField();</span>
-<span class="fc" id="L123">		txtEstado.setBounds(462, 330, 177, 30);</span>
-<span class="fc" id="L124">		txtEstado.setEditable(false);</span>
-<span class="fc" id="L125">		txtEstado.setColumns(10);</span>
-<span class="fc" id="L126">		pnlReservar.add(txtEstado);</span>
+<span class="fc" id="L125">		txtEstado = new JTextField();</span>
+<span class="fc" id="L126">		txtEstado.setBounds(462, 330, 177, 30);</span>
+<span class="fc" id="L127">		txtEstado.setEditable(false);</span>
+<span class="fc" id="L128">		txtEstado.setColumns(10);</span>
+<span class="fc" id="L129">		pnlReservar.add(txtEstado);</span>
 
-<span class="fc" id="L128">		btnReservar = new JButton(&quot;Reservar mesa&quot;);</span>
+<span class="fc" id="L131">		btnReservar = new JButton(&quot;Reservar mesa&quot;);</span>
 
-<span class="fc" id="L130">		btnReservar.addActionListener(new ActionListener() {</span>
+<span class="fc" id="L133">		btnReservar.addActionListener(new ActionListener() {</span>
 			public void actionPerformed(ActionEvent arg0) {
-<span class="nc" id="L132">				LocalTime hm = LocalTime.parse((String)cmbbxTurnos.getSelectedItem(), df);</span>
-<span class="nc" id="L133">				LocalDate s = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();</span>
-<span class="nc" id="L134">				LocalDateTime fecha = LocalDateTime.of(s, hm);</span>
+<span class="nc" id="L135">				LocalTime hm = LocalTime.parse((String)cmbbxTurnos.getSelectedItem(), df);</span>
+<span class="nc" id="L136">				LocalDate s = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();</span>
+<span class="nc" id="L137">				LocalDateTime fecha = LocalDateTime.of(s, hm);</span>
 
-<span class="nc" id="L136">				LinkedList&lt;Integer&gt; listaAux = new LinkedList&lt;Integer&gt;();</span>
-<span class="nc" id="L137">				DTOReserva.leerReservasAux(Integer.parseInt(txtMesa.getText()), fecha,   listaAux);</span>
+<span class="nc" id="L139">				LinkedList&lt;Integer&gt; listaAux = new LinkedList&lt;Integer&gt;();</span>
+<span class="nc" id="L140">				DTOReserva.leerReservasAux(Integer.parseInt(txtMesa.getText()), fecha,   listaAux);</span>
 
-<span class="nc bnc" id="L139" title="All 2 branches missed.">				if(listaAux.size()==0) {</span>
-<span class="nc bnc" id="L140" title="All 4 branches missed.">					if(rdbtnComida.isSelected() || rdbtnCena.isSelected()) {</span>
-<span class="nc" id="L141">						DTOReserva.anadirReserva(cmbbxComensales.getSelectedItem().toString(), fecha,txtNombre.getText(),txtMesa.getText());</span>
-<span class="nc" id="L142">						txtEstado.setText(&quot;Reservada&quot;);</span>
-<span class="nc" id="L143">						lblResultado.setText(&quot;Mesa reservada con éxito&quot;);</span>
-<span class="nc" id="L144">						lblResultado.setForeground(Color.green);</span>
-<span class="nc" id="L145">						lblResultado.setVisible(true);</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">				if(listaAux.size()==0) {</span>
+<span class="nc bnc" id="L143" title="All 4 branches missed.">					if(rdbtnComida.isSelected() || rdbtnCena.isSelected()) {</span>
+<span class="nc" id="L144">						DTOReserva.anadirReserva(cmbbxComensales.getSelectedItem().toString(), fecha,txtNombre.getText(),txtMesa.getText());</span>
+<span class="nc" id="L145">						txtEstado.setText(&quot;Reservada&quot;);</span>
+<span class="nc" id="L146">						lblResultado.setText(&quot;Mesa reservada con éxito&quot;);</span>
+<span class="nc" id="L147">						lblResultado.setForeground(Color.green);</span>
+<span class="nc" id="L148">						lblResultado.setVisible(true);</span>
 					}
 				}
 				else {
-<span class="nc" id="L149">					lblResultado.setText(&quot;Esa reserva ya existe&quot;);</span>
-<span class="nc" id="L150">					lblResultado.setForeground(Color.red);</span>
-<span class="nc" id="L151">					lblResultado.setVisible(true);		</span>
+<span class="nc" id="L152">					lblResultado.setText(&quot;Esa reserva ya existe&quot;);</span>
+<span class="nc" id="L153">					lblResultado.setForeground(Color.red);</span>
+<span class="nc" id="L154">					lblResultado.setVisible(true);		</span>
 				}
-<span class="nc" id="L153">			}</span>
+<span class="nc" id="L156">			}</span>
 		});
-<span class="fc" id="L155">		btnReservar.setBounds(54, 408, 129, 25);</span>
-<span class="fc" id="L156">		btnReservar.setFont(FUENTE_BTN);</span>
-<span class="fc" id="L157">		pnlReservar.add(btnReservar);</span>
+<span class="fc" id="L158">		btnReservar.setBounds(54, 408, 129, 25);</span>
+<span class="fc" id="L159">		btnReservar.setFont(FUENTE_BTN);</span>
+<span class="fc" id="L160">		pnlReservar.add(btnReservar);</span>
 
-<span class="fc" id="L159">		lblID = new JLabel(&quot;Id. mesa:&quot;);</span>
-<span class="fc" id="L160">		lblID.setHorizontalAlignment(SwingConstants.CENTER);</span>
-<span class="fc" id="L161">		lblID.setFont(new Font(&quot;Verdana&quot;, Font.ITALIC, 15));</span>
-<span class="fc" id="L162">		lblID.setBounds(377, 132, 93, 21);</span>
-<span class="fc" id="L163">		pnlReservar.add(lblID);</span>
+<span class="fc" id="L162">		lblID = new JLabel(&quot;Id. mesa:&quot;);</span>
+<span class="fc" id="L163">		lblID.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L164">		lblID.setFont(new Font(&quot;Verdana&quot;, Font.ITALIC, 15));</span>
+<span class="fc" id="L165">		lblID.setBounds(377, 132, 93, 21);</span>
+<span class="fc" id="L166">		pnlReservar.add(lblID);</span>
 
-<span class="fc" id="L165">		txtMesa = new JTextField();</span>
-<span class="fc" id="L166">		txtMesa.setEditable(false);</span>
-<span class="fc" id="L167">		txtMesa.setColumns(10);</span>
-<span class="fc" id="L168">		txtMesa.setBounds(462, 130, 30, 30);</span>
-<span class="fc" id="L169">		pnlReservar.add(txtMesa);</span>
+<span class="fc" id="L168">		txtMesa = new JTextField();</span>
+<span class="fc" id="L169">		txtMesa.setEditable(false);</span>
+<span class="fc" id="L170">		txtMesa.setColumns(10);</span>
+<span class="fc" id="L171">		txtMesa.setBounds(462, 130, 30, 30);</span>
+<span class="fc" id="L172">		pnlReservar.add(txtMesa);</span>
 
-<span class="fc" id="L171">		lblResultado = new JLabel(&quot;New label&quot;);</span>
-<span class="fc" id="L172">		lblResultado.setVisible(false);</span>
-<span class="fc" id="L173">		lblResultado.setBounds(193, 410, 286, 21);</span>
-<span class="fc" id="L174">		pnlReservar.add(lblResultado);</span>
+<span class="fc" id="L174">		lblResultado = new JLabel(&quot;New label&quot;);</span>
+<span class="fc" id="L175">		lblResultado.setVisible(false);</span>
+<span class="fc" id="L176">		lblResultado.setBounds(193, 410, 286, 21);</span>
+<span class="fc" id="L177">		pnlReservar.add(lblResultado);</span>
 
-<span class="fc" id="L176">		lblTurno = new JLabel(&quot;Turno:&quot;);</span>
-<span class="fc" id="L177">		lblTurno.setHorizontalAlignment(SwingConstants.CENTER);</span>
-<span class="fc" id="L178">		lblTurno.setFont(new Font(&quot;Verdana&quot;, Font.ITALIC, 15));</span>
-<span class="fc" id="L179">		lblTurno.setBounds(407, 250, 63, 21);</span>
-<span class="fc" id="L180">		pnlReservar.add(lblTurno);</span>
+<span class="fc" id="L179">		lblTurno = new JLabel(&quot;Turno:&quot;);</span>
+<span class="fc" id="L180">		lblTurno.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L181">		lblTurno.setFont(new Font(&quot;Verdana&quot;, Font.ITALIC, 15));</span>
+<span class="fc" id="L182">		lblTurno.setBounds(407, 250, 63, 21);</span>
+<span class="fc" id="L183">		pnlReservar.add(lblTurno);</span>
 
-<span class="fc" id="L182">		rdbtnComida = new JRadioButton(&quot;Comida&quot;);</span>
-<span class="fc" id="L183">		rdbtnComida.addActionListener(new ActionListener() {</span>
+<span class="fc" id="L185">		rdbtnComida = new JRadioButton(&quot;Comida&quot;);</span>
+<span class="fc" id="L186">		rdbtnComida.setEnabled(false);</span>
+<span class="fc" id="L187">		rdbtnComida.addActionListener(new ActionListener() {</span>
 			public void actionPerformed(ActionEvent arg0) {
-<span class="nc" id="L185">				cmbbxTurnos.removeAllItems();</span>
-<span class="nc" id="L186">				cmbbxTurnos.addItem(Turno1Comida.toString());</span>
-<span class="nc" id="L187">				cmbbxTurnos.addItem(Turno2Comida.toString());</span>
-<span class="nc" id="L188">				cmbbxTurnos.addItem(Turno3Comida.toString());</span>
-<span class="nc" id="L189">				cmbbxTurnos.setVisible(true);</span>
-<span class="nc" id="L190">			}</span>
+<span class="nc" id="L189">				cmbbxTurnos.removeAllItems();</span>
+<span class="nc" id="L190">				cmbbxTurnos.addItem(TURNO_1_COMIDA.toString());</span>
+<span class="nc" id="L191">				cmbbxTurnos.addItem(TURNO_2_COMIDA.toString());</span>
+<span class="nc" id="L192">				cmbbxTurnos.addItem(TURNO_3_COMIDA.toString());</span>
+<span class="nc" id="L193">				cmbbxTurnos.setVisible(true);</span>
+<span class="nc" id="L194">			}</span>
 		});
 
-<span class="fc" id="L193">		buttonGroup.add(rdbtnComida);</span>
-<span class="fc" id="L194">		rdbtnComida.setBounds(462, 250, 100, 19);</span>
-<span class="fc" id="L195">		rdbtnComida.setFont(FUENTE_RDBTN);</span>
-<span class="fc" id="L196">		pnlReservar.add(rdbtnComida);</span>
+<span class="fc" id="L197">		buttonGroup.add(rdbtnComida);</span>
+<span class="fc" id="L198">		rdbtnComida.setBounds(462, 250, 100, 19);</span>
+<span class="fc" id="L199">		rdbtnComida.setFont(FUENTE_RDBTN);</span>
+<span class="fc" id="L200">		pnlReservar.add(rdbtnComida);</span>
 
-<span class="fc" id="L198">		rdbtnCena = new JRadioButton(&quot;Cena&quot;);</span>
-<span class="fc" id="L199">		rdbtnCena.addActionListener(new ActionListener() {</span>
+<span class="fc" id="L202">		rdbtnCena = new JRadioButton(&quot;Cena&quot;);</span>
+<span class="fc" id="L203">		rdbtnCena.setEnabled(false);</span>
+<span class="fc" id="L204">		rdbtnCena.addActionListener(new ActionListener() {</span>
 			public void actionPerformed(ActionEvent arg0) {
-<span class="nc" id="L201">				cmbbxTurnos.removeAllItems();</span>
-<span class="nc" id="L202">				cmbbxTurnos.addItem(Turno1Cena.toString());</span>
-<span class="nc" id="L203">				cmbbxTurnos.addItem(Turno2Cena.toString());</span>
-<span class="nc" id="L204">				cmbbxTurnos.addItem(Turno3Cena.toString());</span>
-<span class="nc" id="L205">				cmbbxTurnos.setVisible(true);</span>
-<span class="nc" id="L206">			}</span>
+<span class="nc" id="L206">				cmbbxTurnos.removeAllItems();</span>
+<span class="nc" id="L207">				cmbbxTurnos.addItem(TURNO_1_CENA.toString());</span>
+<span class="nc" id="L208">				cmbbxTurnos.addItem(TURNO_2_CENA.toString());</span>
+<span class="nc" id="L209">				cmbbxTurnos.addItem(TURNO_3_CENA.toString());</span>
+<span class="nc" id="L210">				cmbbxTurnos.setVisible(true);</span>
+<span class="nc" id="L211">			}</span>
 		});
-<span class="fc" id="L208">		buttonGroup.add(rdbtnCena);</span>
-<span class="fc" id="L209">		rdbtnCena.setBounds(564, 250, 82, 19);</span>
-<span class="fc" id="L210">		rdbtnCena.setFont(FUENTE_RDBTN);</span>
-<span class="fc" id="L211">		pnlReservar.add(rdbtnCena);</span>
+<span class="fc" id="L213">		buttonGroup.add(rdbtnCena);</span>
+<span class="fc" id="L214">		rdbtnCena.setBounds(564, 250, 82, 19);</span>
+<span class="fc" id="L215">		rdbtnCena.setFont(FUENTE_RDBTN);</span>
+<span class="fc" id="L216">		pnlReservar.add(rdbtnCena);</span>
 
-<span class="fc" id="L213">		cmbbxTurnos = new JComboBox();</span>
-<span class="fc" id="L214">		cmbbxTurnos.addActionListener(new ActionListener() {</span>
+<span class="fc" id="L218">		cmbbxTurnos = new JComboBox();</span>
+<span class="fc" id="L219">		cmbbxTurnos.addActionListener(new ActionListener() {</span>
 			public void actionPerformed(ActionEvent arg0) {
-<span class="nc bnc" id="L216" title="All 2 branches missed.">				if(cmbbxTurnos.getItemCount()!=0) {</span>
-<span class="nc" id="L217">					LocalTime hm = LocalTime.parse((String)cmbbxTurnos.getSelectedItem(), df);</span>
-<span class="nc" id="L218">					LocalDate s = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();</span>
-<span class="nc" id="L219">					LocalDateTime fecha = LocalDateTime.of(s, hm);</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">				if(cmbbxTurnos.getItemCount()!=0) {</span>
+<span class="nc" id="L222">					LocalTime hm = LocalTime.parse((String)cmbbxTurnos.getSelectedItem(), df);</span>
+<span class="nc" id="L223">					LocalDate s = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();</span>
+<span class="nc" id="L224">					LocalDateTime fecha = LocalDateTime.of(s, hm);</span>
 
-<span class="nc" id="L221">					LinkedList&lt;Integer&gt; listaAux = new LinkedList&lt;Integer&gt;();</span>
-<span class="nc" id="L222">					DTOReserva.leerReservasAux(Integer.parseInt(txtMesa.getText()), fecha, listaAux);</span>
+<span class="nc" id="L226">					LinkedList&lt;Integer&gt; listaAux = new LinkedList&lt;Integer&gt;();</span>
+<span class="nc" id="L227">					DTOReserva.leerReservasAux(Integer.parseInt(txtMesa.getText()), fecha, listaAux);</span>
 
-<span class="nc bnc" id="L224" title="All 2 branches missed.">					if(listaAux.size()!=0) {</span>
-<span class="nc" id="L225">						txtEstado.setText(&quot;Reservada&quot;);</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">					if(listaAux.size()!=0) {</span>
+<span class="nc" id="L230">						txtEstado.setText(&quot;Reservada&quot;);</span>
 					}
 					else {
-<span class="nc" id="L228">						txtEstado.setText(&quot;Libre&quot;);</span>
+<span class="nc" id="L233">						txtEstado.setText(&quot;Libre&quot;);</span>
 					}
 				}
-<span class="nc" id="L231">			}</span>
+<span class="nc" id="L236">			}</span>
 		});
-<span class="fc" id="L233">		cmbbxTurnos.setVisible(false);</span>
-<span class="fc" id="L234">		cmbbxTurnos.setBounds(486, 279, 109, 30);</span>
-<span class="fc" id="L235">		pnlReservar.add(cmbbxTurnos);</span>
+<span class="fc" id="L238">		cmbbxTurnos.setVisible(false);</span>
+<span class="fc" id="L239">		cmbbxTurnos.setBounds(486, 279, 109, 30);</span>
+<span class="fc" id="L240">		pnlReservar.add(cmbbxTurnos);</span>
 
-<span class="fc" id="L237">		cmbbxComensales = new JComboBox();</span>
-<span class="fc" id="L238">		cmbbxComensales.setModel(new DefaultComboBoxModel(new String[] {&quot;2&quot;, &quot;4&quot;, &quot;6&quot;}));</span>
-<span class="fc" id="L239">		cmbbxComensales.setFont(FUENTE_RDBTN);</span>
-<span class="fc" id="L240">		cmbbxComensales.setBounds(461, 177, 43, 21);</span>
-<span class="fc" id="L241">		pnlReservar.add(cmbbxComensales);</span>
+<span class="fc" id="L242">		cmbbxComensales = new JComboBox();</span>
+<span class="fc" id="L243">		cmbbxComensales.setEnabled(false);</span>
+<span class="fc" id="L244">		cmbbxComensales.setModel(new DefaultComboBoxModel(new String[] {&quot;2&quot;, &quot;4&quot;, &quot;6&quot;}));</span>
+<span class="fc" id="L245">		cmbbxComensales.setFont(FUENTE_RDBTN);</span>
+<span class="fc" id="L246">		cmbbxComensales.setBounds(461, 177, 43, 21);</span>
+<span class="fc" id="L247">		pnlReservar.add(cmbbxComensales);</span>
 
-<span class="fc" id="L243">		dateChooser = new JDateChooser();</span>
-<span class="fc" id="L244">		dateChooser.setBounds(461, 208, 143, 30);</span>
-<span class="fc" id="L245">		dateChooser.setFont(FUENTE_LBL);</span>
-<span class="fc" id="L246">		pnlReservar.add(dateChooser);</span>
+<span class="fc" id="L249">		dateChooser = new JDateChooser();</span>
+<span class="fc" id="L250">		dateChooser.setBounds(461, 208, 143, 30);</span>
+<span class="fc" id="L251">		dateChooser.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L252">		pnlReservar.add(dateChooser);</span>
 
-<span class="fc" id="L248">		lblFecha = new JLabel(&quot;Fecha:&quot;);</span>
-<span class="fc" id="L249">		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);</span>
-<span class="fc" id="L250">		lblFecha.setBounds(394, 219, 76, 19);</span>
-<span class="fc" id="L251">		lblFecha.setFont(FUENTE_LBL);</span>
-<span class="fc" id="L252">		pnlReservar.add(lblFecha);</span>
+<span class="fc" id="L254">		lblFecha = new JLabel(&quot;Fecha:&quot;);</span>
+<span class="fc" id="L255">		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L256">		lblFecha.setBounds(394, 219, 76, 19);</span>
+<span class="fc" id="L257">		lblFecha.setFont(FUENTE_LBL);</span>
+<span class="fc" id="L258">		pnlReservar.add(lblFecha);</span>
 
-<span class="fc" id="L254">		txtNombre = new JTextField();</span>
-<span class="fc" id="L255">		txtNombre.setColumns(10);</span>
-<span class="fc" id="L256">		txtNombre.setBounds(462, 370, 177, 30);</span>
-<span class="fc" id="L257">		pnlReservar.add(txtNombre);</span>
+<span class="fc" id="L260">		txtNombre = new JTextField();</span>
+<span class="fc" id="L261">		txtNombre.setColumns(10);</span>
+<span class="fc" id="L262">		txtNombre.setBounds(462, 370, 177, 30);</span>
+<span class="fc" id="L263">		pnlReservar.add(txtNombre);</span>
 
-<span class="fc" id="L259">		lblNombre = new JLabel(&quot;Nombre: &quot;);</span>
-<span class="fc" id="L260">		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);</span>
-<span class="fc" id="L261">		lblNombre.setFont(new Font(&quot;Verdana&quot;, Font.ITALIC, 15));</span>
-<span class="fc" id="L262">		lblNombre.setBounds(394, 379, 73, 21);</span>
-<span class="fc" id="L263">		pnlReservar.add(lblNombre);</span>
-<span class="fc" id="L264">	}</span>
+<span class="fc" id="L265">		lblNombre = new JLabel(&quot;Nombre: &quot;);</span>
+<span class="fc" id="L266">		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="fc" id="L267">		lblNombre.setFont(new Font(&quot;Verdana&quot;, Font.ITALIC, 15));</span>
+<span class="fc" id="L268">		lblNombre.setBounds(394, 379, 73, 21);</span>
+<span class="fc" id="L269">		pnlReservar.add(lblNombre);</span>
+<span class="fc" id="L270">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

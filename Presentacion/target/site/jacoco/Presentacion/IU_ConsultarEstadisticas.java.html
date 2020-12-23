@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_ConsultarEstadisticas.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_ConsultarEstadisticas.java</span></div><h1>IU_ConsultarEstadisticas.java</h1><pre class="source lang-java linenums">package Presentacion;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IU_ConsultarEstadisticas.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Presentacion</a> &gt; <a href="index.source.html" class="el_package">Presentacion</a> &gt; <span class="el_source">IU_ConsultarEstadisticas.java</span></div><h1>IU_ConsultarEstadisticas.java</h1><pre class="source lang-java linenums">package Presentacion;
 
 import java.awt.EventQueue;
 import java.awt.Rectangle;
@@ -63,130 +63,131 @@ public class IU_ConsultarEstadisticas {
 	private void initialize() {
 <span class="fc" id="L64">		frame = new JFrame();</span>
 <span class="fc" id="L65">		frame.setBounds(100, 100, 450, 300);</span>
-<span class="fc" id="L66">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
-<span class="fc" id="L67">		frame.setBounds(new Rectangle(380, 170, 700, 500));</span>
-<span class="fc" id="L68">		frame.getContentPane().setLayout(null);</span>
+<span class="fc" id="L66">		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);</span>
+<span class="fc" id="L67">		frame.setVisible(true);</span>
+<span class="fc" id="L68">		frame.setBounds(new Rectangle(380, 170, 700, 500));</span>
+<span class="fc" id="L69">		frame.getContentPane().setLayout(null);</span>
 		
-<span class="fc" id="L70">		lblNumComensales = new JLabel(&quot;Seleccione el numero de comensales: &quot;);</span>
-<span class="fc" id="L71">		lblNumComensales.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
-<span class="fc" id="L72">		lblNumComensales.setBounds(99, 233, 239, 17);</span>
-<span class="fc" id="L73">		frame.getContentPane().add(lblNumComensales);</span>
+<span class="fc" id="L71">		lblNumComensales = new JLabel(&quot;Seleccione el numero de comensales: &quot;);</span>
+<span class="fc" id="L72">		lblNumComensales.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L73">		lblNumComensales.setBounds(99, 233, 239, 17);</span>
+<span class="fc" id="L74">		frame.getContentPane().add(lblNumComensales);</span>
 		
-<span class="fc" id="L75">		lblNewLabel = new JLabel(&quot;Consultar estadisticas&quot;);</span>
-<span class="fc" id="L76">		lblNewLabel.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 20));</span>
-<span class="fc" id="L77">		lblNewLabel.setBounds(220, 52, 204, 25);</span>
-<span class="fc" id="L78">		frame.getContentPane().add(lblNewLabel);</span>
+<span class="fc" id="L76">		lblNewLabel = new JLabel(&quot;Consultar estadisticas&quot;);</span>
+<span class="fc" id="L77">		lblNewLabel.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 20));</span>
+<span class="fc" id="L78">		lblNewLabel.setBounds(220, 52, 204, 25);</span>
+<span class="fc" id="L79">		frame.getContentPane().add(lblNewLabel);</span>
 		
-<span class="fc" id="L80">		cBoxNComensales = new JComboBox();</span>
-<span class="fc" id="L81">		cBoxNComensales.setBounds(368, 232, 83, 22);</span>
-<span class="fc" id="L82">		frame.getContentPane().add(cBoxNComensales);</span>
-<span class="fc" id="L83">		cBoxNComensales.addItem(&quot;2&quot;);</span>
-<span class="fc" id="L84">		cBoxNComensales.addItem(&quot;4&quot;);</span>
-<span class="fc" id="L85">		cBoxNComensales.addItem(&quot;6&quot;);</span>
+<span class="fc" id="L81">		cBoxNComensales = new JComboBox();</span>
+<span class="fc" id="L82">		cBoxNComensales.setBounds(368, 232, 83, 22);</span>
+<span class="fc" id="L83">		frame.getContentPane().add(cBoxNComensales);</span>
+<span class="fc" id="L84">		cBoxNComensales.addItem(&quot;2&quot;);</span>
+<span class="fc" id="L85">		cBoxNComensales.addItem(&quot;4&quot;);</span>
+<span class="fc" id="L86">		cBoxNComensales.addItem(&quot;6&quot;);</span>
 		
-<span class="fc" id="L87">		lblSeleccioneElRestaurante = new JLabel(&quot;Seleccione opcion: &quot;);</span>
-<span class="fc" id="L88">		lblSeleccioneElRestaurante.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
-<span class="fc" id="L89">		lblSeleccioneElRestaurante.setBounds(126, 142, 128, 17);</span>
-<span class="fc" id="L90">		frame.getContentPane().add(lblSeleccioneElRestaurante);</span>
+<span class="fc" id="L88">		lblSeleccioneElRestaurante = new JLabel(&quot;Seleccione opcion: &quot;);</span>
+<span class="fc" id="L89">		lblSeleccioneElRestaurante.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L90">		lblSeleccioneElRestaurante.setBounds(126, 142, 128, 17);</span>
+<span class="fc" id="L91">		frame.getContentPane().add(lblSeleccioneElRestaurante);</span>
 		
-<span class="fc" id="L92">		cBoxRestCiudad = new JComboBox();</span>
-<span class="fc" id="L93">		cBoxRestCiudad.setBounds(368, 184, 71, 22);</span>
-<span class="fc" id="L94">		frame.getContentPane().add(cBoxRestCiudad);</span>
+<span class="fc" id="L93">		cBoxRestCiudad = new JComboBox();</span>
+<span class="fc" id="L94">		cBoxRestCiudad.setBounds(368, 184, 71, 22);</span>
+<span class="fc" id="L95">		frame.getContentPane().add(cBoxRestCiudad);</span>
 		
-<span class="fc" id="L96">		btnConsultarEstadisticas = new JButton(&quot;Consultar estadisticas&quot;);</span>
-<span class="fc" id="L97">		btnConsultarEstadisticas.addActionListener(new BtnConsultarEstadisticasActionListener());</span>
-<span class="fc" id="L98">		btnConsultarEstadisticas.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
-<span class="fc" id="L99">		btnConsultarEstadisticas.setBounds(234, 301, 187, 23);</span>
-<span class="fc" id="L100">		frame.getContentPane().add(btnConsultarEstadisticas);</span>
+<span class="fc" id="L97">		btnConsultarEstadisticas = new JButton(&quot;Consultar estadisticas&quot;);</span>
+<span class="fc" id="L98">		btnConsultarEstadisticas.addActionListener(new BtnConsultarEstadisticasActionListener());</span>
+<span class="fc" id="L99">		btnConsultarEstadisticas.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L100">		btnConsultarEstadisticas.setBounds(234, 301, 187, 23);</span>
+<span class="fc" id="L101">		frame.getContentPane().add(btnConsultarEstadisticas);</span>
 		
-<span class="fc" id="L102">		lblTTomaComandas = new JLabel(&quot;Tiempo de toma de comandas:&quot;);</span>
-<span class="fc" id="L103">		lblTTomaComandas.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
-<span class="fc" id="L104">		lblTTomaComandas.setBounds(10, 360, 313, 14);</span>
-<span class="fc" id="L105">		frame.getContentPane().add(lblTTomaComandas);</span>
+<span class="fc" id="L103">		lblTTomaComandas = new JLabel(&quot;Tiempo de toma de comandas:&quot;);</span>
+<span class="fc" id="L104">		lblTTomaComandas.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L105">		lblTTomaComandas.setBounds(10, 360, 313, 14);</span>
+<span class="fc" id="L106">		frame.getContentPane().add(lblTTomaComandas);</span>
 		
-<span class="fc" id="L107">		lblTiempoDe = new JLabel(&quot;Tiempo de preparacion de comidas:&quot;);</span>
-<span class="fc" id="L108">		lblTiempoDe.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
-<span class="fc" id="L109">		lblTiempoDe.setBounds(347, 360, 329, 14);</span>
-<span class="fc" id="L110">		frame.getContentPane().add(lblTiempoDe);</span>
+<span class="fc" id="L108">		lblTiempoDe = new JLabel(&quot;Tiempo de preparacion de comidas:&quot;);</span>
+<span class="fc" id="L109">		lblTiempoDe.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L110">		lblTiempoDe.setBounds(347, 360, 329, 14);</span>
+<span class="fc" id="L111">		frame.getContentPane().add(lblTiempoDe);</span>
 		
-<span class="fc" id="L112">		lblTiempoDeEntrega = new JLabel(&quot;Tiempo de entrega de nota:&quot;);</span>
-<span class="fc" id="L113">		lblTiempoDeEntrega.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
-<span class="fc" id="L114">		lblTiempoDeEntrega.setBounds(10, 411, 313, 14);</span>
-<span class="fc" id="L115">		frame.getContentPane().add(lblTiempoDeEntrega);</span>
+<span class="fc" id="L113">		lblTiempoDeEntrega = new JLabel(&quot;Tiempo de entrega de nota:&quot;);</span>
+<span class="fc" id="L114">		lblTiempoDeEntrega.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L115">		lblTiempoDeEntrega.setBounds(10, 411, 313, 14);</span>
+<span class="fc" id="L116">		frame.getContentPane().add(lblTiempoDeEntrega);</span>
 		
-<span class="fc" id="L117">		lblTiempoDePreparacion = new JLabel(&quot;Tiempo de preparacion de mesa:&quot;);</span>
-<span class="fc" id="L118">		lblTiempoDePreparacion.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
-<span class="fc" id="L119">		lblTiempoDePreparacion.setBounds(347, 411, 329, 14);</span>
-<span class="fc" id="L120">		frame.getContentPane().add(lblTiempoDePreparacion);</span>
+<span class="fc" id="L118">		lblTiempoDePreparacion = new JLabel(&quot;Tiempo de preparacion de mesa:&quot;);</span>
+<span class="fc" id="L119">		lblTiempoDePreparacion.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L120">		lblTiempoDePreparacion.setBounds(347, 411, 329, 14);</span>
+<span class="fc" id="L121">		frame.getContentPane().add(lblTiempoDePreparacion);</span>
 		
-<span class="fc" id="L122">		rdBtnRestaurante = new JRadioButton(&quot;Restaurante&quot;);</span>
-<span class="fc" id="L123">		rdBtnRestaurante.addActionListener(new RdBtnRestauranteActionListener());</span>
-<span class="fc" id="L124">		rdBtnRestaurante.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
-<span class="fc" id="L125">		rdBtnRestaurante.setBounds(287, 139, 111, 23);</span>
-<span class="fc" id="L126">		frame.getContentPane().add(rdBtnRestaurante);</span>
+<span class="fc" id="L123">		rdBtnRestaurante = new JRadioButton(&quot;Restaurante&quot;);</span>
+<span class="fc" id="L124">		rdBtnRestaurante.addActionListener(new RdBtnRestauranteActionListener());</span>
+<span class="fc" id="L125">		rdBtnRestaurante.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L126">		rdBtnRestaurante.setBounds(287, 139, 111, 23);</span>
+<span class="fc" id="L127">		frame.getContentPane().add(rdBtnRestaurante);</span>
 		
-<span class="fc" id="L128">		rdBtnCiudad = new JRadioButton(&quot;Ciudad&quot;);</span>
-<span class="fc" id="L129">		rdBtnCiudad.addActionListener(new RdBtnCiudadActionListener());</span>
-<span class="fc" id="L130">		rdBtnCiudad.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
-<span class="fc" id="L131">		rdBtnCiudad.setBounds(413, 139, 111, 23);</span>
-<span class="fc" id="L132">		frame.getContentPane().add(rdBtnCiudad);</span>
-<span class="fc" id="L133">	}</span>
-<span class="fc" id="L134">	private class BtnConsultarEstadisticasActionListener implements ActionListener {</span>
+<span class="fc" id="L129">		rdBtnCiudad = new JRadioButton(&quot;Ciudad&quot;);</span>
+<span class="fc" id="L130">		rdBtnCiudad.addActionListener(new RdBtnCiudadActionListener());</span>
+<span class="fc" id="L131">		rdBtnCiudad.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 14));</span>
+<span class="fc" id="L132">		rdBtnCiudad.setBounds(413, 139, 111, 23);</span>
+<span class="fc" id="L133">		frame.getContentPane().add(rdBtnCiudad);</span>
+<span class="fc" id="L134">	}</span>
+<span class="fc" id="L135">	private class BtnConsultarEstadisticasActionListener implements ActionListener {</span>
 		public void actionPerformed(ActionEvent arg0) {
-<span class="nc bnc" id="L136" title="All 2 branches missed.">			if(rdBtnCiudad.isSelected()) {</span>
-<span class="nc" id="L137">				lblTTomaComandas.setText(&quot;Tiempo de toma de comandas: &quot;</span>
-<span class="nc" id="L138">						+ &quot;&quot;+DTOEstadistica.calcularTiempoTomaComandasCiudad(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">			if(rdBtnCiudad.isSelected()) {</span>
+<span class="nc" id="L138">				lblTTomaComandas.setText(&quot;Tiempo de toma de comandas: &quot;</span>
+<span class="nc" id="L139">						+ &quot;&quot;+DTOEstadistica.calcularTiempoTomaComandasCiudad(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
 								+ &quot; minutos&quot;);
-<span class="nc" id="L140">				lblTiempoDe.setText(&quot;Tiempo de preparacion de comidas: &quot;</span>
-<span class="nc" id="L141">						+ &quot;&quot;+DTOEstadistica.calcularTiempoPreparacionComandasCiudad(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
+<span class="nc" id="L141">				lblTiempoDe.setText(&quot;Tiempo de preparacion de comidas: &quot;</span>
+<span class="nc" id="L142">						+ &quot;&quot;+DTOEstadistica.calcularTiempoPreparacionComandasCiudad(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
 								+ &quot; minutos&quot;);
-<span class="nc" id="L143">				lblTiempoDeEntrega.setText(&quot;Tiempo de entrega de nota: &quot;</span>
-<span class="nc" id="L144">						+ &quot;&quot;+DTOEstadistica.calcularTiempoEntregaNotaCiudad(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
+<span class="nc" id="L144">				lblTiempoDeEntrega.setText(&quot;Tiempo de entrega de nota: &quot;</span>
+<span class="nc" id="L145">						+ &quot;&quot;+DTOEstadistica.calcularTiempoEntregaNotaCiudad(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
 								+ &quot; minutos&quot;);
-<span class="nc" id="L146">				lblTiempoDePreparacion.setText(&quot;Tiempo de preparacion de mesa: &quot;</span>
-<span class="nc" id="L147">						+ &quot;&quot;+DTOEstadistica.calcularTiempoPreparacionMesaLibreCiudad(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
+<span class="nc" id="L147">				lblTiempoDePreparacion.setText(&quot;Tiempo de preparacion de mesa: &quot;</span>
+<span class="nc" id="L148">						+ &quot;&quot;+DTOEstadistica.calcularTiempoPreparacionMesaLibreCiudad(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
 								+ &quot; minutos&quot;);
 			}else {
-<span class="nc" id="L150">				lblTTomaComandas.setText(&quot;Tiempo de toma de comandas: &quot;</span>
-<span class="nc" id="L151">						+ &quot;&quot;+DTOEstadistica.calcularTiempoTomaComandasRestaurante(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
+<span class="nc" id="L151">				lblTTomaComandas.setText(&quot;Tiempo de toma de comandas: &quot;</span>
+<span class="nc" id="L152">						+ &quot;&quot;+DTOEstadistica.calcularTiempoTomaComandasRestaurante(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
 								+ &quot; minutos&quot;);
-<span class="nc" id="L153">				lblTiempoDe.setText(&quot;Tiempo de preparacion de comidas: &quot;</span>
-<span class="nc" id="L154">						+ &quot;&quot;+DTOEstadistica.calcularTiempoPreparacionComandasRestaurante(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
+<span class="nc" id="L154">				lblTiempoDe.setText(&quot;Tiempo de preparacion de comidas: &quot;</span>
+<span class="nc" id="L155">						+ &quot;&quot;+DTOEstadistica.calcularTiempoPreparacionComandasRestaurante(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
 								+ &quot; minutos&quot;);
-<span class="nc" id="L156">				lblTiempoDeEntrega.setText(&quot;Tiempo de entrega de nota: &quot;</span>
-<span class="nc" id="L157">						+ &quot;&quot;+DTOEstadistica.calcularTiempoEntregaNotaRestaurante(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
+<span class="nc" id="L157">				lblTiempoDeEntrega.setText(&quot;Tiempo de entrega de nota: &quot;</span>
+<span class="nc" id="L158">						+ &quot;&quot;+DTOEstadistica.calcularTiempoEntregaNotaRestaurante(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
 								+ &quot; minutos&quot;);
-<span class="nc" id="L159">				lblTiempoDePreparacion.setText(&quot;Tiempo de preparacion de mesa: &quot;</span>
-<span class="nc" id="L160">						+ &quot;&quot;+DTOEstadistica.calcularTiempoPreparacionMesaLibreRestaurante(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
+<span class="nc" id="L160">				lblTiempoDePreparacion.setText(&quot;Tiempo de preparacion de mesa: &quot;</span>
+<span class="nc" id="L161">						+ &quot;&quot;+DTOEstadistica.calcularTiempoPreparacionMesaLibreRestaurante(cBoxNComensales.getSelectedItem().toString(),cBoxRestCiudad.getSelectedItem().toString())+&quot;&quot;</span>
 								+ &quot; minutos&quot;);
 			}
-<span class="nc" id="L163">		}</span>
+<span class="nc" id="L164">		}</span>
 	}
-<span class="fc" id="L165">	private class RdBtnRestauranteActionListener implements ActionListener {</span>
+<span class="fc" id="L166">	private class RdBtnRestauranteActionListener implements ActionListener {</span>
 		public void actionPerformed(ActionEvent arg0) {
-<span class="nc" id="L167">			rdBtnCiudad.setSelected(false);</span>
-<span class="nc" id="L168">			cBoxRestCiudad.removeAllItems();</span>
-<span class="nc" id="L169">			cBoxRestCiudad.setEnabled(true);</span>
-<span class="nc" id="L170">			LinkedList&lt;String&gt; listaRestaurantes=new LinkedList&lt;String&gt;();</span>
-<span class="nc" id="L171">			DTOEstadistica.leerRestaurantes(listaRestaurantes);</span>
-<span class="nc" id="L172">			cBoxRestCiudad.addItem(&quot;   ----&quot;);</span>
-<span class="nc bnc" id="L173" title="All 2 branches missed.">			for(String rest: listaRestaurantes) {</span>
-<span class="nc" id="L174">				cBoxRestCiudad.addItem(rest);</span>
-<span class="nc" id="L175">			}</span>
-<span class="nc" id="L176">		}</span>
+<span class="nc" id="L168">			rdBtnCiudad.setSelected(false);</span>
+<span class="nc" id="L169">			cBoxRestCiudad.removeAllItems();</span>
+<span class="nc" id="L170">			cBoxRestCiudad.setEnabled(true);</span>
+<span class="nc" id="L171">			LinkedList&lt;String&gt; listaRestaurantes=new LinkedList&lt;String&gt;();</span>
+<span class="nc" id="L172">			DTOEstadistica.leerRestaurantes(listaRestaurantes);</span>
+<span class="nc" id="L173">			cBoxRestCiudad.addItem(&quot;   ----&quot;);</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">			for(String rest: listaRestaurantes) {</span>
+<span class="nc" id="L175">				cBoxRestCiudad.addItem(rest);</span>
+<span class="nc" id="L176">			}</span>
+<span class="nc" id="L177">		}</span>
 	}
-<span class="fc" id="L178">	private class RdBtnCiudadActionListener implements ActionListener {</span>
+<span class="fc" id="L179">	private class RdBtnCiudadActionListener implements ActionListener {</span>
 		public void actionPerformed(ActionEvent arg0) {
-<span class="nc" id="L180">			rdBtnRestaurante.setSelected(false);</span>
-<span class="nc" id="L181">			cBoxRestCiudad.removeAllItems();</span>
-<span class="nc" id="L182">			cBoxRestCiudad.setEnabled(true);</span>
-<span class="nc" id="L183">			LinkedList&lt;String&gt; listaCiudades=new LinkedList&lt;String&gt;();</span>
-<span class="nc" id="L184">			DTOEstadistica.leerCiudades(listaCiudades);</span>
-<span class="nc" id="L185">			cBoxRestCiudad.addItem(&quot;   ----&quot;);</span>
-<span class="nc bnc" id="L186" title="All 2 branches missed.">			for(String ciudad: listaCiudades) {</span>
-<span class="nc" id="L187">				cBoxRestCiudad.addItem(ciudad);</span>
-<span class="nc" id="L188">			}</span>
-<span class="nc" id="L189">		}</span>
+<span class="nc" id="L181">			rdBtnRestaurante.setSelected(false);</span>
+<span class="nc" id="L182">			cBoxRestCiudad.removeAllItems();</span>
+<span class="nc" id="L183">			cBoxRestCiudad.setEnabled(true);</span>
+<span class="nc" id="L184">			LinkedList&lt;String&gt; listaCiudades=new LinkedList&lt;String&gt;();</span>
+<span class="nc" id="L185">			DTOEstadistica.leerCiudades(listaCiudades);</span>
+<span class="nc" id="L186">			cBoxRestCiudad.addItem(&quot;   ----&quot;);</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">			for(String ciudad: listaCiudades) {</span>
+<span class="nc" id="L188">				cBoxRestCiudad.addItem(ciudad);</span>
+<span class="nc" id="L189">			}</span>
+<span class="nc" id="L190">		}</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

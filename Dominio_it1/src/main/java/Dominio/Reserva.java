@@ -1,46 +1,69 @@
 package Dominio;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
-
-public class Reserva implements Estado{
-
+public class Reserva implements Estado {
+	/**
+	 * id de la reserva.
+	 */
 	private int id;
+	/**
+	 * numero comensales reserva.
+	 */
 	private int numComensales;
+	/**
+	 * nombre reserva.
+	 */
 	private String nombre;
-	
-	public Reserva(final int id, int numComensales,String nombre ) {
-		this.setId(id);
-		this.setNumComensales(numComensales);
-		this.setNombre(nombre);
-
+	/**
+	 * Constructor clase Reserva
+	 * @param pId
+	 * @param pNumComensales
+	 * @param pNombre
+	 */
+	public Reserva(final int pId, final int pNumComensales, final String pNombre) {
+		this.setId(pId);
+		this.setNumComensales(pNumComensales);
+		this.setNombre(pNombre);
 	}
-	
+	/**
+	 * Modificar nombre de reserva.
+	 * @return
+	 */
 	public String getNombre() {
 		return nombre;
 	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	/**
+	 * Devuelve el nombre de quien es la reserva.
+	 * @param pNombre
+	 */
+	public void setNombre(final String pNombre) {
+		this.nombre = pNombre;
 	}
-
+	/**
+	 * Devuelve id de reserva.
+	 * @return
+	 */
 	public int getId() {
 		return id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	/**
+	 * Modificar id reserva.
+	 * @param pId
+	 */
+	public void setId(final int pId) {
+		this.id = pId;
 	}
-
-	
+	/**
+	 * Devuelve numero de comensales de la reserva.
+	 * @return
+	 */
 	public int getNumComensales() {
 		return numComensales;
 	}
-	
-	public void setNumComensales(int numComensales) {
-		this.numComensales = numComensales;
+	/**
+	 * Modificar numero de comensales de la reserva.
+	 * @param pNumComensales
+	 */
+	public void setNumComensales(final int pNumComensales) {
+		this.numComensales = pNumComensales;
 	}
 }

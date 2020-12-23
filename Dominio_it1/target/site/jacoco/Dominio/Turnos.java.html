@@ -1,17 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Turnos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it1</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Turnos.java</span></div><h1>Turnos.java</h1><pre class="source lang-java linenums">package Dominio;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Turnos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Dominio_it1</a> &gt; <a href="index.source.html" class="el_package">Dominio</a> &gt; <span class="el_source">Turnos.java</span></div><h1>Turnos.java</h1><pre class="source lang-java linenums">package Dominio;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * @author joses
+ * Interfaz Turnos.
+ */
 public interface Turnos {
-<span class="fc" id="L8">	DateTimeFormatter df = DateTimeFormatter.ofPattern(&quot;HH:mm&quot;).localizedBy(new Locale(&quot;es-ES&quot;));</span>
-<span class="fc" id="L9">	LocalTime Turno1Comida=LocalTime.parse(&quot;13:00&quot;, df);</span>
-<span class="fc" id="L10">	LocalTime Turno2Comida=LocalTime.parse(&quot;14:30&quot;, df);</span>
-<span class="fc" id="L11">	LocalTime Turno3Comida=LocalTime.parse(&quot;16:00&quot;, df);</span>
-<span class="fc" id="L12">	LocalTime Turno1Cena=LocalTime.parse(&quot;20:00&quot;, df);</span>
-<span class="fc" id="L13">	LocalTime Turno2Cena=LocalTime.parse(&quot;21:30&quot;, df);</span>
-<span class="fc" id="L14">	LocalTime Turno3Cena=LocalTime.parse(&quot;23:00&quot;, df);</span>
-<span class="fc" id="L15">	LocalTime limiteTurno=LocalTime.parse(&quot;00:30&quot;, df);</span>
+	/**
+	 * Variable DF.
+	 */
+<span class="fc" id="L15">	DateTimeFormatter DF = DateTimeFormatter.ofPattern(&quot;HH:mm&quot;)</span>
+<span class="fc" id="L16">			.localizedBy(new Locale(&quot;es-ES&quot;));</span>
+	/**
+	 * Variable TURNO1COMIDA.
+	 */
+<span class="fc" id="L20">	LocalTime TURNO_1_COMIDA = LocalTime.parse(&quot;13:00&quot;, DF);</span>
+	/**
+	 * Variable TURNO2COMIDA.
+	 */
+<span class="fc" id="L24">	LocalTime TURNO_2_COMIDA = LocalTime.parse(&quot;14:30&quot;, DF);</span>
+	/**
+	 * Variable TURNO3COMIDA.
+	 */
+<span class="fc" id="L28">	LocalTime TURNO_3_COMIDA = LocalTime.parse(&quot;16:00&quot;, DF);</span>
+	/**
+	 *  Variable TURNO1CENA.
+	 */
+<span class="fc" id="L32">	LocalTime TURNO_1_CENA = LocalTime.parse(&quot;20:00&quot;, DF);</span>
+	/**
+	 * Variable TURNO2CENA.
+	 */
+<span class="fc" id="L36">	LocalTime TURNO_2_CENA = LocalTime.parse(&quot;21:30&quot;, DF);</span>
+	/**
+	 * Variable TURNO3CENA.
+	 */
+<span class="fc" id="L40">	LocalTime TURNO_3_CENA = LocalTime.parse(&quot;23:00&quot;, DF);</span>
+	/**
+	 * Variable LIMITETURNO.
+	 */
+<span class="fc" id="L44">	LocalTime LIMITE_TURNO = LocalTime.parse(&quot;00:30&quot;, DF);</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
